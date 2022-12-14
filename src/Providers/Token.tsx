@@ -15,7 +15,6 @@ export const TokenContext = createContext<TokenProviderData>({} as TokenProvider
 export const TokenProvider = ({ children }: TokenProviderProps) => {
 	const [token, setToken] = useState<string>("token");
     
-
 	return (
 		<TokenContext.Provider
 		value={{ token, setToken }}>
