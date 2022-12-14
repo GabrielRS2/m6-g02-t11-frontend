@@ -6,7 +6,6 @@ interface StyledButtonProps {
   size: string
   backGroundColor: string
   borderColor: string
-  choseColor: (color: string) => string
   choseWidth: (size: string) => string
   choseHeight: (size: string) => string
   chosePadding: (size: string) => string
@@ -25,7 +24,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   padding: ${(props) => props.chosePadding(props.size)};
   border: 1.5px solid;
 
-  background-color: ${(props) => props.choseColor(props.backGroundColor)};
-  color: ${(props) => props.choseColor(props.color)};
-  border-color: ${(props) => props.choseColor(props.borderColor)};
+  background-color: ${(props) => props.backGroundColor};
+  color: ${(props) => props.color};
+  border-color: ${(props) => props.borderColor};
 `;

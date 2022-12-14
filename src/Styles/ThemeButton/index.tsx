@@ -1,5 +1,5 @@
 import { StyledButton } from "./style";
-import { choseColor, choseHeight, choseWidth,  chosePadding } from "./choseColor";
+import { choseHeight, choseWidth,  chosePadding } from "./utils";
 
 
 interface ThemeButtonProps {
@@ -20,7 +20,6 @@ export const ThemeButton = ({ children, color, size, borderColor ,backGroundColo
     borderColor={borderColor}
     backGroundColor={backGroundColor}
     onClick={handleClick}
-    choseColor={choseColor}
     choseHeight={choseHeight}
     choseWidth={choseWidth}
     chosePadding={chosePadding}
