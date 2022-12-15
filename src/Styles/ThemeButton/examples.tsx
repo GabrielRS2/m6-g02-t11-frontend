@@ -18,7 +18,7 @@ export const ExamplesButton = () => {
       size={"auto"}
       borderColor={"var(--grey0)"}
       handleClick={() => {console.log("Botão auto")}}
-      >Auto</ThemeButton>
+      >Comprar</ThemeButton>
       <ThemeButton 
       backGroundColor={"var(--whiteFixed)"}
       color={"var(--brand1)"}
