@@ -12,7 +12,7 @@ export const ContainerFooter = styled.div`
 `;
 export const ContainerTitle = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 33%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -43,17 +43,21 @@ export const TitleText = styled.div`
 
 export const Info = styled.div`
   width: 100%;
-  height: 19rem;
+  height: 33%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  p{
+    font-family:'Times New Roman', Times, serif;
+    font-weight:lighter;
+  }
 `;
 
 export const DivButton = styled.div`
   width: 100%;
-  height: 19rem;
+  height: 33%;
   display: flex;
   flex-direction: row;
   align-items: center;

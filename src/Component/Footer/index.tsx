@@ -1,3 +1,4 @@
+import { ThemeButton } from "../../Styles/ThemeButton";
 import {
   ContainerFooter,
   ContainerTitle,
@@ -18,7 +19,17 @@ export const Footer = () => {
         <p>© 2022 - Todos os direitos reservados.</p>
       </Info>
       <DivButton>
-        <button>^</button>
+        <ThemeButton
+          backGroundColor={"var(--grey1)"}
+          color={"var(--whiteFixed)"}
+          size={"medium"}
+          borderColor={"var(--grey1)"}
+          handleClick={() => {
+            console.log("Voltar ao topo");
+          }}
+        >
+          ^
+        </ThemeButton>
       </DivButton>
     </ContainerFooter>
   );
