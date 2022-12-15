@@ -4,7 +4,6 @@ import { Teste2 } from "../../Component/Teste";
 import { Teste } from "./style";
 
 import { TokenContext } from "../../Providers/Token";
-import { ExamplesButton } from "../../Styles/ThemeButton/examples";
 
 
 export const Home = () => {
@@ -16,7 +15,8 @@ export const Home = () => {
 
   return (
     <>
-      <ExamplesButton></ExamplesButton>
+      <Teste>teste:{token}</Teste>
+      <Teste2>Teste2</Teste2>
     </>
   );
 };
