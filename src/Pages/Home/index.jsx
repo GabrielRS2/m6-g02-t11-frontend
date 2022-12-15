@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 
 import { Teste2 } from "../../Component/Teste";
-import { Teste } from "./style";
+import { Container, Teste } from "./style";
 
 import { TokenContext } from "../../Providers/Token";
+import { Footer } from "../../Component/Footer";
 
 
 export const Home = () => {
@@ -14,9 +15,10 @@ export const Home = () => {
   }, [token]);
 
   return (
-    <>
+    <Container>
       <Teste>teste:{token}</Teste>
       <Teste2>Teste2</Teste2>
-    </>
+      <Footer/>
+    </Container>
   );
 };
