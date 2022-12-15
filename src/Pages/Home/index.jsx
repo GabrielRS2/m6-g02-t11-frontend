@@ -5,6 +5,7 @@ import { Container, Teste } from "./style";
 
 import { TokenContext } from "../../Providers/Token";
 import { Footer } from "../../Component/Footer";
+import { ThemeInputStandart, ThemeInputTextArea } from "../../Styles/ThemeInput";
 
 
 export const Home = () => {
@@ -17,7 +18,9 @@ export const Home = () => {
   return (
     <Container>
       <Teste>teste:{token}</Teste>
+      <ThemeInputTextArea placeholderText="testePlaceholder" labelText="testeLabel" />
       <Teste2>Teste2</Teste2>
+      <ThemeInputStandart placeholderText="testePlaceholder" inputType="text" labelText="testeLabel" />
       <Footer/>
     </Container>
   );
