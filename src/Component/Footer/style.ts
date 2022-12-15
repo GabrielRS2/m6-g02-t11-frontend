@@ -9,6 +9,11 @@ export const ContainerFooter = styled.div`
   justify-content: space-evenly;
   background: var(--grey0);
   color: var(--whiteFixed);
+
+  @media (width>700px) {
+    flex-direction: row;
+    height: 10rem;
+  }
 `;
 export const ContainerTitle = styled.div`
   width: 100%;
@@ -49,9 +54,10 @@ export const Info = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  p{
-    font-family:'Times New Roman', Times, serif;
-    font-weight:lighter;
+  p {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: lighter;
+    color: var(--grey7);
   }
 `;
 
