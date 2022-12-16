@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -61,8 +61,3 @@ export const GlobalStyle = createGlobalStyle`
     --random12: #30007D;
   } 
 `;
-
-interface OpacityProps {
-  opacityOn: boolean
-}
-
