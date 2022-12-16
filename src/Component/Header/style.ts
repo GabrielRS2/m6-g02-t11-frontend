@@ -73,6 +73,7 @@ export const HeaderContainer = styled.header`
       gap: 1rem;
 
       font-weight: 400;
+      font-size: 1rem;
       color: var(--grey2);
 
       background-color: var(--grey10);
@@ -173,19 +174,13 @@ export const PopupContainer = styled.div<PopupContainerProps>`
     border-bottom: 1px solid var(--grey4);
   }
 
-  .infoLoginContainerMobile p{
-    font-weight: 400;
-    font-size: 16px;
-
-    color: var(--grey2);
-  }
-
   .loginButton {
     display: flex;
     align-items: center;
     gap: 1rem;
 
     font-weight: 400;
+    font-size: 1rem;
     color: var(--grey2);
 
     background-color: var(--grey10);
