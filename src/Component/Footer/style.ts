@@ -2,32 +2,30 @@ import styled from "styled-components";
 
 export const ContainerFooter = styled.div`
   width: 100%;
-  height: 23rem;
+  height: 19.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background: var(--grey0);
   color: var(--whiteFixed);
-
+  
   @media (width>700px) {
     flex-direction: row;
     height: 10rem;
+    padding: 0px 3.75rem;
   }
 `;
 export const ContainerTitle = styled.div`
-  width: 100%;
   height: 33%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
   background: var(--grey0);
   color: var(--whiteFixed);
 `;
 
 export const TitleText = styled.div`
-  width: 50%;
   height: 1.8rem;
   display: flex;
   flex-direction: row;
@@ -47,7 +45,6 @@ export const TitleText = styled.div`
 `;
 
 export const Info = styled.div`
-  width: 100%;
   height: 33%;
   display: flex;
   flex-direction: row;
@@ -62,7 +59,6 @@ export const Info = styled.div`
 `;
 
 export const DivButton = styled.div`
-  width: 100%;
   height: 33%;
   display: flex;
   flex-direction: row;
