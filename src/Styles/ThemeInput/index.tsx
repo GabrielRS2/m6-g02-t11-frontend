@@ -26,7 +26,7 @@ export const ThemeInputTextArea = ({ labelText, placeholderText}: ThemeInputText
   return (
   <StyledInput>
     <label>{labelText}</label>
-    <textarea placeholder={placeholderText} />
+    <textarea placeholder={placeholderText} maxLength={500}/>
   </StyledInput>
   )} 
 

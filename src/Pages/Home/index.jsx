@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { Teste2 } from "../../Component/Teste";
-import { Container, Teste } from "./style";
+import { Container, ContainerRow, Teste } from "./style";
 
 import { TokenContext } from "../../Providers/Token";
 import { Footer } from "../../Component/Footer";
@@ -18,9 +18,9 @@ export const Home = () => {
   return (
     <Container>
       <Teste>teste:{token}</Teste>
-      <ThemeInputTextArea placeholderText="testePlaceholder" labelText="testeLabel" />
       <Teste2>Teste2</Teste2>
-      <ThemeInputStandart placeholderText="testePlaceholder" inputType="text" labelText="testeLabel" />
+      <Teste2>Teste3</Teste2>
+      <Teste2>Footer</Teste2>
       <Footer/>
     </Container>
   );
