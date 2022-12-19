@@ -22,16 +22,18 @@ export const StyledInput = styled.div`
 		border: 1.5px solid var(--grey7);
 		border-radius: 5px;
 		
+		background-color: var(--grey9);
   }
   input::placeholder{
 		color: var(--grey3)
   }
 	input:hover{
-		background-color: var(--grey8);
-		border-color: var(--grey8);
+		background-color: var(--grey7);
+		border-color: var(--grey7);
 	}
 	input:focus{
-		border-color: var(--brand2)
+		border-color: var(--brand2);
+		background-color: var(--grey9)
 	}
 	
 	textarea{
@@ -45,16 +47,19 @@ export const StyledInput = styled.div`
   	
 		border: 1.5px solid var(--grey7);
 		border-radius: 5px;
+
+		background-color: var(--grey9);
 	}
 	textarea::placeholder{
-		color: var(--grey3)
+		color: var(--grey3);
   }
 	textarea:hover{
 		background-color: var(--grey8);
 		border-color: var(--grey8);
 	}
-	/* textarea:focus{
-		border-color: var(--brand2)
-	} */
+	textarea:focus{
+		border-color: var(--brand2);
+		background-color: var(--grey9);
+	}
 `
   
