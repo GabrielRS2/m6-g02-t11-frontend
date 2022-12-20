@@ -5,6 +5,7 @@ interface PopupContainerProps {
 }
 
 export const HeaderContainer = styled.header`
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,10 +118,10 @@ export const PopupContainer = styled.div<PopupContainerProps>`
   display: flex;
   flex-direction: column;
   
-  position: absolute;
+  position: fixed;
   z-index: 1;
   overflow: hidden;
-  top: ${(props) => props.isOpen ? "5rem" : "-50%"};
+  top: ${(props) => props.isOpen ? "5rem" : "-100%"};
   
   width: 100%;
   max-width: 100vw;
@@ -152,7 +153,7 @@ export const PopupContainer = styled.div<PopupContainerProps>`
     justify-content: space-between;
 
     height: 11.5rem;
-    padding: 32px 16px 32px 16px;
+    padding: 2rem 1rem;
     width: 100%;
 
     font-weight: 600;
@@ -169,7 +170,7 @@ export const PopupContainer = styled.div<PopupContainerProps>`
 
     width: 100%;
     height: 5rem;
-    padding: 32px 16px 32px 16px;
+    padding: 2rem 1rem;
 
     border-bottom: 1px solid var(--grey4);
   }

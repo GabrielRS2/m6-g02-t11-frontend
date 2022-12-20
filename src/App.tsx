@@ -1,4 +1,4 @@
-import { Card } from "./Component/card";
+import { Card } from "./Component/Card";
 import { Routes } from "./Routes";
 import { GlobalStyle } from "./Styles/global";
 

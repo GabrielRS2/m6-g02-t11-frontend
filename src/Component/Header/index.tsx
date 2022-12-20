@@ -81,8 +81,8 @@ export const Header = () => {
                       fontSize: "0.875rem", 
                       fontWeight: "700" }}
                       >
-                      {nameToAcronym("Gabriel Ribeiro")}</Avatar>
-                      <p>Gabriel Ribeiro</p>
+                      {nameToAcronym("Samuel Leão")}</Avatar>
+                      <p>Samuel Leão</p>
                     </button>
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar Perfil</MenuItem>
@@ -127,8 +127,8 @@ export const Header = () => {
                     fontSize: "0.875rem", 
                     fontWeight: "700" }}
                     >
-                    {nameToAcronym("Gabriel Ribeiro")}</Avatar>
-                    <p>Gabriel Ribeiro</p>
+                    {nameToAcronym("Samuel Leão")}</Avatar>
+                    <p>Samuel Leão</p>
                     </button>
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar Perfil</MenuItem>
