@@ -5,6 +5,8 @@ import { Container } from "./style";
 import { TokenContext } from "../../Providers/Token";
 import { Footer } from "../../Component/Footer";
 import { Header } from "../../Component/Header";
+import { CardPerfilAdm } from "../../Component/CardPerfilAdm";
+
 
 export const Home = () => {
   const { token } = useContext(TokenContext);
@@ -14,23 +16,24 @@ export const Home = () => {
   }, [token]);
 
   return (
-    <Container>
+    <>
       <Header></Header>
-      <div className="teste">
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-        <p>Conteudo teste</p>
-      </div>
-      <Footer></Footer>
-    </Container>
+      <Container>
+        <CardPerfilAdm />
+        <div className="teste">
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+          <p>Conteudo teste</p>
+        </div>
+        <Footer></Footer>
+      </Container>
+    </>
   );
 };
