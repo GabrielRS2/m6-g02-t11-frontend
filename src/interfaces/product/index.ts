@@ -1,4 +1,4 @@
-import { SellerProduct } from "../user";
+import { IUser } from "../user";
 
 export interface IProduct {
   model: string;
@@ -10,5 +10,5 @@ export interface IProduct {
   vehicle_type: string;
   is_active: boolean;
   cover_img: string;
-  seller: SellerProduct;
+  seller: IUser;
 }

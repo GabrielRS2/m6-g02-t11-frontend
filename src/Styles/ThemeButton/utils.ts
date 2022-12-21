@@ -23,7 +23,7 @@ export const choseWidth = (size: string) => {
       return "min-content"
 
     case "big":
-      return "min-content"
+      return "auto"
 
     default:
       return "min-content";

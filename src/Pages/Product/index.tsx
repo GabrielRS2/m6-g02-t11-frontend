@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 
-import { Container, ContainerMain, ContainerProductImage } from "./style";
+import { Container, ContainerMain, ContainerProductImage, ContainerSectionMobile } from "./style";
 
 import { Footer } from "../../Component/Footer";
 import { Header } from "../../Component/Header";
 import { IProduct } from "../../interfaces/product";
 import { useParams } from "react-router-dom";
 import { CardProductDetail } from "../../Component/CardProductDetail";
+import { CardAdmDetail } from "../../Component/CardAdmDetail";
 
 
 const product: IProduct = {
@@ -18,6 +19,7 @@ const product: IProduct = {
     seller: {
       photo: "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
       name: "Samuel Leão",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
     },
     km: `0`,
     year: "2020",
@@ -54,7 +56,10 @@ export const Product = () => {
           </ContainerProductImage>
           <CardProductDetail product={product} />
         </ContainerMain>
-
+        <ContainerSectionMobile>
+          <div className="photos">asasfas</div>
+          <CardAdmDetail user={product.seller}/>
+        </ContainerSectionMobile>
       </Container>
       <Footer></Footer>
     </>

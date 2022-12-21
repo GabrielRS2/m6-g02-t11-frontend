@@ -1,4 +1,5 @@
-export interface SellerProduct {
+export interface IUser {
   name: string;
   photo: string;
+  description: string;
 }

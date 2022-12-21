@@ -18,7 +18,7 @@ background: linear-gradient(180deg, var(--brand1) 32.25rem, var(--grey8) 32.25re
   }
 `;
 
-export const ContainerMain = styled.div`
+export const ContainerMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,12 +35,37 @@ export const ContainerProductImage = styled.div`
     height: 22.188rem;
 
 
-background: var(--grey10);
-border-radius: 0.25rem;
+    background: var(--grey10);
+    border-radius: 0.25rem;
 
   img {
     width: 100%;
     max-width: 46.938rem;
     height: 22.188rem;
+  }
+`;
+
+export const ContainerSectionMobile = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 3.25rem;
+
+  width: 100%;
+
+  .photos {
+    width: 100%;
+    height: 22.438rem;
+
+    background-color: #000000;
+  }
+
+  @media (width>768px) {
+    display: none;
+
+    /* gap: 2.125rem;
+
+    .photos {
+      height: 23.563rem;
+    } */
   }
 `;
