@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 
 import { Home } from "../Pages/Home";
+import { Product } from "../Pages/Product";
 
 
 export const Routes = () => {
@@ -8,6 +9,9 @@ export const Routes = () => {
   <Switch>
     <Route exact path="/home">
       <Home />
+    </Route>
+    <Route path="/product/:productId">
+      <Product />
     </Route>
   </Switch>
   );
