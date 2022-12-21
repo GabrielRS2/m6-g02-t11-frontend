@@ -53,7 +53,7 @@ export const Header = () => {
       </Modal>
       <HeaderContainer>
         <div>
-          <img src="./Assets/logoColor.svg" alt="" />
+          <img src="./Assets/logoColor.svg" alt="Motor shop" />
         </div>
         <HamburgerButton 
         className="hamburgerButton" 

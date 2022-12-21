@@ -20,7 +20,7 @@ export const CardPerfilAdm = () => {
       <div className="nameContainerAdmPage">
         <h3>Samuel Leão <span>Anunciante</span></h3>
       </div>
-      <p>
+      <p className="descriptionPerfilAdm">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
       </p>
       <ThemeButton 

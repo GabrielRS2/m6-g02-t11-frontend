@@ -1,6 +1,4 @@
-import React from "react";
 import { IProduct } from "../../interfaces/product";
-
 import {
   ContainerCard,
   ContainerImage,
@@ -10,6 +8,7 @@ import {
   TextInfo,
   TextTitle,
 } from "./style";
+
 
 type AppProps = {
   status?: boolean;
