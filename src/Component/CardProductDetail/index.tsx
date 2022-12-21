@@ -3,7 +3,7 @@ import { ThemeButton } from "../../Styles/ThemeButton";
 import { Container } from "./style";
 
 import { IProduct } from "../../interfaces/product";
-import { priceFormarter } from "../../utils/inde";
+import { priceFormarter } from "../../utils";
 
 interface IPropsCardProductDetail{
   product:IProduct
