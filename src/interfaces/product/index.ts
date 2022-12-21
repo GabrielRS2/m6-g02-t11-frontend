@@ -12,3 +12,9 @@ export interface IProduct {
   cover_img: string;
   seller: SellerProduct;
 }
+
+export interface IProductImage {
+  id: string;
+  content: string;
+  is_cover_img: boolean;
+}

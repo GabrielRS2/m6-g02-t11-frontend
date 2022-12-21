@@ -32,7 +32,7 @@ export const ContainerImages = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  justify-content: space-between;
+  gap: 5.5px;
   align-content: space-between;
 
   border-radius: 0px;
@@ -49,7 +49,7 @@ export const ContainerImages = styled.div`
   }
 
   @media (min-width: 350px) {
-    width: 290px;
+    width: 300px;
     height: 248px;
     border-radius: 0px;
 
@@ -66,7 +66,7 @@ export const ContainerImages = styled.div`
     }
   }
   @media (min-width: 365px) {
-    width: 300px;
+    width: 320px;
     height: 248px;
     border-radius: 0px;
 
@@ -83,7 +83,7 @@ export const ContainerImages = styled.div`
     }
   }
   @media (min-width: 380px) {
-    width: 320px;
+    width: 330px;
     height: 248px;
     border-radius: 0px;
 
@@ -104,6 +104,7 @@ export const ContainerImages = styled.div`
     height: 248px;
     width: 352px;
     border-radius: 0px;
+    gap: 14px;
 
     figure {
       height: 108px;

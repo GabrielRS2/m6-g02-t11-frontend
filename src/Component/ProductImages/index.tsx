@@ -1,28 +1,21 @@
+import { IProductImage } from "../../interfaces/product";
 import { ContainerImages, ContainerPhotos } from "./style";
 
 type AppProps = {
-  images: string[];
+  images: IProductImage[];
 };
 
 export const ProductImages = ({ images }: AppProps) => {
-  const final = [];
-  for (let i = 0; i < 6; i++) {
-    images[i]
-      ? final.push(
-          <figure>
-            <img src={images[i]} alt="Vrum Vrum" />
-          </figure>
-        )
-      : final.push(
-          <figure>
-            <img src="./Assets/carro_generico.jpg" alt="Vrum Vrum" />
-          </figure>
-        );
-  }
   return (
     <ContainerPhotos>
       Fotos
-      <ContainerImages>{final}</ContainerImages>
+      <ContainerImages>
+        {images.map((image, index) => (
+          <figure key={index}>
+            <img src={image.content} alt="Vrum Vrum" />
+          </figure>
+        ))}
+      </ContainerImages>
     </ContainerPhotos>
   );
 };
