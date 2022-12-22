@@ -8,7 +8,7 @@ type AppProps = {
 export const ProductImages = ({ images }: AppProps) => {
   return (
     <ContainerPhotos>
-      Fotos
+      <h6>Fotos</h6>
       <ContainerImages>
         {images.map((image, index) => (
           <figure key={index}>

@@ -48,6 +48,7 @@ export const ContainerProductImage = styled.div`
 export const ContainerSectionMobile = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3.25rem;
 
   width: 100%;

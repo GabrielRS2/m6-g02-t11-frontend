@@ -1,34 +1,33 @@
 import styled from "styled-components";
 
 export const ContainerPhotos = styled.div`
-  box-sizing: border-box;
-  min-height: 359px;
-  min-width: 351px;
-  max-height: 377px;
-  max-width: 440px;
+  height: 22.438rem;
+  width: auto;
 
-  border-radius: 4px;
-  padding: 36px 44px 36px 44px;
+  border-radius: 0.25rem;
+  padding: 2.75rem 2.25rem;
 
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
+
+  background-color: var(--grey10);
+
   h6 {
-    font-family: Lexend;
-    font-size: 20px;
+    font-size:1.25rem;
     font-weight: 600;
-    line-height: 25px;
-    letter-spacing: 0em;
+    line-height: 1.51rem;
     text-align: left;
   }
-  @media (min-width: 355px) {
+  /* @media (min-width: 355px) {
     width: 100%;
-    max-width: 440px;
-  }
+    max-width: 27.5rem;
+  } */
 `;
 export const ContainerImages = styled.div`
-  width: 281px;
-  height: 230px;
+  width: 100%;
+  max-width: 17.563rem,;
+  height: 14.375rem;
   display: flex;
   flex-wrap: wrap;
 
@@ -38,13 +37,15 @@ export const ContainerImages = styled.div`
   border-radius: 0px;
 
   figure {
-    width: 90px;
-    height: 90px;
+    width: 100%;
+    max-width: 6.25rem;
+    max-height: 11.25rem;
     display: flex;
     background: var(--grey7);
 
     img {
-      max-width: 100%;
+      width: 100%;
+      height: 100%;
     }
   }
 

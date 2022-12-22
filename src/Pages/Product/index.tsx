@@ -63,7 +63,7 @@ export const Product = () => {
           <DescriptionPageProduct description={product.seller.description}/>
         </ContainerMain>
         <ContainerSectionMobile>
-          {/* <ProductImages images={images}/> */}
+          <ProductImages images={images}/>
           <CardAdmDetail user={product.seller}/>
         </ContainerSectionMobile>
       </Container>
