@@ -47,7 +47,7 @@ export const Header = () => {
       onClose={handleClose}
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description"
-      sx={{ zIndex: '0' }}
+      sx={{ zIndex: '1' }}
       >
         <div></div>
       </Modal>

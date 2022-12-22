@@ -1,63 +1,56 @@
 import styled from "styled-components";
 
 export const ContainerProfileUser = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 3.25rem;
 
   width: 100vw;
-  height: 2000px;
-  background: var(--grey6);
-  overflow: hidden;
+  background: linear-gradient(180deg, var(--brand1) 20.668rem, var(--grey8) 20.668rem);;
+  padding: 9.688rem 0px 4.688rem 3.781rem;
 
-  z-index: 0;
-  @media (min-width: 430px) {
-    height: 1928px;
+  .containerCardPerfilAdm {
+    padding-right: 3.781rem;
+  }
+
+  @media(width>768px){
+    align-items: center;
   }
 `;
-export const ContainerHeader = styled.div`
-  background: var(--brand1);
-  width: 100vw;
-  height: 331px;
-  z-index: 0;
-  @media (min-width: 430px) {
-    height: 357px;
-    overflow: hidden;
+
+export const ContainerProductPerfil = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 3.875rem;
+
+  width: 100%;
+  max-width: 100vw;
+
+  background-color: var(--grey8);
+
+
+  .typeTittle {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+
+    color: var(--grey0);
   }
 `;
-export const ContainerUserCard = styled.div`
-  background: var(--grey10);
-  width: 343px;
-  height: 397px;
-  z-index: 0;
 
-  position: absolute;
-  top: 145px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+export const ContainerProducts = styled.div`
+  display: flex;
+  gap: 0.75rem;
 
-  @media (min-width: 430px) {
-    width: 77.5%;
-    height: 327px;
-    min-width: 343px;
-    max-width: 1240px;
+  width: 100%;
+  padding-bottom: .5rem;
 
-    top: 155px;
-  }
-`;
-export const ContainerMain = styled.div`
-  z-index: 0;
-`;
-export const ContainerFooter = styled.div`
-  background: var(--grey0);
-  width: 100vw;
-  height: 310.34px;
-  position: absolute;
-  bottom: 0;
-  z-index: 0;
-  @media (min-width: 430px) {
-    height: 140px;
+  overflow: scroll;
+
+  @media(width>768px){
+    cursor: grab;
+    overflow-x: hidden;
   }
 `;

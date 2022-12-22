@@ -29,7 +29,7 @@ export const CardPerfilAdm = () => {
       size={"big"}
       borderColor={"var(--brand1)"}
       handleClick={() => {console.log("Botão grande")}}
-      >Grande</ThemeButton>
+      >Criar anuncio</ThemeButton>
     </Container>
   );
 };

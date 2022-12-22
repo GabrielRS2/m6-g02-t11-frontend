@@ -6,7 +6,6 @@ interface IProps {
 
 export const ContainerCard = styled.div`
   width: 312px;
-  height: 350px;
   padding: 1px;
   box-sizing: border-box;
   display: flex;
@@ -16,11 +15,10 @@ export const ContainerCard = styled.div`
 `;
 
 export const ContainerImage = styled.figure<IProps>`
-  background-color: aliceblue;
   width: 312px;
   height: 152px;
 
-  background-color: var(--grey7);
+  background-color: var(--grey8);
 
   display: flex;
   justify-content: center;
@@ -43,8 +41,6 @@ export const ContainerImage = styled.figure<IProps>`
     left: 16px;
     top: 11px;
 
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
@@ -78,8 +74,6 @@ export const TextTitle = styled.h4`
   width: 312px;
   height: 22px;
 
-  font-family: "Lexend";
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
@@ -101,8 +95,6 @@ export const TextInfo = styled.p`
 
   color: var(--grey2);
 
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
@@ -128,8 +120,6 @@ export const ContainerOwner = styled.figure`
   }
 
   span {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
@@ -153,32 +143,15 @@ export const ContainerTags = styled.div`
   padding: 0px;
   gap: 12px;
 
-  position: absolute;
   width: 113px;
-  height: 32px;
-  left: 0px;
-  top: 0px;
 
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  p {
     padding: 4px 8px;
     gap: 10px;
-
-    width: 50px;
-    height: 32px;
-
+  
     background: var(--brand4);
     border-radius: 4px;
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
@@ -188,23 +161,23 @@ export const ContainerTags = styled.div`
 `;
 
 export const ContainerValor = styled.div`
-  width: 309px;
+  display: flex;
+  justify-content: space-between;
   height: 32px;
-  position: relative;
 
   span {
-    position: absolute;
-    width: 200px;
-    height: 20px;
-    left: 204px;
-    top: 4px;
-
-    font-family: "Lexend";
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
 
     color: var(--grey1);
   }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 1.125rem;
+
+  width: 100%;
 `;
