@@ -8,11 +8,10 @@ import {
   ContainerUserCard,
 } from "./style";
 
-export const ProflieViewUser = () => {
+export const DashboardUser = () => {
   return (
     <ContainerProfileUser>
       <Header />
-      <ContainerHeader />
       <ContainerUserCard></ContainerUserCard>
       <ContainerMain></ContainerMain>
       <ContainerFooter>
