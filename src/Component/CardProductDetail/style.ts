@@ -11,6 +11,7 @@ export const Container = styled.div`
   padding: 2.75rem 1.75rem 1.75rem 1.75rem;
   width: 100%;
   max-width: 46.938rem;
+  border-radius: 0.25rem;
 
   background-color: var(--grey10);
 
