@@ -6,7 +6,8 @@ export const ContainerProfileUser = styled.div`
   align-items: flex-start;
   gap: 3.25rem;
 
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   background: linear-gradient(180deg, var(--brand1) 20.668rem, var(--grey8) 20.668rem);;
   padding: 9.688rem 0px 4.688rem 3.781rem;
 
@@ -48,9 +49,19 @@ export const ContainerProducts = styled.div`
   padding-bottom: .5rem;
 
   overflow: scroll;
+  animation: productRender 1s;
 
   @media(width>768px){
     cursor: grab;
-    overflow-x: hidden;
+    overflow: auto;
+  }
+
+  @keyframes productRender {
+    0% {
+      padding-left: 100vw;
+    }
+    100% {
+      padding-left: 0px;
+    }
   }
 `;
