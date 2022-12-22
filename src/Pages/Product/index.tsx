@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Container, ContainerMain, ContainerProductImage, ContainerSectionMobile } from "./style";
+import { Container, ContainerMain, ContainerProductImage, ContainerSectionDesktop, ContainerSectionMobile } from "./style";
 
 import { Footer } from "../../Component/Footer";
 import { Header } from "../../Component/Header";
@@ -14,7 +14,7 @@ import { ProductImages } from "../../Component/ProductImages";
 
 const product: IProduct = {
     cover_img:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5RK4FNCPv1kHNXX2dA5xeRKeqbpf7c8IgcA&usqp=CAU",
+    "/Assets/carro_generico.jpg",
     model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Product title stays here - max 1 line
       Product title stays here - maximum 1 line`,
@@ -36,11 +36,11 @@ interface IProductId {
 }
 
 const images: string[] = [
-  "./Assets/carro_generico.jpg",
-  "./Assets/carro_generico.jpg",
-  "./Assets/carro_generico.jpg",
-  "./Assets/carro_generico.jpg",
-  "./Assets/carro_generico.jpg",
+  "/Assets/carro_generico.jpg",
+  "/Assets/carro_generico.jpg",
+  "/Assets/carro_generico.jpg",
+  "/Assets/carro_generico.jpg",
+  "/Assets/carro_generico.jpg",
 ]
 
 export const Product = () => {
@@ -66,6 +66,10 @@ export const Product = () => {
           <ProductImages images={images}/>
           <CardAdmDetail user={product.seller}/>
         </ContainerSectionMobile>
+        <ContainerSectionDesktop>
+          <ProductImages images={images}/>
+          <CardAdmDetail user={product.seller}/>
+        </ContainerSectionDesktop>
       </Container>
       <Footer></Footer>
     </>

@@ -11,6 +11,7 @@ export const Container = styled.div`
   padding: 2.5rem 1.75rem;
   width: 100%;
   max-width: 46.938rem;
+  border-radius: 0.25rem;
 
   background-color: var(--grey10);
 
@@ -36,6 +37,8 @@ export const Container = styled.div`
   }
 
   @media (width>768px) {
+    max-width: 27.5rem;
+
     .avatarMobile {
       display: none;
     }
