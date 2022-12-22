@@ -2,7 +2,7 @@ import { IProductImage } from "../../interfaces/product";
 import { ContainerImages, ContainerPhotos } from "./style";
 
 type AppProps = {
-  images: IProductImage[];
+  images: string[];
 };
 
 export const ProductImages = ({ images }: AppProps) => {
@@ -12,7 +12,7 @@ export const ProductImages = ({ images }: AppProps) => {
       <ContainerImages>
         {images.map((image, index) => (
           <figure key={index}>
-            <img src={image.content} alt="Vrum Vrum" />
+            <img src={"/Assets/carro_generico.jpg"} alt="foto do produto" />
           </figure>
         ))}
       </ContainerImages>
