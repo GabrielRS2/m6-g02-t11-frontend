@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface PopupContainerProps {
-  isOpen: boolean
+  isOpen: boolean;
 }
 
 export const HeaderContainer = styled.header`
@@ -35,15 +35,15 @@ export const HeaderContainer = styled.header`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      
+
       padding: 0px 44px;
       width: 20.188rem;
       height: 100%;
-  
+
       font-weight: 600;
       font-size: 1rem;
       color: var(--grey2);
-  
+
       border-right: 1px solid var(--grey4);
     }
 
@@ -52,7 +52,7 @@ export const HeaderContainer = styled.header`
 
       height: 100%;
     }
-      
+
     .infoContainer ul li button {
       font-weight: 600;
       color: var(--grey2);
@@ -63,7 +63,7 @@ export const HeaderContainer = styled.header`
     .infoContainer .infoLoginContainer {
       display: flex;
       align-items: center;
-      
+
       padding-left: 2.75rem;
       height: 100%;
     }
@@ -96,7 +96,6 @@ export const HeaderContainer = styled.header`
       background-color: var(--grey10);
     }
   }
-
 `;
 
 export const HamburgerButton = styled.button`
@@ -105,10 +104,10 @@ export const HamburgerButton = styled.button`
   justify-content: center;
 
   margin-right: 1rem;
-  
+
   font-size: 1rem;
   background-color: var(--grey10);
-  
+
   @media (width>768px) {
     display: none;
   }
@@ -117,29 +116,29 @@ export const HamburgerButton = styled.button`
 export const PopupContainer = styled.div<PopupContainerProps>`
   display: flex;
   flex-direction: column;
-  
+
   position: fixed;
   z-index: 1;
   overflow: hidden;
-  top: ${(props) => props.isOpen ? "5rem" : "-100%"};
-  
+  top: ${(props) => (props.isOpen ? "5rem" : "-100%")};
+
   width: 100%;
   max-width: 100vw;
   height: auto;
-  
+
   background-color: var(--whiteFixed);
 
   transition: top 0.6s;
-  
+
   ul {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    
+
     height: 14.75rem;
     padding: 32px 16px 32px 16px;
-    
+
     font-weight: 600;
     color: var(--grey2);
 

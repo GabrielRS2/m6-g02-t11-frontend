@@ -25,7 +25,7 @@ export const Footer = () => {
           size={"medium"}
           borderColor={"var(--grey1)"}
           handleClick={() => {
-            console.log("Voltar ao topo");
+            window.scrollTo(0, 0);
           }}
         >
           ^
