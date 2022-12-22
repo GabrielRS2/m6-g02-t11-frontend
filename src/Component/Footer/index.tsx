@@ -12,7 +12,7 @@ export const Footer = () => {
     <ContainerFooter>
       <ContainerTitle>
         <TitleText>
-          <img src={"./Assets/logoWhite.svg"} alt="Motor-shop" />
+          <img src={"/Assets/logoWhite.svg"} alt="Motor-shop" />
         </TitleText>
       </ContainerTitle>
       <Info>

@@ -8,6 +8,8 @@ import { IProduct } from "../../interfaces/product";
 import { useParams } from "react-router-dom";
 import { CardProductDetail } from "../../Component/CardProductDetail";
 import { CardAdmDetail } from "../../Component/CardAdmDetail";
+import { DescriptionPageProduct } from "../../Component/DescriptionPageProduct";
+import { ProductImages } from "../../Component/ProductImages";
 
 
 const product: IProduct = {
@@ -29,20 +31,23 @@ const product: IProduct = {
     sale_type: "leilao",
   };
 
-// interface IProductList {
-//   productList: IProduct[]
-// }
-
 interface IProductId {
   productId: string
 }
+
+const images: string[] = [
+  "./Assets/carro_generico.jpg",
+  "./Assets/carro_generico.jpg",
+  "./Assets/carro_generico.jpg",
+  "./Assets/carro_generico.jpg",
+  "./Assets/carro_generico.jpg",
+]
 
 export const Product = () => {
   const { productId } : IProductId = useParams();
   
   useEffect(() => {
-    console.log(productId);
-    console.log(product.cover_img);
+    const product: string = ""
     
   }, [productId]);
 
@@ -55,9 +60,10 @@ export const Product = () => {
             <img src={`${product.cover_img}`}/>
           </ContainerProductImage>
           <CardProductDetail product={product} />
+          <DescriptionPageProduct description={product.seller.description}/>
         </ContainerMain>
         <ContainerSectionMobile>
-          <div className="photos">asasfas</div>
+          {/* <ProductImages images={images}/> */}
           <CardAdmDetail user={product.seller}/>
         </ContainerSectionMobile>
       </Container>
