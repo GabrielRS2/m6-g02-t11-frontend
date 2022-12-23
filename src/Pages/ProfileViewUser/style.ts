@@ -51,11 +51,6 @@ export const ContainerProducts = styled.div`
   overflow: scroll;
   animation: productRender 1s;
 
-  @media(width>768px){
-    cursor: grab;
-    overflow: auto;
-  }
-
   @keyframes productRender {
     0% {
       padding-left: 100vw;
