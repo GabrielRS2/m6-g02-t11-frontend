@@ -5,20 +5,31 @@ interface IProps {
 }
 
 export const ContainerCard = styled.div`
-  width: 312px;
-  height: 350px;
-  padding: 1px;
+  width: 19.5rem;
+  height: 21.875rem;
+  padding: 0.063rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-
-  gap: 16px;
+  :hover {
+    .ContainerImage {
+      border: 0.063rem #4529e6 solid;
+    }
+    .img {
+      height: 100%;
+    }
+  }
+  gap: 1rem;
+  .img {
+    height: 90%;
+    width: auto;
+  }
 `;
 
 export const ContainerImage = styled.figure<IProps>`
   background-color: aliceblue;
-  width: 312px;
-  height: 152px;
+  width: 19.5rem;
+  height: 9.5rem;
 
   background-color: var(--grey7);
 
@@ -34,20 +45,20 @@ export const ContainerImage = styled.figure<IProps>`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0px 8px;
-    gap: 10px;
+    padding: 0 0.5rem;
+    gap: 0.625rem;
 
     position: absolute;
-    max-width: 61px;
-    height: 24px;
-    left: 16px;
-    top: 11px;
+    max-width: 3.813rem;
+    height: 1.5rem;
+    left: 1rem;
+    top: 0.688rem;
 
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 
     color: var(--whiteFixed);
     ${(props) => {
@@ -67,22 +78,17 @@ export const ContainerImage = styled.figure<IProps>`
       }
     }}
   }
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-  }
 `;
 
 export const TextTitle = styled.h4`
-  width: 312px;
-  height: 22px;
+  width: 19.5rem;
+  height: 1.375rem;
 
   font-family: "Lexend";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1rem;
+  line-height: 1.25rem;
   color: var(--grey1);
 
   overflow: hidden;
@@ -104,26 +110,26 @@ export const TextInfo = styled.p`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
 
-  width: 312px;
-  height: 48px;
+  width: 19.5rem;
+  height: 3rem;
 `;
 
 export const ContainerOwner = styled.figure`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 
   padding: 0px;
 
-  height: 32px;
+  height: 2rem;
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 100%;
   }
 
@@ -131,10 +137,10 @@ export const ContainerOwner = styled.figure`
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 
-    height: 24px;
+    height: 1.5rem;
 
     color: var(--grey2);
 
@@ -151,11 +157,11 @@ export const ContainerTags = styled.div`
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  gap: 12px;
+  gap: 0.75rem;
 
   position: absolute;
-  width: 113px;
-  height: 32px;
+  width: 7.063rem;
+  height: 2rem;
   left: 0px;
   top: 0px;
 
@@ -164,14 +170,14 @@ export const ContainerTags = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 4px 8px;
-    gap: 10px;
+    padding: 0.25rem 0.5rem;
+    gap: 0.625rem;
 
-    width: 50px;
-    height: 32px;
+    width: 3.125rem;
+    height: 2rem;
 
     background: var(--brand4);
-    border-radius: 4px;
+    border-radius: 0.25rem;
 
     flex: none;
     order: 0;
@@ -180,30 +186,30 @@ export const ContainerTags = styled.div`
     font-family: "Inter";
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 
     color: var(--brand1);
   }
 `;
 
 export const ContainerValor = styled.div`
-  width: 309px;
-  height: 32px;
+  width: 19.313rem;
+  height: 2rem;
   position: relative;
 
   span {
     position: absolute;
-    width: 200px;
-    height: 20px;
-    left: 204px;
-    top: 4px;
+    width: 12.5rem;
+    height: 1.25rem;
+    left: 12.75rem;
+    top: 0.25rem;
 
     font-family: "Lexend";
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1rem;
+    line-height: 1.25rem;
 
     color: var(--grey1);
   }

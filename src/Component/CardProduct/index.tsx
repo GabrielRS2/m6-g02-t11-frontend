@@ -9,7 +9,6 @@ import {
   TextTitle,
 } from "./style";
 
-
 type AppProps = {
   status?: boolean;
   product: IProduct;
@@ -18,9 +17,9 @@ type AppProps = {
 export const Card = ({ status, product }: AppProps) => {
   return (
     <ContainerCard>
-      <ContainerImage is_active={product.is_active}>
+      <ContainerImage className="ContainerImage" is_active={product.is_active}>
         {status && <span>{product.is_active ? "Ativo" : "Inativo"}</span>}
-        <img src={product.cover_img} alt="Carrao" />
+        <img className="img" src={product.cover_img} alt="Carrao" />
       </ContainerImage>
       <TextTitle>{product.model}</TextTitle>
       <TextInfo>{product.description}</TextInfo>
