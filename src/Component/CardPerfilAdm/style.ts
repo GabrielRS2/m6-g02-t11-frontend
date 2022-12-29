@@ -10,6 +10,8 @@ export const Container = styled.div`
   padding: 2.5rem 1.813rem;
   width: 100%;
   max-width: 77.5rem;
+  
+  background-color: var(--grey10);
 
   .nameContainerAdmPage h3 {
     font-weight: 600px;

@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
 
   width: 100%;
   max-width: 100vw;
@@ -118,7 +118,7 @@ export const PopupContainer = styled.div<PopupContainerProps>`
   flex-direction: column;
 
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
   top: ${(props) => (props.isOpen ? "5rem" : "-100%")};
 
