@@ -11,8 +11,14 @@ export interface IProduct {
   is_active: boolean;
   cover_img: string;
   seller: IUser;
+  images?: string[] | [""];
+  coments?: IComents[];
 }
-
+interface IComents {
+  user: IUser;
+  data: Date;
+  coment: string;
+}
 export interface IProductImage {
   id: string;
   content: string;
