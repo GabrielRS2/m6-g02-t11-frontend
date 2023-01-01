@@ -8,6 +8,7 @@ export const ContainerCard = styled.div`
   width: 19.5rem;
   height: 21.875rem;
   padding: 0.063rem;
+
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -33,7 +34,8 @@ export const ContainerImage = styled.figure<IProps>`
   width: 19.5rem;
   height: 9.5rem;
 
-  background-color: var(--grey7);
+
+  background-color: var(--grey8);
 
   display: flex;
   justify-content: center;
@@ -56,8 +58,6 @@ export const ContainerImage = styled.figure<IProps>`
     left: 1rem;
     top: 0.688rem;
 
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
@@ -86,8 +86,6 @@ export const TextTitle = styled.h4`
   width: 19.5rem;
   height: 1.375rem;
 
-  font-family: "Lexend";
-  font-style: normal;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -109,8 +107,6 @@ export const TextInfo = styled.p`
 
   color: var(--grey2);
 
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.5rem;
@@ -136,8 +132,6 @@ export const ContainerOwner = styled.figure`
   }
 
   span {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
@@ -178,15 +172,10 @@ export const ContainerTags = styled.div`
     width: 3.125rem;
     height: 2rem;
 
+
     background: var(--brand4);
     border-radius: 0.25rem;
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.5rem;
@@ -209,10 +198,19 @@ export const ContainerValor = styled.div`
 
     font-family: "Lexend";
     font-style: normal;
+
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.25rem;
 
     color: var(--grey1);
   }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 1.125rem;
+
+  width: 100%;
 `;
