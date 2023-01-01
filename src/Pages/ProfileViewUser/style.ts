@@ -43,7 +43,7 @@ export const ContainerProductPerfil = styled.div`
 
 export const ContainerProducts = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: 3rem;
 
   width: 100%;
   padding-bottom: .5rem;

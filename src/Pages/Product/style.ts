@@ -63,7 +63,6 @@ export const ContainerStyeld = styled.div`
     padding: 1rem 0;
   }
   .productModel {
-    font-family: "Lexend";
     font-weight: 600;
     font-size: 20px;
     line-height: 25px;

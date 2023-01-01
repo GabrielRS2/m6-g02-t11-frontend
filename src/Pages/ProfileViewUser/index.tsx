@@ -5,9 +5,10 @@ import { Header } from "../../Component/Header";
 import { IProduct } from "../../interfaces/product";
 import {
   ContainerProductPerfil,
-  ContainerProducts,
   ContainerProfileUser,
 } from "./style";
+import { CarouselMotion } from "../../Component/CarouselProducts";
+
 
 const product: IProduct = {
   cover_img:
@@ -59,21 +60,11 @@ export const DashboardUser = () => {
         </div>
         <ContainerProductPerfil>
           <p className="typeTittle">Carros</p>
-          <ContainerProducts>
-            {productsArray.map((product) => product.vehicle_type === "carro" && (
-              <CardProduct isSellerPage={true} product={product}/>
-            ))
-            }
-          </ContainerProducts>
+          <CarouselMotion type="carro" products={productsArray} />
         </ContainerProductPerfil>
-        <ContainerProductPerfil onMouseDown={() => scroll()}>
+        <ContainerProductPerfil>
           <p className="typeTittle">Motos</p>
-          <ContainerProducts>
-            {productsArray.map((product) => product.vehicle_type === "moto" && (
-              <CardProduct isSellerPage={true} product={product}/>
-            ))
-            }
-          </ContainerProducts>
+          <CarouselMotion type="moto" products={productsArray} />
         </ContainerProductPerfil>
       </ContainerProfileUser>
       <Footer />

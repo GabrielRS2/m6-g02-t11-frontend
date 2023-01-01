@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-interface IProps {
-  absolute?: boolean;
-}
-export const ContainerFooter = styled.div<IProps>`
+// interface IProps {
+//   absolute?: boolean;
+// }
+export const ContainerFooter = styled.div`
   width: 100%;
   height: 19.4rem;
   display: flex;
@@ -14,12 +14,6 @@ export const ContainerFooter = styled.div<IProps>`
 
   bottom: 0;
 
-  ${({ absolute }) => {
-    return css`
-      position: absolute;
-      bottom: 0;
-    `;
-  }}
 
   @media (width>700px) {
     flex-direction: row;

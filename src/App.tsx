@@ -7,7 +7,6 @@ export const App = () => {
     <div className="App">
       <GlobalStyle />
       <Routes />
-      <ProductPage />
     </div>
   );
 };

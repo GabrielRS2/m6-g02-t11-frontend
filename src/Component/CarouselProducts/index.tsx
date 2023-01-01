@@ -1,17 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 
-import { products } from "./products";
-import { Card } from "../CardProduct";
+import { CardProduct } from "../CardProduct";
 
 import { motion } from "framer-motion";
 import { ContainerCarrousel } from "./style";
+import { IProduct } from "../../interfaces/product";
 
 type CarouselProps = {
   type: "carro" | "moto";
   card?: { status?: boolean };
+  products: IProduct[];
 };
 
-export const CarouselMotion = ({ type, card }: CarouselProps) => {
+export const CarouselMotion = ({ type, card, products }: CarouselProps) => {
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -38,15 +39,16 @@ export const CarouselMotion = ({ type, card }: CarouselProps) => {
           dragConstraints={{ right: 0, left: -width }}
         >
           {prods.map((product, index) => {
-            return (
-              <motion.div className="item">
-                <Card
-                  status={card?.status}
-                  product={product}
-                  key={index}
-                ></Card>
-              </motion.div>
-            );
+            if (product.vehicle_type === type) {
+              return (
+                <motion.div className="item" key={index}>
+                  <CardProduct
+                    status={card?.status}
+                    product={product}
+                  ></CardProduct>
+                </motion.div>
+              );
+            }
           })}
         </motion.div>
       </motion.div>
