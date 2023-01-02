@@ -7,7 +7,7 @@ import { DashboardUser } from "../Pages/ProfileViewUser";
 export const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/home">
+      <Route exact path="/">
         <Home />
       </Route>
       <Route path="/product/:productId">

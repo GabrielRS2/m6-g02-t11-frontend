@@ -9,8 +9,11 @@ export const choseHeight = (size: string) => {
     case "big":
       return "3rem"
 
+    case "big50":
+      return "3rem"
+
     default:
-      return "2.375rem";
+      return "3rem";
   }
 }
 
@@ -25,8 +28,11 @@ export const choseWidth = (size: string) => {
     case "big":
       return "auto"
 
+    case "big50":
+      return "100vw"
+        
     default:
-      return "min-content";
+      return "100%";
   }
 }
 
@@ -41,7 +47,10 @@ export const chosePadding = (size: string) => {
     case "big":
       return "0.75rem 1.75rem"
 
+    case "big50":
+      return "0.75rem 1.75rem"
+
     default:
-      return "0.75rem 1.25rem";
+      return "0.75rem 1.75rem";
   }
 }

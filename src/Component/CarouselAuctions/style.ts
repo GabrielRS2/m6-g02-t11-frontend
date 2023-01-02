@@ -21,8 +21,7 @@ export const ContainerCarrousel = styled.div`
 
   @media (width > 768px) {
     .item {
-    margin-left: 1.75rem;
+      margin-left: 1.5rem;
+    }
   }
-  }
-
 `;

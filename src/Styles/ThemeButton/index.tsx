@@ -8,6 +8,8 @@ interface ThemeButtonProps {
   borderColor: string;
   backGroundColor: string;
   type?: string;
+  hoverColor?: string; 
+  hoverbackGroundColor?: string; 
   handleClick: () => void;
 }
 
@@ -19,6 +21,8 @@ export const ThemeButton = ({
   borderColor,
   backGroundColor,
   handleClick,
+  hoverColor,
+  hoverbackGroundColor,
 }: ThemeButtonProps) => {
   return (
     <StyledButton
@@ -31,6 +35,8 @@ export const ThemeButton = ({
       choseHeight={choseHeight}
       choseWidth={choseWidth}
       chosePadding={chosePadding}
+      hoverColor={hoverColor || color}
+      hoverbackGroundColor={hoverbackGroundColor || backGroundColor}
     >
       {children}
     </StyledButton>

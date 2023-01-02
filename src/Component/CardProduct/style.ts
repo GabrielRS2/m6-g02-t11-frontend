@@ -12,20 +12,29 @@ export const ContainerCard = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  .img {
+    height: 100%;
+    width: 100%;
+  }
+
   :hover {
     .ContainerImage {
+      transition: border 0.5s;
       border: 0.063rem #4529e6 solid;
     }
     .img {
+      transition: height 1s, width 1s, object-fit 1s;
       height: 100%;
       width: 100%;
-      object-fit: contain;
     }
   }
-  gap: 1rem;
-  .img {
+
+  @media (width>768px) {
+    .img {
     height: 90%;
-    width: auto;
+    width: 90%;
+  }
   }
 `;
 
@@ -150,28 +159,22 @@ export const ContainerOwner = styled.figure`
 
 export const ContainerTags = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   padding: 0px;
   gap: 0.75rem;
 
-  position: absolute;
-  width: 7.063rem;
   height: 2rem;
-  left: 0px;
-  top: 0px;
 
-  div {
+  p {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0.25rem 0.5rem;
+
     gap: 0.625rem;
 
     width: 3.125rem;
     height: 2rem;
-
 
     background: var(--brand4);
     border-radius: 0.25rem;
@@ -185,23 +188,18 @@ export const ContainerTags = styled.div`
 `;
 
 export const ContainerValor = styled.div`
-  width: 19.313rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
   height: 2rem;
-  position: relative;
 
   span {
-    position: absolute;
-    width: 12.5rem;
     height: 1.25rem;
-    left: 12.75rem;
-    top: 0.25rem;
-
-    font-family: "Lexend";
-    font-style: normal;
 
     font-weight: 500;
     font-size: 1rem;
-    line-height: 1.25rem;
 
     color: var(--grey1);
   }
