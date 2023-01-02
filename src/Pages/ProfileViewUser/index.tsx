@@ -1,5 +1,4 @@
 import { CardPerfilAdm } from "../../Component/CardPerfilAdm";
-import { CardProduct } from "../../Component/CardProduct";
 import { Footer } from "../../Component/Footer";
 import { Header } from "../../Component/Header";
 import { IProduct } from "../../interfaces/product";
@@ -8,6 +7,7 @@ import {
   ContainerProfileUser,
 } from "./style";
 import { CarouselMotion } from "../../Component/CarouselProducts";
+import { CarouselAuction } from "../../Component/CarouselAuctions";
 
 
 const product: IProduct = {
@@ -49,6 +49,7 @@ const productCar: IProduct = {
 };
 
 const productsArray: IProduct[] = [productCar, productCar, product, product, productCar, product, productCar, productCar, product, product, productCar, product]
+const productsAuction: IProduct[] = [productCar, productCar, productCar]
 
 export const DashboardUser = () => {
   return (
@@ -59,12 +60,16 @@ export const DashboardUser = () => {
           <CardPerfilAdm />
         </div>
         <ContainerProductPerfil>
+          <p className="typeTittle">Leilão</p>
+          <CarouselAuction products={productsAuction} isSellerPage={true}/>
+        </ContainerProductPerfil>
+        <ContainerProductPerfil>
           <p className="typeTittle">Carros</p>
-          <CarouselMotion type="carro" products={productsArray} />
+          <CarouselMotion type="carro" products={productsArray} isSellerPage={true}/>
         </ContainerProductPerfil>
         <ContainerProductPerfil>
           <p className="typeTittle">Motos</p>
-          <CarouselMotion type="moto" products={productsArray} />
+          <CarouselMotion type="moto" products={productsArray} isSellerPage={true}/>
         </ContainerProductPerfil>
       </ContainerProfileUser>
       <Footer />

@@ -8,7 +8,7 @@ export const ContainerProfileUser = styled.div`
 
   width: 100%;
   max-width: 100vw;
-  background: linear-gradient(180deg, var(--brand1) 20.668rem, var(--grey8) 20.668rem);;
+  background: linear-gradient(180deg, var(--brand1) 20.668rem, var(--grey8) 20.668rem);
   padding: 9.688rem 0px 4.688rem 3.781rem;
 
   .containerCardPerfilAdm {
@@ -24,7 +24,6 @@ export const ContainerProductPerfil = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 3.875rem;
 
   width: 100%;
   max-width: 100vw;
@@ -38,25 +37,5 @@ export const ContainerProductPerfil = styled.div`
     line-height: 1.875rem;
 
     color: var(--grey0);
-  }
-`;
-
-export const ContainerProducts = styled.div`
-  display: flex;
-  gap: 3rem;
-
-  width: 100%;
-  padding-bottom: .5rem;
-
-  overflow: scroll;
-  animation: productRender 1s;
-
-  @keyframes productRender {
-    0% {
-      padding-left: 100vw;
-    }
-    100% {
-      padding-left: 0px;
-    }
   }
 `;
