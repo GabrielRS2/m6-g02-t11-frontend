@@ -82,7 +82,7 @@ export const DashboardUser = () => {
         </ContainerProductPerfil>
         <ContainerProductPerfil>
           <p className="typeTittle product">Motos</p>
-          <CarouselMotion type="moto" products={productsArray} isSellerPage={true}/>
+          <CarouselMotion type="moto" products={productsArray} isSellerPage={isOwner}/>
         </ContainerProductPerfil>
       </ContainerProfileUser>
       <Footer />
