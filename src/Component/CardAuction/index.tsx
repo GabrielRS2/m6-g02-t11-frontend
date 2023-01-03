@@ -18,7 +18,7 @@ export const CardAuction = ({ isSellerPage, product }: AppProps) => {
   return (
     <ContainerCard>
       <Container isSellerPage={isSellerPage}>
-        <ContainerInfoImage image={product.cover_img}>
+        <ContainerInfoImage image={"https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/02-images/novo-cruze-nb.jpg?imwidth=960"}>
         </ContainerInfoImage>
         <ContainerInfo isSellerPage={isSellerPage}>
           <Timer>
