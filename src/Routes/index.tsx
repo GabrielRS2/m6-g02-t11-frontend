@@ -13,7 +13,7 @@ export const Routes = () => {
       <Route path="/product/:productId">
         <ProductPage />
       </Route>
-      <Route path="/dashboard">
+      <Route path="/dashboard/:userId">
         <DashboardUser />
       </Route>
     </Switch>

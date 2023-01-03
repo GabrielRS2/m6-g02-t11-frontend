@@ -8,6 +8,9 @@ import {
 } from "./style";
 import { CarouselMotion } from "../../Component/CarouselProducts";
 import { CarouselAuction } from "../../Component/CarouselAuctions";
+import { useParams } from "react-router-dom";
+import { IUserId } from "../../interfaces/user";
+import { useEffect, useState } from "react";
 
 
 const product: IProduct = {
@@ -52,6 +55,16 @@ const productsArray: IProduct[] = [productCar, productCar, product, product, pro
 const productsAuction: IProduct[] = [productCar, productCar, productCar]
 
 export const DashboardUser = () => {
+  const { userId }: IUserId = useParams();
+  const onlineUserId = "123"
+  const [ isOwner, setIsOwner ] = useState<boolean>(false)
+
+  useEffect(() => {
+    if(userId == onlineUserId) {
+      setIsOwner(true)
+    }
+  }, [userId])
+
   return (
     <>
       <Header />

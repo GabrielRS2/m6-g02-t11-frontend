@@ -45,7 +45,7 @@ export const ContainerInfoImage = styled.div<ContainerInfoProps>`
   width: 100%;
   height: 100%;
 
-  background-image: url(${(props) => {return "." + props.image}});
+  background-image: url(${(props) => {return props.image}});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -239,6 +239,11 @@ export const ContainerCardFooter = styled.div<ContainerProps>`
     button {
       max-width: auto;
       width: auto;
+    }
+
+    button:hover {
+      color: var(--grey0);
+      background-color: var(--grey10);
     }
 
     .arrow {

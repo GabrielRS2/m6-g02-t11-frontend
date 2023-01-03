@@ -1,12 +1,14 @@
+import { Avatar } from "@mui/material";
 import { boolean } from "yup";
 import { IProduct } from "../../interfaces/product";
 import { ThemeButton } from "../../Styles/ThemeButton";
-import { priceFormarter } from "../../utils";
+import { nameToAcronym, priceFormarter } from "../../utils";
 import {
   ButtonsContainer,
   ContainerCard,
   ContainerImage,
   ContainerOwner,
+  ContainerSeller,
   ContainerTags,
   ContainerValor,
   TextInfo,
@@ -28,6 +30,19 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
       </ContainerImage>
       <TextTitle>{product.model}</TextTitle>
       <TextInfo>{product.description}</TextInfo>
+      {!isSellerPage && 
+          <ContainerSeller>   
+            <Avatar sx={{ 
+              bgcolor: "var(--brand2)", 
+              height: "2rem", 
+              width: "2rem", 
+              fontSize: "0.875rem", 
+              fontWeight: "500" }}
+              >
+              {nameToAcronym(product.seller.name)}</Avatar>
+            <p>{product.seller.name}</p>
+          </ContainerSeller>
+          }
       <ContainerValor>
         <ContainerTags>
           <p>{product.km} KM</p>

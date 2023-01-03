@@ -13,6 +13,7 @@ import { Avatar } from '@mui/material';
 import { Modal, Menu, MenuItem } from '@mui/material';
 import PopupState from "material-ui-popup-state";
 import { bindMenu, bindTrigger } from "material-ui-popup-state/hooks";
+import api from "../../Services";
 
 export const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -38,6 +39,10 @@ export const Header = () => {
 
   function handleClose() {
     setIsOpen(!isOpen)
+  }
+
+  function handleRegister() {
+    
   }
 
   return (
@@ -148,7 +153,8 @@ export const Header = () => {
               color="var(--grey0)"
               borderColor="var(--grey4)"
               size="auto"
-              handleClick={() => console.log("GoRegister")}
+              handleClick={() => api.get("").then( (res) => console.log(res))
+              }
             >Cadastrar</ThemeButton>
           </div>  
         )}

@@ -6,7 +6,6 @@ interface IProps {
 
 export const ContainerCard = styled.div`
   width: 19.5rem;
-  height: 21.875rem;
   padding: 0.063rem;
 
   box-sizing: border-box;
@@ -211,4 +210,23 @@ export const ButtonsContainer = styled.div`
   gap: 1.125rem;
 
   width: 100%;
+`;
+
+export const ContainerSeller = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--grey2);
+
+  p {
+    font-size: 0.875rem;
+  }
+
+  @media (width>768px) {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
 `;
