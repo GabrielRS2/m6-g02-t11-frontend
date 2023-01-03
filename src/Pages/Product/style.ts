@@ -186,6 +186,7 @@ export const ContainerImages = styled.div`
     align-content: space-between;
     flex-wrap: wrap;
     margin: 0 auto;
+    gap:0.3rem;
 
     width: 80%;
 
@@ -197,7 +198,8 @@ export const ContainerImages = styled.div`
     figure {
       width: 32%;
       min-width: 5.625rem;
-      height: 5.15rem;
+      height: 4.8rem;
+      
       &:hover {
         transition: 0.2s;
         border-bottom:0.2rem solid var(--brand2);
@@ -205,6 +207,7 @@ export const ContainerImages = styled.div`
         
       }
       img {
+        
         max-width: 100%;
       }
     }
