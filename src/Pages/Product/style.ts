@@ -186,9 +186,11 @@ export const ContainerImages = styled.div`
     align-content: space-between;
     flex-wrap: wrap;
     margin: 0 auto;
+    gap:0.3rem;
 
-    width: 80.05698006%;
-    min-width: 17.5625rem;
+    width: 80%;
+
+    min-width: 17.6rem;
     .images--title {
       margin-top: 2.25rem;
       margin-left: 2.75rem;
@@ -196,12 +198,16 @@ export const ContainerImages = styled.div`
     figure {
       width: 32%;
       min-width: 5.625rem;
+      height: 4.8rem;
+      
       &:hover {
-        transition: 0.7s;
-        background-color: var(--brand2);
+        transition: 0.2s;
+        border-bottom:0.2rem solid var(--brand2);
         cursor: pointer;
+        
       }
       img {
+        
         max-width: 100%;
       }
     }
