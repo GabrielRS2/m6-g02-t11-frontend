@@ -7,12 +7,19 @@ export const ContainerCarrousel = styled.div`
   .item {
     margin-left: 0.75rem;
   }
+
+  .item:first-child {
+    margin-left: 0;
+  }
+
   .item:last-child {
     margin-right: 0;
   }
+
   .inner-carousel {
     display: flex;
   }
+
   .carousel {
     width: 100%;
     margin: 0 auto;
@@ -21,8 +28,7 @@ export const ContainerCarrousel = styled.div`
 
   @media (width > 768px) {
     .item {
-    margin-left: 1.75rem;
+      margin-left: 3rem;
+    }
   }
-  }
-
 `;

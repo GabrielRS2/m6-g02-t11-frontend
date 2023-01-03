@@ -7,6 +7,11 @@ export const ContainerCarrousel = styled.div`
   .item {
     margin-left: 0.75rem;
   }
+
+  .item:first-child {
+    margin-left: 0;
+  }
+
   .item:last-child {
     margin-right: 0;
   }
