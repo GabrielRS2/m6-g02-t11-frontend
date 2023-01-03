@@ -162,48 +162,50 @@ export const ContainerDescription = styled.div`
   }
 `;
 export const ContainerImages = styled.div`
-  
-    background: var(--grey10);
+  background: var(--grey10);
 
-    width: 93.6%;
+  width: 93.6%;
 
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+  margin: 0 auto;
+  margin-top: 1.001rem;
+  padding: 36px 28px;
+  h2 {
+    font-family: Lexend;
+    color: var(--grey1);
+    font-size: 20px;
+    line-height: 25px;
+    line-height: 100%;
+  }
+  .images {
     display: flex;
-    flex-direction: column;
-
-    gap: 2rem;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
     margin: 0 auto;
-    margin-top: 1.001rem;
-    padding: 36px 28px;
-    h2{
-      Font family: Lexend;
-      color:var(--grey1);
-      font-size: 20px;
-      line-height: 25px;
-      line-height: 100%;
 
+    width: 80.05698006%;
+    min-width: 17.5625rem;
+    .images--title {
+      margin-top: 2.25rem;
+      margin-left: 2.75rem;
     }
-    .images {
-      display: flex;
-      justify-content: space-between;
-      align-content: space-between;
-      flex-wrap: wrap;
-      margin: 0 auto;
-
-      width: 80.05698006%;
-      min-width: 17.5625rem;
-      .images--title {
-        margin-top: 2.25rem;
-        margin-left: 2.75rem;
+    figure {
+      width: 32%;
+      min-width: 5.625rem;
+      &:hover {
+        transition: 0.7s;
+        background-color: var(--brand2);
+        cursor: pointer;
       }
-      figure {
-        width: 32%;
-        min-width: 5.625rem;
-        img {
-          max-width: 100%;
-        }
+      img {
+        max-width: 100%;
       }
     }
- 
+  }
 `;
 
 export const Seller = styled.div`

@@ -18,6 +18,7 @@ import { IProduct } from "../../interfaces/product";
 import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
 import { CardAdmDetail } from "../../Component/CardAdmDetail";
+import { ModalPhotoClicked } from "../../Component/ModalPhotoClicked";
 
 interface IProductId {
   productId: string;
@@ -28,8 +29,7 @@ const product: IProduct = {
   description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
   seller: {
     name: "Samuel Leão",
-    photo:
-    "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
+    photo: "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
   },
@@ -110,6 +110,8 @@ const product: IProduct = {
 export const ProductPage = () => {
   const hoje = new Date();
   const [comment, setComment] = useState("");
+  const [openModalPhotoClicked, setOpenModalPhotoClicked] = useState(false);
+  const [photoClicked,setPhotoClicked]= useState('')
   const { productId }: IProductId = useParams();
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -118,6 +120,11 @@ export const ProductPage = () => {
     "Incrível!",
     "Recomendarei para meus amigos!",
   ];
+
+  const getPhotoAndOpenModal=(imageSrc:string)=>{
+    setPhotoClicked(imageSrc);
+    setOpenModalPhotoClicked(true);
+  }
 
   useEffect(() => {
     setWidth(
@@ -170,7 +177,11 @@ export const ProductPage = () => {
                   (image, index) =>
                     index < 6 && (
                       <figure key={index}>
-                        <img src={image} alt="foto do produto" />
+                        <img
+                          src={image}
+                          alt="foto do produto"
+                          onClick={() => getPhotoAndOpenModal(image)}
+                        />
                       </figure>
                     )
                 )}
@@ -309,6 +320,15 @@ export const ProductPage = () => {
         </ContainerPostComment>
         <Footer absolute />
       </ContainerStyeld>
+      {openModalPhotoClicked && (
+        <ModalPhotoClicked
+          imageSrc={photoClicked}
+          setOpenModalPhotoClicked={setOpenModalPhotoClicked}
+          openModalPhotoClicked={openModalPhotoClicked}
+          
+        />
+      )}
+      
     </>
   );
 };
