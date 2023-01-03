@@ -5,18 +5,43 @@ interface IProps {
 }
 
 export const ContainerCard = styled.div`
-  width: 312px;
-  padding: 1px;
+  width: 19.5rem;
+  padding: 0.063rem;
+
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  .img {
+    height: 100%;
+    width: 100%;
+  }
 
-  gap: 16px;
+  :hover {
+    .ContainerImage {
+      transition: border 0.5s;
+      border: 0.063rem #4529e6 solid;
+    }
+    .img {
+      transition: height 1s, width 1s, object-fit 1s;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (width>768px) {
+    .img {
+    height: 90%;
+    width: 90%;
+  }
+  }
 `;
 
 export const ContainerImage = styled.figure<IProps>`
-  width: 312px;
-  height: 152px;
+  background-color: aliceblue;
+  width: 19.5rem;
+  height: 9.5rem;
+
 
   background-color: var(--grey8);
 
@@ -32,18 +57,18 @@ export const ContainerImage = styled.figure<IProps>`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0px 8px;
-    gap: 10px;
+    padding: 0 0.5rem;
+    gap: 0.625rem;
 
     position: absolute;
-    max-width: 61px;
-    height: 24px;
-    left: 16px;
-    top: 11px;
+    max-width: 3.813rem;
+    height: 1.5rem;
+    left: 1rem;
+    top: 0.688rem;
 
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 
     color: var(--whiteFixed);
     ${(props) => {
@@ -63,20 +88,15 @@ export const ContainerImage = styled.figure<IProps>`
       }
     }}
   }
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-  }
 `;
 
 export const TextTitle = styled.h4`
-  width: 312px;
-  height: 22px;
+  width: 19.5rem;
+  height: 1.375rem;
 
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1rem;
+  line-height: 1.25rem;
   color: var(--grey1);
 
   overflow: hidden;
@@ -96,35 +116,35 @@ export const TextInfo = styled.p`
   color: var(--grey2);
 
   font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
 
-  width: 312px;
-  height: 48px;
+  width: 19.5rem;
+  height: 3rem;
 `;
 
 export const ContainerOwner = styled.figure`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 
   padding: 0px;
 
-  height: 32px;
+  height: 2rem;
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 100%;
   }
 
   span {
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 
-    height: 24px;
+    height: 1.5rem;
 
     color: var(--grey2);
 
@@ -138,23 +158,29 @@ export const ContainerOwner = styled.figure`
 
 export const ContainerTags = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  gap: 12px;
+  gap: 0.75rem;
 
-  width: 113px;
+  height: 2rem;
 
   p {
-    padding: 4px 8px;
-    gap: 10px;
-  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.625rem;
+
+    width: 3.125rem;
+    height: 2rem;
+
     background: var(--brand4);
-    border-radius: 4px;
+    border-radius: 0.25rem;
 
     font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 
     color: var(--brand1);
   }
@@ -163,12 +189,16 @@ export const ContainerTags = styled.div`
 export const ContainerValor = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 32px;
+  align-items: center;
+
+  width: 100%;
+  height: 2rem;
 
   span {
+    height: 1.25rem;
+
     font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1rem;
 
     color: var(--grey1);
   }
@@ -180,4 +210,23 @@ export const ButtonsContainer = styled.div`
   gap: 1.125rem;
 
   width: 100%;
+`;
+
+export const ContainerSeller = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--grey2);
+
+  p {
+    font-size: 0.875rem;
+  }
+
+  @media (width>768px) {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
 `;

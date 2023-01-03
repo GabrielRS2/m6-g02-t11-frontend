@@ -1,5 +1,7 @@
 import styled from "styled-components";
-
+// interface IProps {
+//   absolute?: boolean;
+// }
 export const ContainerFooter = styled.div`
   width: 100%;
   height: 19.4rem;
@@ -9,7 +11,10 @@ export const ContainerFooter = styled.div`
   justify-content: space-between;
   background: var(--grey0);
   color: var(--whiteFixed);
-  
+
+  bottom: 0;
+
+
   @media (width>700px) {
     flex-direction: row;
     height: 10rem;

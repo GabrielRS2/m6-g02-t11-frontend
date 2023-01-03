@@ -6,8 +6,10 @@ import {
   Info,
   TitleText,
 } from "./style";
-
-export const Footer = () => {
+type FooterProps = {
+  absolute?: boolean;
+};
+export const Footer = ({ absolute }: FooterProps) => {
   return (
     <ContainerFooter>
       <ContainerTitle>

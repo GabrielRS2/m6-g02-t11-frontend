@@ -1,13 +1,13 @@
 import { CardPerfilAdm } from "../../Component/CardPerfilAdm";
-import { CardProduct } from "../../Component/CardProduct";
 import { Footer } from "../../Component/Footer";
 import { Header } from "../../Component/Header";
 import { IProduct } from "../../interfaces/product";
-import {
-  ContainerProductPerfil,
-  ContainerProducts,
-  ContainerProfileUser,
-} from "./style";
+import { ContainerProductPerfil, ContainerProfileUser } from "./style";
+import { CarouselMotion } from "../../Component/CarouselProducts";
+import { CarouselAuction } from "../../Component/CarouselAuctions";
+import { useParams } from "react-router-dom";
+import { IUserId } from "../../interfaces/user";
+import { useEffect, useState } from "react";
 
 const product: IProduct = {
   cover_img: "/Assets/moto.jpg",
@@ -61,38 +61,45 @@ const productsArray: IProduct[] = [
   productCar,
   product,
 ];
+const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const DashboardUser = () => {
+  const { userId }: IUserId = useParams();
+  const onlineUserId = "123";
+  const [isOwner, setIsOwner] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (userId == onlineUserId) {
+      setIsOwner(true);
+    }
+  }, [userId]);
+
   return (
     <>
       <Header />
       <ContainerProfileUser>
         <div className="containerCardPerfilAdm">
-          <CardPerfilAdm />
+          <CardPerfilAdm isSellerPage={isOwner} />
         </div>
         <ContainerProductPerfil>
-          <p className="typeTittle">Carros</p>
-          <ContainerProducts>
-            {productsArray.map(
-              (product) =>
-                product.vehicle_type === "carro" && (
-                  <CardProduct isSellerPage={true} product={product} />
-                )
-            )}
-          </ContainerProducts>
+          <p className="typeTittle auction">Leilão</p>
+          <CarouselAuction products={productsAuction} isSellerPage={isOwner} />
         </ContainerProductPerfil>
-        <ContainerProductPerfil
-        //onMouseDown={() => scroll()}
-        >
-          <p className="typeTittle">Motos</p>
-          <ContainerProducts>
-            {productsArray.map(
-              (product) =>
-                product.vehicle_type === "moto" && (
-                  <CardProduct isSellerPage={true} product={product} />
-                )
-            )}
-          </ContainerProducts>
+        <ContainerProductPerfil>
+          <p className="typeTittle product">Carros</p>
+          <CarouselMotion
+            type="carro"
+            products={productsArray}
+            isSellerPage={isOwner}
+          />
+        </ContainerProductPerfil>
+        <ContainerProductPerfil>
+          <p className="typeTittle product">Motos</p>
+          <CarouselMotion
+            type="moto"
+            products={productsArray}
+            isSellerPage={isOwner}
+          />
         </ContainerProductPerfil>
       </ContainerProfileUser>
       <Footer />

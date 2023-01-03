@@ -5,28 +5,36 @@ import { Container } from "./style";
 import { IProduct } from "../../interfaces/product";
 import { priceFormarter } from "../../utils";
 
-interface IPropsCardProductDetail{
-  product:IProduct
+interface IPropsCardProductDetail {
+  product: IProduct;
+  className?: string;
 }
 
-export const CardProductDetail = ({ product }: IPropsCardProductDetail) => {
+export const CardProductDetail = ({
+  product,
+  className,
+}: IPropsCardProductDetail) => {
   return (
-  <Container>
-    <h2 className="productModel">{product.model}</h2>
-    <div className="containerInfo">
-      <div className="containerInfoProduct">
-        <p>{product.year}</p>
-        <p>{product.km} KM</p>
+    <Container className={className}>
+      <h2 className="productModel">{product.model}</h2>
+      <div className="containerInfo">
+        <div className="containerInfoProduct">
+          <p>{product.year}</p>
+          <p>{product.km} KM</p>
+        </div>
+        <p className="price">R$ {priceFormarter(product.price)}</p>
       </div>
-      <p className="price">R$ {priceFormarter(product.price)}</p>
-    </div>
-    <ThemeButton 
-      backGroundColor={"var(--brand1)"}
-      color={"var(--whiteFixed)"}
-      size={"medium"}
-      borderColor={"var(--brand1)"}
-      handleClick={() => {console.log("Comprar")}}
-      >Comprar</ThemeButton>
-  </Container>
+      <ThemeButton
+        backGroundColor={"var(--brand1)"}
+        color={"var(--whiteFixed)"}
+        size={"medium"}
+        borderColor={"var(--brand1)"}
+        handleClick={() => {
+          console.log("Comprar");
+        }}
+      >
+        Comprar
+      </ThemeButton>
+    </Container>
   );
 };

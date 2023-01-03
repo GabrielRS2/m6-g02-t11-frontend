@@ -3,3 +3,7 @@ export interface IUser {
   photo: string;
   description: string;
 }
+
+export interface IUserId {
+  userId: string;
+}

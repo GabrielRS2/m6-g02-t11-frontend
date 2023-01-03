@@ -4,8 +4,11 @@ import { Avatar } from '@mui/material';
 import { Container } from "./style";
 import { nameToAcronym } from "../Header/utils";
 
+interface ICardPerfilAdmProps {
+  isSellerPage: boolean;
+}
 
-export const CardPerfilAdm = () => {
+export const CardPerfilAdm = ({isSellerPage}: ICardPerfilAdmProps) => {
   return (
     <Container>
       <Avatar sx={{ 
@@ -23,13 +26,16 @@ export const CardPerfilAdm = () => {
       <p className="descriptionPerfilAdm">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
       </p>
-      <ThemeButton 
-      backGroundColor={"var(--brand4)"}
-      color={"varvar(--brand1)"}
-      size={"big"}
-      borderColor={"var(--brand1)"}
-      handleClick={() => {console.log("Botão grande")}}
-      >Criar anuncio</ThemeButton>
+
+      {isSellerPage && 
+        <ThemeButton 
+        backGroundColor={"var(--brand4)"}
+        color={"varvar(--brand1)"}
+        size={"big"}
+        borderColor={"var(--brand1)"}
+        handleClick={() => {console.log("Botão grande")}}
+        >Criar anuncio</ThemeButton>
+      }
     </Container>
   );
 };
