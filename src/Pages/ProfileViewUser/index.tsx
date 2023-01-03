@@ -70,18 +70,18 @@ export const DashboardUser = () => {
       <Header />
       <ContainerProfileUser>
         <div className="containerCardPerfilAdm">
-          <CardPerfilAdm />
+          <CardPerfilAdm isSellerPage={isOwner}/>
         </div>
         <ContainerProductPerfil>
-          <p className="typeTittle">Leilão</p>
-          <CarouselAuction products={productsAuction} isSellerPage={true}/>
+          <p className="typeTittle auction">Leilão</p>
+          <CarouselAuction products={productsAuction} isSellerPage={isOwner}/>
         </ContainerProductPerfil>
         <ContainerProductPerfil>
-          <p className="typeTittle">Carros</p>
-          <CarouselMotion type="carro" products={productsArray} isSellerPage={true}/>
+          <p className="typeTittle product">Carros</p>
+          <CarouselMotion type="carro" products={productsArray} isSellerPage={isOwner}/>
         </ContainerProductPerfil>
         <ContainerProductPerfil>
-          <p className="typeTittle">Motos</p>
+          <p className="typeTittle product">Motos</p>
           <CarouselMotion type="moto" products={productsArray} isSellerPage={true}/>
         </ContainerProductPerfil>
       </ContainerProfileUser>

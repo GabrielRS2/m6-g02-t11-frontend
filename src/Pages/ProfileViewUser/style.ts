@@ -24,6 +24,7 @@ export const ContainerProductPerfil = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  gap: 2.5rem;
 
   width: 100%;
   max-width: 100vw;
@@ -37,5 +38,19 @@ export const ContainerProductPerfil = styled.div`
     line-height: 1.875rem;
 
     color: var(--grey0);
+  }
+
+  .product {
+    margin-top: 1.438rem;
+  }
+  
+  .auction {
+    display: none;
+  }
+
+  @media (width>768px) {
+    .auction {
+      display: block;
+    }
   }
 `;

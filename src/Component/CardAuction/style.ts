@@ -48,8 +48,12 @@ export const ContainerInfoImage = styled.div<ContainerInfoProps>`
   background-image: url(${(props) => {return props.image}});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   border-radius: 0.25rem 0.25rem 0 0;
+
+  @media(width>768px) {
+    background-size: cover;
+  }
 `;
 
 export const ContainerInfo = styled.div<ContainerProps>`
