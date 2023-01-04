@@ -13,11 +13,9 @@ import {
 
 import { Header } from "../../Component/Header";
 import { Footer } from "../../Component/Footer";
-import { DescriptionPageProduct } from "../../Component/DescriptionPageProduct";
 import { IProduct } from "../../interfaces/product";
 import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
-import { CardAdmDetail } from "../../Component/CardAdmDetail";
 import { ModalPhotoClicked } from "../../Component/ModalPhotoClicked";
 
 interface IProductId {

@@ -1,22 +1,25 @@
+import { FieldError } from "react-hook-form/dist/types";
 import { StyledInput } from "./style";
 
 
-interface ThemeInputStandartProps {
+interface ThemeInputStandartProps{
   inputType: string;
   labelText: string;
   placeholderText: string;
+  error?: FieldError;
+  className?: string;
 }
 interface ThemeInputTextAreaProps {
   labelText: string;
   placeholderText: string;
 }
 
-export const ThemeInputStandart = ({inputType, labelText, placeholderText}:ThemeInputStandartProps)=>{
+export const ThemeInputStandart = ({inputType, labelText, placeholderText, error, className, ...rest}:ThemeInputStandartProps)=>{
 
   return (
-  <StyledInput>
-    <label>{labelText}</label>
-    <input placeholder={placeholderText} type={inputType} />
+  <StyledInput className={className}>
+    <label>{labelText} {error && <span>{error.message}</span>}</label>
+    <input placeholder={placeholderText} type={inputType} {...rest}/>
   </StyledInput>
 )}
 

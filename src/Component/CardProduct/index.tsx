@@ -57,6 +57,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
         color={"var(--grey1)"}
         size={"medium"}
         borderColor={"var(--grey1)"}
+        hoverbackGroundColor={"var(--brand1)"}
         handleClick={() => {console.log("Botão médio")}}
         >Editar</ThemeButton>
         <ThemeButton 
@@ -64,6 +65,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
         color={"var(--grey1)"}
         size={"medium"}
         borderColor={"var(--grey1)"}
+        hoverbackGroundColor={"var(--brand1)"}
         handleClick={() => {console.log("Botão médio")}}
         >Ver como</ThemeButton>
       </ButtonsContainer>

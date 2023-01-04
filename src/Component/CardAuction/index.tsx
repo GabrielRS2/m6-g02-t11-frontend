@@ -1,5 +1,4 @@
 import { IProduct } from "../../interfaces/product";
-import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsArrowRight } from 'react-icons/bs';

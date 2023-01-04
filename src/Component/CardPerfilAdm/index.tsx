@@ -29,10 +29,11 @@ export const CardPerfilAdm = ({isSellerPage}: ICardPerfilAdmProps) => {
 
       {isSellerPage && 
         <ThemeButton 
-        backGroundColor={"var(--brand4)"}
-        color={"varvar(--brand1)"}
+        backGroundColor={"var(--whiteFixed)"}
+        color={"var(--brand1)"}
         size={"big"}
         borderColor={"var(--brand1)"}
+        hoverbackGroundColor={"var(--brand4)"}
         handleClick={() => {console.log("Botão grande")}}
         >Criar anuncio</ThemeButton>
       }

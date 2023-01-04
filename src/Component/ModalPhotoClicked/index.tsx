@@ -1,5 +1,5 @@
 import { Modal } from "@mui/material";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { CarImageContainer, PhotoClickedContainer } from "./styled";
 
 interface IModalPhotoClicked {
