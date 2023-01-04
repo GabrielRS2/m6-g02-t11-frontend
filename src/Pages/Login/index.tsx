@@ -11,8 +11,8 @@ import { Link, useHistory } from "react-router-dom";
 
 
 interface IData {
-  user: string;
-  password: string;
+  user?: string;
+  password?: string;
 }
 
 export const Login = () => {
@@ -52,13 +52,14 @@ export const Login = () => {
                   labelText="Usuário"
                   placeholderText="Digitar usuário"
                   {...register('user')}
-                  className="userInput"
+                  choseWidth="100vw"
                 />     
                 <ThemeInputStandart
                   inputType="password"
                   labelText="Senha"
                   placeholderText="Digitar senha"
                   {...register('password')}
+                  choseWidth="100vw"
                 />      
               </>
             ) : (
@@ -68,12 +69,14 @@ export const Login = () => {
                   labelText="Usuário"
                   placeholderText="Digitar usuário"
                   {...register('user')}
+                  choseWidth="100vw"
                 />     
                 <ThemeInputStandart
                   inputType="password"
                   labelText="Senha"
                   placeholderText="Digitar senha"
                   {...register('password')}
+                  choseWidth="100vw"
                 />         
               </>
             )}

@@ -5,6 +5,8 @@ import { Login } from "../Pages/Login";
 import { ProductPage } from "../Pages/Product/";
 import { DashboardUser } from "../Pages/ProfileViewUser";
 import { Recover } from "../Pages/Recover";
+import { Test } from "../Pages/Test";
+
 
 export const Routes = () => {
   return (
@@ -23,6 +25,9 @@ export const Routes = () => {
       </Route>
       <Route path="/recoverPassword">
         <Recover />
+      </Route>
+      <Route path="/test">
+        <Test />
       </Route>
     </Switch>
   );

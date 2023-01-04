@@ -11,7 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 
 
 interface IData {
-  user: string;
+  user?: string;
 }
 
 export const Recover = () => {
@@ -46,7 +46,7 @@ export const Recover = () => {
                   inputType="text"
                   labelText="Usuário"
                   placeholderText="Digitar usuário"
-                  {...register('user')}
+                  choseWidth="100vw"
                 />         
               </>
             ) : (
@@ -55,6 +55,7 @@ export const Recover = () => {
                   inputType="text"
                   labelText="Usuário"
                   placeholderText="Digitar usuário"
+                  choseWidth="100vw"
                   {...register('user')}
                 />           
               </>
