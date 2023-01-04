@@ -13,9 +13,9 @@ export const ModalPhotoClicked = ({
   setOpenModalPhotoClicked,
   openModalPhotoClicked,
 }: IModalPhotoClicked) => {
+  
   const handleCloseModal = () => {
     setOpenModalPhotoClicked(false);
-    console.log(openModalPhotoClicked);
   };
 
   return (

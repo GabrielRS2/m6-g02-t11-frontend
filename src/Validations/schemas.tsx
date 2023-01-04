@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { SchemaOf } from "yup";
+// import { SchemaOf } from "yup";
 
 // interface IProductsCreate {
 //   model: string;
@@ -26,7 +26,7 @@ export const productCreateSchema = yup.object().shape({
     .string()
     .required("Descricao e' um campo obrigatorio")
     .min(10, "Descricao deve conter mais de 9 caracteres!")
-    .max(50, "Descricao nao deve conter mais de 50 caracteres")
+    // .max(50, "Descricao nao deve conter mais de 50 caracteres")
     .typeError("Deve ser uma frase"),
   km: yup
     .number()

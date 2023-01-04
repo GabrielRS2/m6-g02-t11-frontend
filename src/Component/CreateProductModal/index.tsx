@@ -8,15 +8,14 @@ import { productCreateSchema } from "../../Validations/schemas";
 
 import { AiOutlineClose } from "react-icons/ai";
 
-import { useState } from "react";
-import { Modal } from "@mui/material";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import api from "../../Services";
+import { OpenModalContext } from "../../Providers/OpenModal";
 
 type Props = {
-  closeModal: () => void;
-  isOpen: boolean;
+  setProductModalIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 interface IValidData {
@@ -49,10 +48,11 @@ interface IData {
   photos?: string[];
 }
 
-export const CreateProductModal = ({ closeModal, isOpen }: Props) => {
+export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
   const [listingType, setListingType] = useState<string>("sale");
   const [vehicleType, setVehicleType] = useState<string>("car");
   const [imageFields, setImageFields] = useState<string[]>([]);
+  const { setIsOpenModal } = useContext(OpenModalContext);
 
   const {
     register,
@@ -86,9 +86,14 @@ export const CreateProductModal = ({ closeModal, isOpen }: Props) => {
       .post("products/", data)
       .then((res) => {
         console.log(res.data);
-        closeModal();
+        handleCloseModal();
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleCloseModal = () => {
+    setProductModalIsOpen(false);
+    setIsOpenModal(false);
   };
 
   return (
@@ -98,7 +103,7 @@ export const CreateProductModal = ({ closeModal, isOpen }: Props) => {
           <p>Criar anuncio</p>
           <AiOutlineClose
             onClick={() => {
-              closeModal();
+              handleCloseModal();
             }}
           />
         </div>
@@ -230,12 +235,12 @@ export const CreateProductModal = ({ closeModal, isOpen }: Props) => {
             className="button_cancel"
             onClick={(e) => {
               e.preventDefault();
-              closeModal();
+              handleCloseModal();
             }}
           >
             Cancelar
           </button>
-          <button className="button_submit">Criar anuncio</button>
+          <button className="button_submit" type="submit">Criar anuncio</button>
         </div>
       </ModalContainer>
     </>

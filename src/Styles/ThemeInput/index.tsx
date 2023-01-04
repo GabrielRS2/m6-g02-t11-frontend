@@ -1,4 +1,3 @@
-import { FieldError } from "react-hook-form/dist/types";
 import { StyledInput } from "./style";
 
 

@@ -3,12 +3,14 @@ import { ThemeButton } from "../../Styles/ThemeButton";
 import { Avatar } from '@mui/material';
 import { Container } from "./style";
 import { nameToAcronym } from "../Header/utils";
+import { Dispatch, SetStateAction } from "react";
 
 interface ICardPerfilAdmProps {
   isSellerPage: boolean;
+  handleOpenModal: () => void;
 }
 
-export const CardPerfilAdm = ({isSellerPage}: ICardPerfilAdmProps) => {
+export const CardPerfilAdm = ({isSellerPage, handleOpenModal}: ICardPerfilAdmProps) => {
   return (
     <Container>
       <Avatar sx={{ 
@@ -34,7 +36,7 @@ export const CardPerfilAdm = ({isSellerPage}: ICardPerfilAdmProps) => {
         size={"big"}
         borderColor={"var(--brand1)"}
         hoverbackGroundColor={"var(--brand4)"}
-        handleClick={() => {console.log("Botão grande")}}
+        handleClick={() => {handleOpenModal()}}
         >Criar anuncio</ThemeButton>
       }
     </Container>
