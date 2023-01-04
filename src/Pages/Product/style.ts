@@ -1,5 +1,10 @@
 import styled from "styled-components";
 export const ContainerStyeld = styled.div`
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
   width: 100%;
   height: 3428px;
   min-height: 100vh;
@@ -49,6 +54,9 @@ export const ContainerStyeld = styled.div`
 
     margin: 0 auto;
     padding: 1.75rem;
+    button {
+      width: 100px;
+    }
   }
   .container2 {
     background: var(--grey10);
@@ -110,13 +118,21 @@ export const ContainerStyeld = styled.div`
     .container--flutuante {
       width: 27.5%;
       min-width: 351px;
-      top: 6.8rem;
+      top: 7.8rem;
       left: 60%;
-      position: absolute;
+      right: 2%;
+      position: fixed !important;
+      max-height: 80%;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      overflow: auto;
       @media (min-width: 1150px) {
         width: 27.5%;
         min-width: 351px;
-        top: 6.8rem;
+        top: 7.8rem;
         right: 11.3125%;
         position: absolute;
       }
@@ -174,6 +190,7 @@ export const ContainerImages = styled.div`
     margin: 0 auto;
     margin-top: 1.001rem;
     padding: 36px 28px;
+ 
     h2{
       Font family: Lexend;
       color:var(--grey1);
@@ -203,7 +220,9 @@ export const ContainerImages = styled.div`
         }
       }
     }
- 
+    @media(min-width:850px){
+  margin-top:0 ;
+ }
 `;
 
 export const Seller = styled.div`
@@ -316,6 +335,11 @@ export const ContainerComments = styled.div`
     flex-direction: column;
 
     overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    ::-webkit-scrollbar {
+      display: none;
+    }
     gap: 2.75rem;
 
     .coment--user {
@@ -466,18 +490,16 @@ export const ContainerPostComment = styled.form`
     color: var(--grey3);
   }
   button {
-    max-width: 5.75rem;
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0em;
-    text-align: left;
+    bottom: 0;
+    right: 0;
+    width: 150px;
   }
   .comments--sugestion {
     display: flex;
     flex-wrap: wrap;
-
+    position: relative;
     gap: 8px;
+
     li {
       background: var(--grey7);
       color: var(--grey3);
@@ -492,6 +514,7 @@ export const ContainerPostComment = styled.form`
       line-height: 1.5rem;
       letter-spacing: 0em;
       text-align: left;
+      max-height: 3rem;
 
       cursor: pointer;
     }
@@ -501,11 +524,5 @@ export const ContainerPostComment = styled.form`
     width: 47%;
     margin-left: 11.3125%;
     margin-right: 41.6875%;
-
-    button {
-      position: absolute;
-      bottom: 31.48788928%;
-      right: 6.13%;
-    }
   }
 `;

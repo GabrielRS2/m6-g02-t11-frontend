@@ -14,7 +14,6 @@ export const ContainerFooter = styled.div`
 
   bottom: 0;
 
-
   @media (width>700px) {
     flex-direction: row;
     height: 10rem;
