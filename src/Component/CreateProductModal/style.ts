@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Modal = styled.div`
+export const ModalContainer = styled.form`
   position: absolute;
   top: 10%;
   margin: auto;

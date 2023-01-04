@@ -5,11 +5,13 @@ interface ThemeInputStandartProps {
   labelText: string;
   placeholderText: string;
   choseWidth: string;
+  fieldContext?: any;
 }
 interface ThemeInputTextAreaProps {
   labelText: string;
   placeholderText: string;
   choseWidth: string;
+  fieldContext?: any;
 }
 
 export const ThemeInputStandart = ({
@@ -17,11 +19,12 @@ export const ThemeInputStandart = ({
   labelText,
   placeholderText,
   choseWidth,
+  fieldContext,
 }: ThemeInputStandartProps) => {
   return (
     <StyledInput choseWidth={choseWidth}>
       <label>{labelText}</label>
-      <input placeholder={placeholderText} type={inputType} />
+      <input placeholder={placeholderText} type={inputType} {...fieldContext} />
     </StyledInput>
   );
 };
@@ -30,11 +33,16 @@ export const ThemeInputTextArea = ({
   labelText,
   placeholderText,
   choseWidth,
+  fieldContext,
 }: ThemeInputTextAreaProps) => {
   return (
     <StyledInput choseWidth={choseWidth}>
       <label>{labelText}</label>
-      <textarea placeholder={placeholderText} maxLength={500} />
+      <textarea
+        placeholder={placeholderText}
+        maxLength={500}
+        {...fieldContext}
+      />
     </StyledInput>
   );
 };

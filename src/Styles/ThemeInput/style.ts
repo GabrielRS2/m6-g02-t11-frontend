@@ -4,7 +4,7 @@ interface StyledInputProps {
   choseWidth: string;
 }
 
-export const StyledInput = styled.form<StyledInputProps>`
+export const StyledInput = styled.div<StyledInputProps>`
   display: flex;
   flex-direction: column;
   width: 100%;

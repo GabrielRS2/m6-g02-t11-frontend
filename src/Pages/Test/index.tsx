@@ -9,7 +9,7 @@ export const Test = () => {
   };
   return productModalIsOpen ? (
     <>
-      <CreateProductModal closeModal={closeModal} />
+      <CreateProductModal closeModal={closeModal} isOpen={productModalIsOpen} />
       <button
         onClick={() => {
           setProductModalIsOpen(true);

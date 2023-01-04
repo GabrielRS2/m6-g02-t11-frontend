@@ -2,24 +2,98 @@ import {
   ThemeInputStandart,
   ThemeInputTextArea,
 } from "../../Styles/ThemeInput";
+import { ModalContainer } from "./style";
+
+import { productCreateSchema } from "../../Validations/schemas";
 
 import { AiOutlineClose } from "react-icons/ai";
 
-import { Modal } from "./styles";
 import { useState } from "react";
+import { Modal } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import api from "../../Services";
 
 type Props = {
-  closeModal: Function;
+  closeModal: () => void;
+  isOpen: boolean;
 };
 
-export const CreateProductModal = ({ closeModal }: Props) => {
+interface IValidData {
+  model: string;
+  coverPhoto: string;
+  description: string;
+  km: number;
+  price: number;
+  year: number;
+  saleType: string;
+  vehicleType: string;
+  photos?: string[];
+}
+
+interface IData {
+  model?: string;
+  coverPhoto?: string;
+  description?: string;
+  km?: number;
+  price?: number;
+  year?: number;
+  saleType?: string;
+  vehicleType?: string;
+  zphoto0?: string;
+  zphoto1?: string;
+  zphoto2?: string;
+  zphoto3?: string;
+  zphoto4?: string;
+  zphoto5?: string;
+  photos?: string[];
+}
+
+export const CreateProductModal = ({ closeModal, isOpen }: Props) => {
   const [listingType, setListingType] = useState<string>("sale");
   const [vehicleType, setVehicleType] = useState<string>("car");
-  const [imageFields, setImageFields] = useState<number>(0);
+  const [imageFields, setImageFields] = useState<string[]>([]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(productCreateSchema),
+  });
+
+  const submitCb = (data: IData) => {
+    const photos: string[] = [];
+    const dataValues = Object.values(data);
+    const photosNumber = dataValues.length - 6;
+
+    if (photosNumber > 0) {
+      while (photos.length < photosNumber) {
+        // @ts-ignore
+        const photo = data[`zphoto${photos.length}`];
+        // @ts-ignore
+        delete data[`zphoto${photos.length}`];
+        photos.push(photo);
+      }
+      data.photos = photos;
+    }
+
+    data.vehicleType = vehicleType;
+    data.saleType = listingType;
+    data.price = data.price! * 100;
+
+    api
+      .post("products/", data)
+      .then((res) => {
+        console.log(res.data);
+        closeModal();
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
-      <Modal>
+      <ModalContainer onSubmit={handleSubmit(submitCb)}>
         <div className="title">
           <p>Criar anuncio</p>
           <AiOutlineClose
@@ -32,7 +106,8 @@ export const CreateProductModal = ({ closeModal }: Props) => {
         <div className="container">
           <button
             className={listingType === "sale" ? "button_focused" : undefined}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setListingType("sale");
             }}
           >
@@ -40,7 +115,8 @@ export const CreateProductModal = ({ closeModal }: Props) => {
           </button>
           <button
             className={listingType === "auction" ? "button_focused" : undefined}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setListingType("auction");
             }}
           >
@@ -50,40 +126,58 @@ export const CreateProductModal = ({ closeModal }: Props) => {
         <p>Infomações do veículo</p>
         <ThemeInputStandart
           inputType="text"
-          labelText="Titulo"
+          labelText={
+            errors.model?.message ? String(errors.model?.message) : "Titulo"
+          }
           placeholderText="Digitar titulo"
           choseWidth="100%"
+          fieldContext={register("model")}
         />
         <div className="container">
           <ThemeInputStandart
             inputType="text"
-            labelText="Ano"
+            labelText={
+              errors.year?.message ? String(errors.year?.message) : "Ano"
+            }
             placeholderText="2018"
             choseWidth="47%"
+            fieldContext={register("year")}
           />
           <ThemeInputStandart
             inputType="text"
-            labelText="Quilometragem"
+            labelText={
+              errors.km?.message ? String(errors.km?.message) : "Quilometragem"
+            }
             placeholderText="0"
             choseWidth="47%"
+            fieldContext={register("km")}
           />
           <ThemeInputStandart
             inputType="text"
-            labelText="Preco"
+            labelText={
+              errors.price?.message ? String(errors.price?.message) : "Preco"
+            }
             placeholderText="0"
             choseWidth="100%"
+            fieldContext={register("price")}
           />
         </div>
         <ThemeInputTextArea
-          labelText="Descricao"
+          labelText={
+            errors.description?.message
+              ? String(errors.description?.message)
+              : "Descricao"
+          }
           placeholderText="Digitar a descricao"
           choseWidth="100%"
+          fieldContext={register("description")}
         />
         <span>Tipo de vehiculo</span>
         <div className="container">
           <button
             className={vehicleType === "car" ? "button_focused" : undefined}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setVehicleType("car");
             }}
           >
@@ -93,7 +187,8 @@ export const CreateProductModal = ({ closeModal }: Props) => {
             className={
               vehicleType === "motorcycle" ? "button_focused" : undefined
             }
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setVehicleType("motorcycle");
             }}
           >
@@ -105,21 +200,36 @@ export const CreateProductModal = ({ closeModal }: Props) => {
           labelText="Imagem de capa"
           placeholderText="Inserir URL da Imagem"
           choseWidth="100%"
+          fieldContext={register("coverPhoto")}
         />
-        {/* loop here */}
-        <ThemeInputStandart
-          inputType="text"
-          labelText="Imagem de galeria"
-          placeholderText="Inserir URL da Imagem"
-          choseWidth="100%"
-        />
-        <button className="button_add_field">
+        <>
+          {imageFields.map((el, index) => (
+            <ThemeInputStandart
+              key={index}
+              inputType="url"
+              labelText="Imagem de galeria"
+              placeholderText="https://example.com"
+              choseWidth="100%"
+              fieldContext={register(`zphoto${index}`)}
+            />
+          ))}
+        </>
+        <button
+          className="button_add_field"
+          onClick={(e) => {
+            e.preventDefault();
+            if (imageFields.length < 6) {
+              setImageFields([...imageFields, ""]);
+            }
+          }}
+        >
           Adicionar campo para imagem
         </button>
         <div className="container_submit">
           <button
             className="button_cancel"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               closeModal();
             }}
           >
@@ -127,7 +237,7 @@ export const CreateProductModal = ({ closeModal }: Props) => {
           </button>
           <button className="button_submit">Criar anuncio</button>
         </div>
-      </Modal>
+      </ModalContainer>
     </>
   );
 };
