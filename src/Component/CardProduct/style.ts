@@ -31,9 +31,9 @@ export const ContainerCard = styled.div`
 
   @media (width>768px) {
     .img {
-    height: 90%;
-    width: 90%;
-  }
+      height: 90%;
+      width: 90%;
+    }
   }
 `;
 
@@ -41,7 +41,6 @@ export const ContainerImage = styled.figure<IProps>`
   background-color: aliceblue;
   width: 19.5rem;
   height: 9.5rem;
-
 
   background-color: var(--grey8);
 

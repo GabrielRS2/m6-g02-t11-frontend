@@ -1,27 +1,27 @@
-import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { formatDistance } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import {
-  ContainerComments,
-  ContainerDescription,
-  ContainerImages,
-  ContainerPostComment,
-  ContainerStyeld,
-  Seller,
-} from "./style";
+
+import { ContainerStyeld } from "./style";
 
 import { Header } from "../../Component/Header";
 import { Footer } from "../../Component/Footer";
 import { IProduct } from "../../interfaces/product";
+
+import { InfoProduct } from "./components/infoProduct";
+import { DescProduct } from "./components/descProduct";
+import { ImagesProduct } from "./components/imagesProduct";
+import { SellerProduct } from "./components/sellerProduct";
+import { CommentsProducts } from "./components/commentsProducts";
+import { PostCommentsProduct } from "./components/postCommentsProduct";
+import { useEffect, useState } from "react";
+
+import api from "../../Services";
+
 import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
 import { ModalPhotoClicked } from "../../Component/ModalPhotoClicked";
 
-interface IProductId {
-  productId: string;
-}
-const product: IProduct = {
+
+const productsa: IProduct = {
   cover_img: "/Assets/carro_generico.jpg",
   model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
   description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
@@ -106,6 +106,10 @@ const product: IProduct = {
 };
 
 export const ProductPage = () => {
+
+  const { productId }: any = useParams();
+  const [product, setProduct] = useState(productsa);
+
   const hoje = new Date();
   const [comment, setComment] = useState("");
   const [openModalPhotoClicked, setOpenModalPhotoClicked] = useState(false);
@@ -124,15 +128,25 @@ export const ProductPage = () => {
     setOpenModalPhotoClicked(true);
   }
 
+
   useEffect(() => {
-    setWidth(
-      (carousel.current?.scrollHeight ? carousel.current?.scrollHeight : 0) -
-        (carousel.current?.offsetHeight ? carousel.current?.offsetHeight : 0)
-    );
-  }, [width]);
+    api.get(`products/${productId}`).then((response: any) => {
+      setProduct(response);
+    });
+  }, []);
 
   return (
     <>
+
+      {product && (
+        <ContainerStyeld className="ContainerStyeld">
+          <Header />
+          <InfoProduct product={product} />
+          <DescProduct product={product} />
+          <div className="container--flutuante">
+            <ImagesProduct product={product} />
+            <SellerProduct product={product} />
+
       <ContainerStyeld className="ContainerStyeld">
         <Header />
         <figure className="figure">
@@ -278,7 +292,17 @@ export const ProductPage = () => {
               )}
             </figure>
             <span className="coment--user-name">user.name</span>
+
           </div>
+          <CommentsProducts product={product} />
+          <PostCommentsProduct product={product} />
+
+
+          <footer>
+            <Footer absolute />
+          </footer>
+        </ContainerStyeld>
+      )}
 
           <textarea
             name="coment"
@@ -326,7 +350,6 @@ export const ProductPage = () => {
           
         />
       )}
-      
     </>
   );
 };
