@@ -3,7 +3,6 @@ import { ThemeButton } from "../../Styles/ThemeButton";
 import { Avatar } from '@mui/material';
 import { Container } from "./style";
 import { nameToAcronym } from "../Header/utils";
-import { Dispatch, SetStateAction } from "react";
 
 interface ICardPerfilAdmProps {
   isSellerPage: boolean;

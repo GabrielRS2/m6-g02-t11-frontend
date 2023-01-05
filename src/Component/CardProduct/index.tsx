@@ -1,5 +1,4 @@
 import { Avatar } from "@mui/material";
-import { boolean } from "yup";
 import { IProduct } from "../../interfaces/product";
 import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
@@ -7,7 +6,6 @@ import {
   ButtonsContainer,
   ContainerCard,
   ContainerImage,
-  ContainerOwner,
   ContainerSeller,
   ContainerTags,
   ContainerValor,
