@@ -6,9 +6,10 @@ import { nameToAcronym } from "../Header/utils";
 
 interface ICardPerfilAdmProps {
   isSellerPage: boolean;
+  handleOpenModal: () => void;
 }
 
-export const CardPerfilAdm = ({isSellerPage}: ICardPerfilAdmProps) => {
+export const CardPerfilAdm = ({isSellerPage, handleOpenModal}: ICardPerfilAdmProps) => {
   return (
     <Container>
       <Avatar sx={{ 
@@ -29,11 +30,12 @@ export const CardPerfilAdm = ({isSellerPage}: ICardPerfilAdmProps) => {
 
       {isSellerPage && 
         <ThemeButton 
-        backGroundColor={"var(--brand4)"}
-        color={"varvar(--brand1)"}
+        backGroundColor={"var(--whiteFixed)"}
+        color={"var(--brand1)"}
         size={"big"}
         borderColor={"var(--brand1)"}
-        handleClick={() => {console.log("Botão grande")}}
+        hoverbackGroundColor={"var(--brand4)"}
+        handleClick={() => {handleOpenModal()}}
         >Criar anuncio</ThemeButton>
       }
     </Container>

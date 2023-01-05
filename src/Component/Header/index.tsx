@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { TokenContext } from "../../Providers/Token";
 
 import { HamburgerButton, HeaderContainer, PopupContainer } from "./style";
@@ -58,7 +58,7 @@ export const Header = () => {
       </Modal>
       <HeaderContainer>
         <div>
-          <img src="/Assets/logoColor.svg" alt="Motor shop" />
+          <img src="/Assets/logoColor.svg" alt="Motor shop"/>
         </div>
         <HamburgerButton 
         className="hamburgerButton" 
@@ -101,13 +101,13 @@ export const Header = () => {
             </div>
           ) : (
             <div className="infoLogoutContainer">
-              <button className="goLoginButton">Fazer login</button>
+              <button className="goLoginButton" onClick={() => {history.push("/login")}}>Fazer login</button>
               <ThemeButton
                 backGroundColor="var(--whiteFixed)"
                 color="var(--grey0)"
                 borderColor="var(--grey4)"
                 size="medium"
-                handleClick={() => console.log("GoRegister")}
+                handleClick={() => {history.push("/register")}}
               >Cadastrar</ThemeButton>
             </div>  
           )}
@@ -147,14 +147,13 @@ export const Header = () => {
           </div>
         ) : (
           <div className="infoLogoutContainerMobile">
-            <p>Fazer login</p>
+            <Link to={"/login"}>Fazer login</Link>
             <ThemeButton
               backGroundColor="var(--whiteFixed)"
               color="var(--grey0)"
               borderColor="var(--grey4)"
               size="auto"
-              handleClick={() => api.get("").then( (res) => console.log(res))
-              }
+              handleClick={() => {history.push("/register")}}
             >Cadastrar</ThemeButton>
           </div>  
         )}

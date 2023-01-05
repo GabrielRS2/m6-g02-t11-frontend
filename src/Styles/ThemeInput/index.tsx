@@ -5,28 +5,55 @@ interface ThemeInputStandartProps {
   inputType: string;
   labelText: string;
   placeholderText: string;
+  choseWidth: string;
+  fieldContext?: any;
+  error?: string;
+  isErrorUnder?: boolean;
+  inputClass?: string;
 }
 interface ThemeInputTextAreaProps {
   labelText: string;
   placeholderText: string;
+  choseWidth: string;
+  fieldContext?: any;
+  error?: string;
 }
 
-export const ThemeInputStandart = ({inputType, labelText, placeholderText}:ThemeInputStandartProps)=>{
 
+export const ThemeInputStandart = ({
+  inputType,
+  labelText,
+  placeholderText,
+  choseWidth,
+  fieldContext,
+  error,
+  isErrorUnder = false,
+  inputClass,
+}: ThemeInputStandartProps) => {
   return (
-  <StyledInput>
-    <label>{labelText}</label>
-    <input placeholder={placeholderText} type={inputType} />
-  </StyledInput>
-)}
+    <StyledInput choseWidth={choseWidth}  className={inputClass}>
+      <label>{labelText}{!isErrorUnder && error !== "undefined" && <span className="error"> - {error}</span>}</label>
+      <input placeholder={placeholderText} type={inputType} {...fieldContext} />
+      {isErrorUnder && error !== "undefined" && <span className="error">{error}</span>}
+    </StyledInput>
+  );
+};
 
-
-export const ThemeInputTextArea = ({ labelText, placeholderText}: ThemeInputTextAreaProps)=>{
-  
+export const ThemeInputTextArea = ({
+  labelText,
+  placeholderText,
+  choseWidth,
+  fieldContext,
+  error,
+}: ThemeInputTextAreaProps) => {
   return (
-  <StyledInput>
-    <label>{labelText}</label>
-    <textarea placeholder={placeholderText} maxLength={500}/>
-  </StyledInput>
-  )} 
-
+    <StyledInput choseWidth={choseWidth}>
+      <label>{labelText}{error !== "undefined" && <span className="error"> - {error}</span>}</label>
+      <textarea
+        placeholder={placeholderText}
+        maxLength={500}
+        {...fieldContext}
+      />
+    </StyledInput>
+  );
+};
