@@ -123,7 +123,7 @@ export const ProductPage = () => {
           <PostCommentsProduct product={product} />
 
           <footer>
-            <Footer absolute />
+            <Footer />
           </footer>
         </ContainerStyeld>
       )}
