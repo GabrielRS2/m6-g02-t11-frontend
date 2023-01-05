@@ -15,11 +15,6 @@ export const ContainerStyeld = styled.div`
   flex-direction: column;
   overflow: auto;
 
-  background: linear-gradient(
-    180deg,
-    var(--brand1) 32.25rem,
-    var(--grey8) 32.25rem
-  );
   position: relative;
 
   .border {
@@ -525,4 +520,17 @@ export const ContainerPostComment = styled.form`
     margin-left: 11.3125%;
     margin-right: 41.6875%;
   }
+`;
+export const Background = styled.div`
+  background: linear-gradient(
+    180deg,
+    var(--brand1) 32.25rem,
+    var(--grey8) 32.25rem
+  );
+  position: fixed !important;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 `;

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { ContainerStyeld } from "./style";
+import { Background, ContainerStyeld } from "./style";
 
 import { Header } from "../../Component/Header";
 import { Footer } from "../../Component/Footer";
@@ -14,6 +14,7 @@ import { PostCommentsProduct } from "./components/postCommentsProduct";
 import { useEffect, useState } from "react";
 
 import api from "../../Services";
+import { ModalPhotoClicked } from "../../Component/ModalPhotoClicked";
 
 const productsa: IProduct = {
   cover_img: "/Assets/carro_generico.jpg",
@@ -122,6 +123,7 @@ export const ProductPage = () => {
           <CommentsProducts product={product} />
           <PostCommentsProduct product={product} />
 
+          <Background />
           <footer>
             <Footer />
           </footer>
