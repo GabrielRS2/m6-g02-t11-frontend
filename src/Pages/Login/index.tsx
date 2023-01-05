@@ -8,18 +8,25 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useHistory } from "react-router-dom";
+import api from "../../Services";
+import { UserIdContext } from "../../Providers/UserId";
+import { TokenContext } from "../../Providers/Token";
+import { useContext } from "react";
 
 
 interface IData {
-  user?: string;
+  email?: string;
   password?: string;
 }
 
 export const Login = () => {
   const history = useHistory()
 
+  const { setToken } = useContext(TokenContext);
+  const { setUserId } = useContext(UserIdContext);
+
   const formSchema = yup.object().shape({
-    user: yup.string().email("Email inválido").required("Campo Obrigatório"),
+    email: yup.string().email("Email inválido").required("Campo Obrigatório"),
     password: yup
       .string()
       .min(8, "Mínimo de 8 dígitos")
@@ -35,7 +42,13 @@ export const Login = () => {
   });
 
   const onSubmitFunction = (data: IData) => {
-    console.log(data);
+    api.post("/login", data)
+    .then((res) => {
+      setToken(res.data.token)
+      setUserId(res.data.id)
+      localStorage.setItem("@motor:id", res.data.id)
+      localStorage.setItem("@motor:token", res.data.token)
+    })
   };
 
   return (
@@ -49,9 +62,9 @@ export const Login = () => {
               inputType="text"
               labelText="Usuário"
               placeholderText="Digitar usuário"
-              fieldContext={register("user")}
+              fieldContext={register("email")}
               choseWidth="100vw"
-              error={String(errors.user?.message)}
+              error={String(errors.email?.message)}
               inputClass={"userInput"}
             />     
             <ThemeInputStandart

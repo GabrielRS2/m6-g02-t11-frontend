@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import api from "../../Services";
 
 
 interface IData {
@@ -25,6 +26,7 @@ interface IData {
   number?: string;
   confirmPassword?: string;
   password?: string;
+  isSeller?: boolean;
 }
 
 export const Register = () => {
@@ -63,6 +65,8 @@ export const Register = () => {
 
   const onSubmitFunction = (data: IData) => {
     delete data.confirmPassword
+    data.isSeller = isSeller
+    api.post("/users", data)
     console.log(data);
   };
 

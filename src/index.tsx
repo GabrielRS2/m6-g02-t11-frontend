@@ -6,6 +6,7 @@ import { App } from './App';
 import { OpenModalProvider } from './Providers/OpenModal';
 
 import { TokenProvider } from './Providers/Token';
+import { UserIdProvider } from './Providers/UserId';
 
 
 const root = ReactDOM.createRoot(
@@ -15,9 +16,11 @@ root.render(
   <React.StrictMode>
     <TokenProvider>
       <OpenModalProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <UserIdProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </UserIdProvider>
       </OpenModalProvider>
     </TokenProvider>
   </React.StrictMode>
