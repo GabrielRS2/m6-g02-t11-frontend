@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom";
 
 import { Home } from "../Pages/Home";
 import { Login } from "../Pages/Login";
-import { ProductPage } from "../Pages/Product/";
+// import { ProductPage } from "../Pages/Product/";
 import { DashboardUser } from "../Pages/ProfileViewUser";
 import { Recover } from "../Pages/Recover";
 
@@ -14,7 +14,7 @@ export const Routes = () => {
         <Home />
       </Route>
       <Route path="/product/:productId">
-        <ProductPage />
+        {/* <ProductPage /> */}
       </Route>
       <Route path="/dashboard/:userId">
         <DashboardUser />

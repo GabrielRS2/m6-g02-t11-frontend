@@ -44,42 +44,24 @@ export const Login = () => {
       <Container>
         <FormContainer>
           <p className="title">Login</p>
-          <Form>
-            {errors ? (
-              <>
-                <ThemeInputStandart
-                  inputType="text"
-                  labelText="Usuário"
-                  placeholderText="Digitar usuário"
-                  {...register('user')}
-                  choseWidth="100vw"
-                />     
-                <ThemeInputStandart
-                  inputType="password"
-                  labelText="Senha"
-                  placeholderText="Digitar senha"
-                  {...register('password')}
-                  choseWidth="100vw"
-                />      
-              </>
-            ) : (
-              <>
-                <ThemeInputStandart
-                  inputType="text"
-                  labelText="Usuário"
-                  placeholderText="Digitar usuário"
-                  {...register('user')}
-                  choseWidth="100vw"
-                />     
-                <ThemeInputStandart
-                  inputType="password"
-                  labelText="Senha"
-                  placeholderText="Digitar senha"
-                  {...register('password')}
-                  choseWidth="100vw"
-                />         
-              </>
-            )}
+          <Form onSubmit={handleSubmit(onSubmitFunction)}>
+            <ThemeInputStandart
+              inputType="text"
+              labelText="Usuário"
+              placeholderText="Digitar usuário"
+              fieldContext={register("user")}
+              choseWidth="100vw"
+              error={String(errors.user?.message)}
+              inputClass={"userInput"}
+            />     
+            <ThemeInputStandart
+              inputType="password"
+              labelText="Senha"
+              placeholderText="Digitar senha"
+              fieldContext={register("password")}
+              choseWidth="100vw"
+              error={String(errors.password?.message)}
+            />         
             <div className="recoverLink"><Link to={"/recoverPassword"}>Esqueci minha senha</Link></div>
             <ThemeButton 
               backGroundColor={"var(--brand1)"}

@@ -39,27 +39,15 @@ export const Recover = () => {
       <Container>
         <FormContainer>
           <p className="title">Recuperação de senha</p>
-          <Form>
-            {errors ? (
-              <>
-                <ThemeInputStandart
-                  inputType="text"
-                  labelText="Usuário"
-                  placeholderText="Digitar usuário"
-                  choseWidth="100vw"
-                />         
-              </>
-            ) : (
-              <>
-                <ThemeInputStandart
-                  inputType="text"
-                  labelText="Usuário"
-                  placeholderText="Digitar usuário"
-                  choseWidth="100vw"
-                  {...register('user')}
-                />           
-              </>
-            )}
+          <Form onSubmit={handleSubmit(onSubmitFunction)}>
+            <ThemeInputStandart
+              inputType="text"
+              labelText="Usuário"
+              placeholderText="Digitar usuário"
+              fieldContext={register("user")}
+              choseWidth="100vw"
+              error={String(errors.user?.message)}
+            />             
             <div className="loginLink"><Link to={"/login"}>ir para o login</Link></div>
             <ThemeButton 
               backGroundColor={"var(--brand1)"}

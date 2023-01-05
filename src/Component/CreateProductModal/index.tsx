@@ -131,51 +131,47 @@ export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
         <p>Infomações do veículo</p>
         <ThemeInputStandart
           inputType="text"
-          labelText={
-            errors.model?.message ? String(errors.model?.message) : "Titulo"
-          }
+          labelText={"Titulo"}
           placeholderText="Digitar titulo"
           choseWidth="100%"
           fieldContext={register("model")}
+          error={String(errors.model?.message)}
         />
         <div className="container">
           <ThemeInputStandart
             inputType="text"
-            labelText={
-              errors.year?.message ? String(errors.year?.message) : "Ano"
-            }
+            labelText={"Ano"}
             placeholderText="2018"
             choseWidth="47%"
             fieldContext={register("year")}
+            error={String(errors.year?.message)}
+            isErrorUnder={true}
           />
           <ThemeInputStandart
             inputType="text"
-            labelText={
-              errors.km?.message ? String(errors.km?.message) : "Quilometragem"
-            }
+            labelText={"Quilometragem"}
             placeholderText="0"
             choseWidth="47%"
             fieldContext={register("km")}
+            error={String(errors.km?.message)}
+            isErrorUnder={true}
           />
           <ThemeInputStandart
             inputType="text"
-            labelText={
-              errors.price?.message ? String(errors.price?.message) : "Preco"
-            }
+            labelText={"Preco"}
             placeholderText="0"
             choseWidth="100%"
             fieldContext={register("price")}
+            error={String(errors.price?.message)}
+            isErrorUnder={true}
           />
         </div>
         <ThemeInputTextArea
-          labelText={
-            errors.description?.message
-              ? String(errors.description?.message)
-              : "Descricao"
-          }
+          labelText={"Descricao"}
           placeholderText="Digitar a descricao"
           choseWidth="100%"
           fieldContext={register("description")}
+          error={String(errors.description?.message)}
         />
         <span>Tipo de vehiculo</span>
         <div className="container">
@@ -206,6 +202,7 @@ export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
           placeholderText="Inserir URL da Imagem"
           choseWidth="100%"
           fieldContext={register("coverPhoto")}
+          error={String(errors.coverPhoto?.message)}
         />
         <>
           {imageFields.map((el, index) => (
@@ -216,6 +213,7 @@ export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
               placeholderText="https://example.com"
               choseWidth="100%"
               fieldContext={register(`zphoto${index}`)}
+              error={String(errors[`zphoto${index}`]?.message)}
             />
           ))}
         </>

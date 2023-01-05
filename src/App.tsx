@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { ProductPage } from "./Pages/Product/";
 import { OpenModalContext } from "./Providers/OpenModal";
 import { Routes } from "./Routes";
 import { GlobalStyle } from "./Styles/global";

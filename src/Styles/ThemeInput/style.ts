@@ -18,6 +18,12 @@ export const StyledInput = styled.div<StyledInputProps>`
     color: var(--grey1);
   }
 
+  .error {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--alert1);
+  }
+
   input {
     font-size: 16px;
     font-weight: 400;
