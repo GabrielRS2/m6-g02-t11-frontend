@@ -2,17 +2,18 @@ import styled from "styled-components";
 
 export const ModalContainer = styled.form`
   position: absolute;
-  top: 10%;
+  top: 5%;
   margin: auto;
   left: 50%;
+  z-index: 11;
   transform: translate(-50%);
 
   display: flex;
   justify-content: center;
 
   flex-direction: column;
-  /* background-color: (--var(whiteFixed)); */
-  background-color: beige;
+  background-color: #ffffff;
+
   gap: 1rem;
 
   width: 21.6rem;

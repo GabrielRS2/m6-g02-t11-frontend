@@ -7,7 +7,9 @@ import { CarouselMotion } from "../../Component/CarouselProducts";
 import { CarouselAuction } from "../../Component/CarouselAuctions";
 import { useParams } from "react-router-dom";
 import { IUserId } from "../../interfaces/user";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CreateProductModal } from "../../Component/CreateProductModal";
+import { OpenModalContext } from "../../Providers/OpenModal";
 
 const product: IProduct = {
   cover_img: "/Assets/moto.jpg",
@@ -64,22 +66,32 @@ const productsArray: IProduct[] = [
 const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const DashboardUser = () => {
+  const { setIsOpenModal } = useContext(OpenModalContext);
+
   const { userId }: IUserId = useParams();
   const onlineUserId = "123";
   const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [productModalIsOpen, setProductModalIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
+
     if (userId == onlineUserId) {
       setIsOwner(true);
     }
   }, [userId]);
 
+  function handleOpenModal() {
+    setProductModalIsOpen(true)
+    setIsOpenModal(true)
+  }
+
   return (
     <>
       <Header />
+      {productModalIsOpen && <CreateProductModal setProductModalIsOpen={setProductModalIsOpen}/>}
       <ContainerProfileUser>
         <div className="containerCardPerfilAdm">
-          <CardPerfilAdm isSellerPage={isOwner} />
+          <CardPerfilAdm isSellerPage={isOwner} handleOpenModal={handleOpenModal}/>
         </div>
         <ContainerProductPerfil>
           <p className="typeTittle auction">Leilão</p>

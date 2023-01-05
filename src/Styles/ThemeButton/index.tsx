@@ -10,7 +10,7 @@ interface ThemeButtonProps {
   type?: string;
   hoverColor?: string; 
   hoverbackGroundColor?: string; 
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 
 export const ThemeButton = ({
