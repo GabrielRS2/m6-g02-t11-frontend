@@ -75,7 +75,7 @@ export const DashboardUser = () => {
 
   useEffect(() => {
 
-    if (userId == onlineUserId) {
+    if (userId === onlineUserId) {
       setIsOwner(true);
     }
   }, [userId]);
