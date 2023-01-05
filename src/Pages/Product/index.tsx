@@ -14,7 +14,6 @@ import { PostCommentsProduct } from "./components/postCommentsProduct";
 import { useEffect, useState } from "react";
 
 import api from "../../Services";
-import { ModalPhotoClicked } from "../../Component/ModalPhotoClicked";
 
 const productsa: IProduct = {
   cover_img: "/Assets/carro_generico.jpg",
