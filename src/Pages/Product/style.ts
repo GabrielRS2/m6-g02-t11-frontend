@@ -195,6 +195,7 @@ export const ContainerImages = styled.div`
 
     }
     .images {
+       
       display: flex;
       justify-content: space-between;
       align-content: space-between;
@@ -208,6 +209,9 @@ export const ContainerImages = styled.div`
         margin-left: 2.75rem;
       }
       figure {
+      :hover{
+        cursor: pointer;
+      }
         width: 32%;
         min-width: 5.625rem;
         img {
