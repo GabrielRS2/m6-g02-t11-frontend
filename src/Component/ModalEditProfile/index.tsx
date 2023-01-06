@@ -121,7 +121,7 @@ export const ModalEditProfile = ({
           >
             Cancelar
           </button>
-          <button className="button_submit" type="submit">Salvar alterações</button>
+          <button className="button_submit">Salvar alterações</button>
         </div>
         </Form>  
       </FormContainer>

@@ -16,6 +16,7 @@ import { OpenModalContext } from "../../Providers/OpenModal";
 import { IProduct } from "../../interfaces/product";
 
 type EditProductModaProps = {
+  setOpenDeleteProduct: Dispatch<SetStateAction<boolean>>;
   setEditProductModalIsOpen: Dispatch<SetStateAction<boolean>>;
   product: IProduct;
 };
@@ -50,7 +51,7 @@ interface IData {
   photos?: string[];
 }
 
-export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditProductModaProps) => {
+export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProduct, product }: EditProductModaProps) => {
   const [listingType, setListingType] = useState<string>("sale");
   const [vehicleType, setVehicleType] = useState<string>("car");
   const [imageFields, setImageFields] = useState<string[]>([]);
@@ -264,8 +265,8 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
           <button
             className="button_cancel"
             onClick={(e) => {
-              e.preventDefault();
               handleCloseModal();
+              setOpenDeleteProduct(true);
             }}
           >
             Excluir anúncio

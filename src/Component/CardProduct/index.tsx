@@ -1,11 +1,12 @@
 import { Avatar } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { IProduct } from "../../interfaces/product";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
 import { EditProductModal } from "../EditProductModal";
+import { ModalDeleteProduct } from "../ModalDeleteProduct";
 import {
   ButtonsContainer,
   ContainerCard,
@@ -25,9 +26,10 @@ type AppProps = {
 
 export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
   const { setIsOpenModal } = useContext(OpenModalContext);
-  const [EditProductModalIsOpen, setEditProductModalIsOpen] = useState<boolean>(false);
+  const [editProductModalIsOpen, setEditProductModalIsOpen] = useState<boolean>(false);
+  const [openDeleteProduct, setOpenDeleteProduct] = useState<boolean>(false);
   const history = useHistory()
-
+  
   function handleOpenModal() {
     setEditProductModalIsOpen(true)
     setIsOpenModal(true)
@@ -35,7 +37,8 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
 
   return (
     <ContainerCard onDoubleClick={() => history.push(`/product/${product.id}`)}>
-      {EditProductModalIsOpen && <EditProductModal setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
+      {openDeleteProduct && <ModalDeleteProduct openDeleteProduct={openDeleteProduct} setOpenDeleteProduct={setOpenDeleteProduct}/>}
+      {editProductModalIsOpen && <EditProductModal setOpenDeleteProduct={setOpenDeleteProduct} setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
       <ContainerImage className="ContainerImage" is_active={product.is_active}>
         {status && <span>{product.is_active ? "Ativo" : "Inativo"}</span>}
         <img className="img" src={product.cover_img} alt="Carrao" />
