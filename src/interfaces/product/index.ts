@@ -6,15 +6,18 @@ export interface IProduct {
   description: string;
   km: string;
   year: string;
-  sale_type: string;
+  sale_type?: string;
+  saleType?: string;
   price: number;
-  vehicle_type: string;
+  vehicle_type?: string;
+  vehicleType?: string;
   is_active: boolean;
   cover_img: string;
   seller: IUser;
   images?: string[] | [""];
   coments?: IComents[];
 }
+
 interface IComents {
   user: IUser;
   data: Date;

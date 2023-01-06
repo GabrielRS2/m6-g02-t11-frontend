@@ -85,6 +85,7 @@ export const ModalContainer = styled.form`
     padding: 0.75rem 0.75rem;
     margin-bottom: 1rem;
   }
+  
   .button_cancel {
     background-color: var(--grey6);
     color: var(--grey2);

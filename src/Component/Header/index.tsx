@@ -12,17 +12,21 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Avatar } from '@mui/material';
 import { Modal, Menu, MenuItem } from '@mui/material';
 import PopupState from "material-ui-popup-state";
-import { bindMenu, bindTrigger } from "material-ui-popup-state/hooks";
+import { bindMenu, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
 import api from "../../Services";
+import { ModalEditProfile } from "../ModalEditProfile";
+import { OpenModalContext } from "../../Providers/OpenModal";
 
 export const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
   const { token, setToken } = useContext(TokenContext);
   const history = useHistory();
+  const { setIsOpenModal } = useContext(OpenModalContext);
 
   useEffect(() => {
-    setToken(localStorage.getItem("@localApp:token") || "");
+    setToken(localStorage.getItem("@motor:token") || "");
     if (token !== "") {
       setIsLogged(true);
     } else {
@@ -41,12 +45,14 @@ export const Header = () => {
     setIsOpen(!isOpen)
   }
 
-  function handleRegister() {
-    
+  function handleOpenEditProfileModal() {
+    setOpenEditProfile(true)
+    setIsOpenModal(true)
   }
 
   return (
     <>
+    {openEditProfile && <ModalEditProfile setOpenEditProfile={setOpenEditProfile}/>}
       <Modal
       open={isOpen}
       onClose={handleClose}
@@ -69,9 +75,9 @@ export const Header = () => {
         </HamburgerButton>
         <div className="infoContainer">
           <ul>
-            <li><button onClick={() => setIsLogged(!isLogged)}>Carros</button></li>
-            <li><button onClick={() => setIsLogged(!isLogged)}>Motos</button></li>
-            <li><button onClick={() => setIsLogged(!isLogged)}>Leilão</button></li>
+            <li><button onClick={() => history.push("/")}>Carros</button></li>
+            <li><button onClick={() => history.push("/")}>Motos</button></li>
+            <li><button onClick={() => history.push("/")}>Leilão</button></li>
           </ul>
           {isLogged ? (
             <div className="infoLoginContainer">
@@ -90,10 +96,10 @@ export const Header = () => {
                       <p>Samuel Leão</p>
                     </button>
                     <Menu {...bindMenu(popupState)}>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar Perfil</MenuItem>
+                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => {handleOpenEditProfileModal()}}>Editar Perfil</MenuItem>
                       <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar endereço</MenuItem>
                       <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Minhas Compras</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Sair</MenuItem>
+                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => handleLogout()}>Sair</MenuItem>
                     </Menu>
                   </React.Fragment>
                 )}
@@ -115,35 +121,35 @@ export const Header = () => {
       </HeaderContainer>
       <PopupContainer isOpen={isOpen}>
         <ul>
-          <li onClick={() => {setIsLogged(!isLogged)}}>Carros</li>
-          <li>Motos</li>
-          <li>Leilão</li>
+          <li onClick={() => {history.push("/")}}>Carros</li>
+          <li onClick={() => {history.push("/")}}>Motos</li>
+          <li onClick={() => {history.push("/")}}>Leilão</li>
         </ul>
         {isLogged ? (
           <div className="infoLoginContainerMobile">
-                   <PopupState variant="popover" popupId="demo-popup-menu">
-                {(popupState) => (
-                  <React.Fragment>
-                    <button className="loginButton" {...bindTrigger(popupState)}>
-                    <Avatar sx={{ 
-                    bgcolor: "var(--brand2)", 
-                    height: "2rem", 
-                    width: "2rem", 
-                    fontSize: "0.875rem", 
-                    fontWeight: "700" }}
-                    >
-                    {nameToAcronym("Samuel Leão")}</Avatar>
-                    <p>Samuel Leão</p>
-                    </button>
-                    <Menu {...bindMenu(popupState)}>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar Perfil</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar endereço</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Minhas Compras</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Sair</MenuItem>
-                    </Menu>
-                  </React.Fragment>
-                )}
-              </PopupState>
+              <PopupState variant="popover" popupId="demo-popup-menu">
+              {(popupState) => (
+                <React.Fragment>
+                  <button className="loginButton" {...bindTrigger(popupState)}>
+                  <Avatar sx={{ 
+                  bgcolor: "var(--brand2)", 
+                  height: "2rem", 
+                  width: "2rem", 
+                  fontSize: "0.875rem", 
+                  fontWeight: "700" }}
+                  >
+                  {nameToAcronym("Samuel Leão")}</Avatar>
+                  <p>Samuel Leão</p>
+                  </button>
+                  <Menu {...bindMenu(popupState)}>
+                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => {handleOpenEditProfileModal()}}>Editar Perfil</MenuItem>
+                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar endereço</MenuItem>
+                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Minhas Compras</MenuItem>
+                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => handleLogout()}>Sair</MenuItem>
+                  </Menu>
+                </React.Fragment>
+              )}
+            </PopupState>
           </div>
         ) : (
           <div className="infoLogoutContainerMobile">
