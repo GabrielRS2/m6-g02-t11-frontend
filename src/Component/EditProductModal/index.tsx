@@ -8,7 +8,7 @@ import { editCreateSchema } from "../../Validations/schemas";
 
 import { AiOutlineClose } from "react-icons/ai";
 
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import api from "../../Services";
@@ -63,6 +63,15 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
   } = useForm({
     resolver: yupResolver(editCreateSchema),
   });
+
+  useEffect(() => {
+    if(product.saleType) {
+      setListingType(product.saleType)
+    }
+    if(product.vehicleType) {
+      setVehicleType(product.vehicleType)
+    }
+  }, [])
 
   const submitCb = (data: IData) => {
     const photos: string[] = [];
@@ -152,7 +161,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
         <ThemeInputStandart
           inputType="text"
           labelText={"Titulo"}
-          placeholderText="Digitar titulo"
+          placeholderText={product.model}
           choseWidth="100%"
           fieldContext={register("model")}
           error={String(errors.model?.message)}
@@ -161,7 +170,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
           <ThemeInputStandart
             inputType="text"
             labelText={"Ano"}
-            placeholderText="2018"
+            placeholderText={product.year}
             choseWidth="47%"
             fieldContext={register("year")}
             error={String(errors.year?.message)}
@@ -171,7 +180,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
           <ThemeInputStandart
             inputType="text"
             labelText={"Quilometragem"}
-            placeholderText="0"
+            placeholderText={product.km}
             choseWidth="47%"
             fieldContext={register("km")}
             error={String(errors.km?.message)}
@@ -181,7 +190,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
           <ThemeInputStandart
             inputType="text"
             labelText={"Preco"}
-            placeholderText="0"
+            placeholderText={(product.price).toString()}
             choseWidth="100%"
             fieldContext={register("price")}
             error={String(errors.price?.message)}
@@ -191,7 +200,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
         </div>
         <ThemeInputTextArea
           labelText={"Descricao"}
-          placeholderText="Digitar a descricao"
+          placeholderText={product.description}
           choseWidth="100%"
           fieldContext={register("description")}
           error={String(errors.description?.message)}
@@ -222,7 +231,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, product }: EditPro
         <ThemeInputStandart
           inputType="text"
           labelText="Imagem de capa"
-          placeholderText="Inserir URL da Imagem"
+          placeholderText={product.cover_img}
           choseWidth="100%"
           fieldContext={register("coverPhoto")}
           error={String(errors.coverPhoto?.message)}

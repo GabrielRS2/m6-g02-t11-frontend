@@ -48,6 +48,7 @@ export const Login = () => {
       setUserId(res.data.id)
       localStorage.setItem("@motor:id", res.data.id)
       localStorage.setItem("@motor:token", res.data.token)
+      history.push("/")
     })
   };
 
