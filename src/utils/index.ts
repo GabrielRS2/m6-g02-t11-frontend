@@ -1,4 +1,5 @@
-export const priceFormarter = (price: string) => {
+export const priceFormarter = (priceNumber: number) => {
+  const price: string = priceNumber.toString()
   let formatedPrice:string = `,${price[price.length-2]}` + `${price[price.length-1]}`
 
   for (var i = 0; i < price.length-2; i++) {

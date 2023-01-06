@@ -8,7 +8,7 @@ export const ContainerStyeld = styled.div`
   width: 100%;
   height: 3428px;
   min-height: 100vh;
-  max-width: 1800px;
+  max-width: 100vw;
   margin: 0 auto;
 
   display: flex;
@@ -187,8 +187,7 @@ export const ContainerImages = styled.div`
     padding: 36px 28px;
  
     h2{
-      Font family: Lexend;
-      color:var(--grey1);
+      color: var(--grey1);
       font-size: 20px;
       line-height: 25px;
       line-height: 100%;
@@ -219,9 +218,9 @@ export const ContainerImages = styled.div`
         }
       }
     }
-    @media(min-width:850px){
-  margin-top:0 ;
- }
+  @media(min-width:850px){
+    margin-top: 0px;
+  }
 `;
 
 export const Seller = styled.div`

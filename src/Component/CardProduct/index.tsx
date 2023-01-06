@@ -1,7 +1,11 @@
 import { Avatar } from "@mui/material";
+import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { IProduct } from "../../interfaces/product";
+import { OpenModalContext } from "../../Providers/OpenModal";
 import { ThemeButton } from "../../Styles/ThemeButton";
 import { nameToAcronym, priceFormarter } from "../../utils";
+import { EditProductModal } from "../EditProductModal";
 import {
   ButtonsContainer,
   ContainerCard,
@@ -20,8 +24,18 @@ type AppProps = {
 };
 
 export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
+  const { setIsOpenModal } = useContext(OpenModalContext);
+  const [EditProductModalIsOpen, setEditProductModalIsOpen] = useState<boolean>(false);
+  const history = useHistory()
+
+  function handleOpenModal() {
+    setEditProductModalIsOpen(true)
+    setIsOpenModal(true)
+  }
+
   return (
-    <ContainerCard>
+    <ContainerCard onDoubleClick={() => history.push(`/product/${product.id}`)}>
+      {EditProductModalIsOpen && <EditProductModal setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
       <ContainerImage className="ContainerImage" is_active={product.is_active}>
         {status && <span>{product.is_active ? "Ativo" : "Inativo"}</span>}
         <img className="img" src={product.cover_img} alt="Carrao" />
@@ -56,7 +70,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
         size={"medium"}
         borderColor={"var(--grey1)"}
         hoverbackGroundColor={"var(--brand1)"}
-        handleClick={() => {console.log("Botão médio")}}
+        handleClick={() => {handleOpenModal()}}
         >Editar</ThemeButton>
         <ThemeButton 
         backGroundColor={"var(--grey8)"}
@@ -64,7 +78,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
         size={"medium"}
         borderColor={"var(--grey1)"}
         hoverbackGroundColor={"var(--brand1)"}
-        handleClick={() => {console.log("Botão médio")}}
+        handleClick={() => {history.push(`/product/${product.id}`)}}
         >Ver como</ThemeButton>
       </ButtonsContainer>
       )}

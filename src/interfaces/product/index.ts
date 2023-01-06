@@ -1,12 +1,13 @@
 import { IUser } from "../user";
 
 export interface IProduct {
+  id?: string;
   model: string;
   description: string;
   km: string;
   year: string;
   sale_type: string;
-  price: string;
+  price: number;
   vehicle_type: string;
   is_active: boolean;
   cover_img: string;
