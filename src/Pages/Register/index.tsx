@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import api from "../../Services";
+import { ModalCreateAccountSuccess } from "../../Component/ModalCreateAccountSuccess";
 
 
 interface IData {
@@ -31,6 +32,7 @@ interface IData {
 
 export const Register = () => {
   const [ isSeller, setIsSeller ] = useState<boolean>(false)
+  const [ openCreateAccountSuccess, setOpenCreateAccountSuccess ] = useState<boolean>(false)
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório"),
@@ -67,12 +69,13 @@ export const Register = () => {
     delete data.confirmPassword
     data.isSeller = isSeller
     api.post("/users", data)
-    console.log(data);
+    setOpenCreateAccountSuccess(true)
   };
 
   return (
     <>
       <Header />
+      <ModalCreateAccountSuccess setOpenCreateAccountSuccess={setOpenCreateAccountSuccess} openCreateAccountSuccess={openCreateAccountSuccess}/>
       <Container>
         <FormContainer>
           <p className="title">Cadastro</p>

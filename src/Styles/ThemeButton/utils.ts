@@ -6,6 +6,9 @@ export const choseHeight = (size: string) => {
     case "medium":
       return "2.375rem"
 
+    case "medium50":
+      return "2.375rem"
+
     case "big":
       return "3rem"
 
@@ -25,6 +28,9 @@ export const choseWidth = (size: string) => {
     case "medium":
       return "auto"
 
+    case "medium50":
+      return "10.25rem"
+
     case "big":
       return "auto"
 
@@ -42,6 +48,9 @@ export const chosePadding = (size: string) => {
       return "0.75rem 1.75rem"
 
     case "medium":
+      return "0.75rem 1.25rem"
+
+    case "medium50":
       return "0.75rem 1.25rem"
 
     case "big":
