@@ -13,7 +13,6 @@ export const ModalPhotoClicked = ({
   setOpenModalPhotoClicked,
   openModalPhotoClicked,
 }: IModalPhotoClicked) => {
-  
   const handleCloseModal = () => {
     setOpenModalPhotoClicked(false);
   };
@@ -29,7 +28,7 @@ export const ModalPhotoClicked = ({
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop:"6rem"
+          paddingTop: "6rem",
         }}
       >
         <PhotoClickedContainer>

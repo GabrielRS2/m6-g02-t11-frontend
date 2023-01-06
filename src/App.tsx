@@ -7,7 +7,7 @@ import { Modal } from "./Styles/Modal";
 export const App = () => {
   const { isOpenModal } = useContext(OpenModalContext);
   return (
-    <div className="App" style={{position: "relative"}}>
+    <div className="App" style={{ position: "relative" }}>
       {isOpenModal && <Modal />}
       <GlobalStyle />
       <Routes />

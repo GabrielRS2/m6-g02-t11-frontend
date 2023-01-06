@@ -15,11 +15,6 @@ export const ContainerStyeld = styled.div`
   flex-direction: column;
   overflow: auto;
 
-  background: linear-gradient(
-    180deg,
-    var(--brand1) 32.25rem,
-    var(--grey8) 32.25rem
-  );
   position: relative;
 
   .border {
@@ -178,31 +173,16 @@ export const ContainerDescription = styled.div`
   }
 `;
 export const ContainerImages = styled.div`
-  background: var(--grey10);
+  
+    background: var(--grey10);
 
-  width: 93.6%;
+    width: 93.6%;
 
-  display: flex;
-  flex-direction: column;
-
-  gap: 2rem;
-  margin: 0 auto;
-  margin-top: 1.001rem;
-  padding: 36px 28px;
-  h2 {
-    font-family: Lexend;
-    color: var(--grey1);
-    font-size: 20px;
-    line-height: 25px;
-    line-height: 100%;
-  }
-  .images {
     display: flex;
-    justify-content: space-between;
-    align-content: space-between;
-    flex-wrap: wrap;
-    margin: 0 auto;
+    flex-direction: column;
 
+    gap: 2rem;
+    margin: 0 auto;
     margin-top: 1.001rem;
     padding: 36px 28px;
  
@@ -213,38 +193,35 @@ export const ContainerImages = styled.div`
       line-height: 25px;
       line-height: 100%;
 
-    gap:0.3rem;
-
-
-    width: 80%;
-
-    min-width: 17.6rem;
-    .images--title {
-      margin-top: 2.25rem;
-      margin-left: 2.75rem;
     }
-    figure {
-      width: 32%;
-      min-width: 5.625rem;
-      height: 4.8rem;
-      
-      &:hover {
-        transition: 0.2s;
-        border-bottom:0.2rem solid var(--brand2);
+    .images {
+       
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 auto;
+
+      width: 80.05698006%;
+      min-width: 17.5625rem;
+      .images--title {
+        margin-top: 2.25rem;
+        margin-left: 2.75rem;
+      }
+      figure {
+      :hover{
         cursor: pointer;
-        
       }
-      img {
-        
-        max-width: 100%;
+        width: 32%;
+        min-width: 5.625rem;
+        img {
+          max-width: 100%;
+        }
       }
     }
-
     @media(min-width:850px){
-      margin-top:0 ;
-     }
-  }
-
+  margin-top:0 ;
+ }
 `;
 
 export const Seller = styled.div`
@@ -547,4 +524,17 @@ export const ContainerPostComment = styled.form`
     margin-left: 11.3125%;
     margin-right: 41.6875%;
   }
+`;
+export const Background = styled.div`
+  background: linear-gradient(
+    180deg,
+    var(--brand1) 32.25rem,
+    var(--grey8) 32.25rem
+  );
+  position: fixed !important;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 `;
