@@ -3,12 +3,15 @@ import { ThemeButton } from "../../../Styles/ThemeButton";
 import { Seller } from "../style";
 import { nameToAcronym } from "../../../utils";
 import { IProduct } from "../../../interfaces/product";
+import { useHistory } from "react-router-dom";
 
 type SellerProductProps = {
   product: IProduct;
 };
 
 export const SellerProduct = ({ product }: SellerProductProps) => {
+  const history = useHistory()
+
   return (
     <Seller className="Seller">
       <figure className="figure">
@@ -34,7 +37,7 @@ export const SellerProduct = ({ product }: SellerProductProps) => {
         size={"big"}
         borderColor={"var(--grey0)"}
         handleClick={() => {
-          console.log("todos anuncios");
+          history.push(`/dashboard/${1}`);
         }}
       >
         Ver todos anuncios

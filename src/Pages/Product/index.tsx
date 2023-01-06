@@ -28,7 +28,7 @@ const productsa: IProduct = {
   },
   km: `0`,
   year: "2020",
-  price: `123456789`,
+  price: 123456789,
   is_active: true,
   vehicle_type: "carro",
   sale_type: "leilao",

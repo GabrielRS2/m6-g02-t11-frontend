@@ -10,6 +10,7 @@ interface ThemeInputStandartProps {
   error?: string;
   isErrorUnder?: boolean;
   inputClass?: string;
+  value?: string | number;
 }
 interface ThemeInputTextAreaProps {
   labelText: string;
@@ -29,11 +30,12 @@ export const ThemeInputStandart = ({
   error,
   isErrorUnder = false,
   inputClass,
+  value,
 }: ThemeInputStandartProps) => {
   return (
     <StyledInput choseWidth={choseWidth}  className={inputClass}>
       <label>{labelText}{!isErrorUnder && error !== "undefined" && <span className="error"> - {error}</span>}</label>
-      <input placeholder={placeholderText} type={inputType} {...fieldContext} />
+      <input placeholder={placeholderText} type={inputType} {...fieldContext} defaultValue={value}/>
       {isErrorUnder && error !== "undefined" && <span className="error">{error}</span>}
     </StyledInput>
   );
