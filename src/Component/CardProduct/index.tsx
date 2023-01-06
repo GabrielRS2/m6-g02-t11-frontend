@@ -41,7 +41,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
       {editProductModalIsOpen && <EditProductModal setOpenDeleteProduct={setOpenDeleteProduct} setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
       <ContainerImage className="ContainerImage" is_active={product.is_active}>
         {status && <span>{product.is_active ? "Ativo" : "Inativo"}</span>}
-        <img className="img" src={product.cover_img} alt="Carrao" />
+        <img className="img" src={product.photos[0].content} alt="Carrao" />
       </ContainerImage>
       <TextTitle>{product.model}</TextTitle>
       <TextInfo>{product.description}</TextInfo>
@@ -54,8 +54,8 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
               fontSize: "0.875rem", 
               fontWeight: "500" }}
               >
-              {nameToAcronym(product.seller.name)}</Avatar>
-            <p>{product.seller.name}</p>
+              {nameToAcronym(product.user.name)}</Avatar>
+            <p>{product.user.name}</p>
           </ContainerSeller>
           }
       <ContainerValor>

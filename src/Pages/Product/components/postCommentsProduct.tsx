@@ -27,16 +27,9 @@ export const PostCommentsProduct = ({ product }: PostCommentsProductProps) => {
     >
       <div className="coment--user">
         <figure>
-          {product.seller.photo ? (
-            <img
-              src={product.seller.photo}
-              alt={nameToAcronym(`${product.seller.name}`)}
-            />
-          ) : (
-            <div className="avatar">
-              {nameToAcronym(`${product.seller.name}`)}
-            </div>
-          )}
+          <div className="avatar">
+            {nameToAcronym(`${product.user.name}`)}
+          </div>
         </figure>
         <span className="coment--user-name">user.name</span>
       </div>

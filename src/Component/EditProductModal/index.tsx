@@ -181,7 +181,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
           <ThemeInputStandart
             inputType="text"
             labelText={"Quilometragem"}
-            placeholderText={product.km}
+            placeholderText={product.km.toString()}
             choseWidth="47%"
             fieldContext={register("km")}
             error={String(errors.km?.message)}
@@ -232,7 +232,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
         <ThemeInputStandart
           inputType="text"
           labelText="Imagem de capa"
-          placeholderText={product.cover_img}
+          placeholderText={product.photos[0].content}
           choseWidth="100%"
           fieldContext={register("coverPhoto")}
           error={String(errors.coverPhoto?.message)}

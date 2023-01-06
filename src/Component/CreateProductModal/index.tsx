@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import api from "../../Services";
 import { OpenModalContext } from "../../Providers/OpenModal";
+import { TokenContext } from "../../Providers/Token";
 
 type Props = {
   setProductModalIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -53,6 +54,7 @@ export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
   const [vehicleType, setVehicleType] = useState<string>("car");
   const [imageFields, setImageFields] = useState<string[]>([]);
   const { setIsOpenModal } = useContext(OpenModalContext);
+  const { token } = useContext(TokenContext); 
 
   const {
     register,
@@ -83,7 +85,11 @@ export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
     data.price = data.price! * 100;
 
     api
-      .post("products/", data)
+      .post("products/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((res) => {
         console.log(res.data);
         handleCloseModal();
@@ -186,11 +192,11 @@ export const CreateProductModal = ({ setProductModalIsOpen }: Props) => {
           </button>
           <button
             className={
-              vehicleType === "motorcycle" ? "button_focused" : undefined
+              vehicleType === "motorbike" ? "button_focused" : undefined
             }
             onClick={(e) => {
               e.preventDefault();
-              setVehicleType("motorcycle");
+              setVehicleType("motorbike");
             }}
           >
             Moto

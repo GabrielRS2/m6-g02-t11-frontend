@@ -20,7 +20,7 @@ export const productCreateSchema = yup.object().shape({
     .string()
     .required("Campo obrigatório")
     .min(15, "Titulo deve conter mais de 14 caracteres!")
-    .max(50, "Titulo nao pode passar de 50 caracteres!")
+    // .max(50, "Titulo nao pode passar de 50 caracteres!")
     .typeError("Deve ser uma frase"),
   description: yup
     .string()

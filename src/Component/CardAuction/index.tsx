@@ -35,8 +35,8 @@ export const CardAuction = ({ isSellerPage, product }: AppProps) => {
               fontSize: "0.875rem", 
               fontWeight: "500" }}
               >
-              {nameToAcronym(product.seller.name)}</Avatar>
-            <p>{product.seller.name}</p>
+              {nameToAcronym(product.user.name)}</Avatar>
+            <p>{product.user.name}</p>
           </ContainerSeller>
           }
           <ContainerTagsPrice>

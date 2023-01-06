@@ -69,6 +69,8 @@ export const Register = () => {
     delete data.confirmPassword
     data.isSeller = isSeller
     api.post("/users", data)
+    .then((res) => {
+    })
     setOpenCreateAccountSuccess(true)
   };
 
