@@ -120,7 +120,6 @@ const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const DashboardUser = () => {
   const { setIsOpenModal } = useContext(OpenModalContext);
-
   const { userId }: IUserId = useParams();
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [productModalIsOpen, setProductModalIsOpen] = useState<boolean>(false);
