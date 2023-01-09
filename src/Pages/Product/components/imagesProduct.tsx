@@ -20,18 +20,18 @@ export const ImagesProduct = ({ product }: ImagesProductProps) => {
       />
       <h2 className="description--tittle">Fotos</h2>
       <div className="images">
-        {product.images &&
-          product.images.map(
+        {product.photos &&
+          product.photos.map(
             (image, index) =>
-              index < 6 && (
+              (image.is_cover_img !== true) && (
                 <figure
                   key={index}
                   onClick={() => {
-                    setImage(image);
+                    setImage(image.content);
                     setModal0(true);
                   }}
                 >
-                  <img src={image} alt="foto do produto" />
+                  <img src={image.content} alt="foto do produto" />
                 </figure>
               )
           )}

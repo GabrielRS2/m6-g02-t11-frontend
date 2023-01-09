@@ -15,18 +15,11 @@ export const SellerProduct = ({ product }: SellerProductProps) => {
   return (
     <Seller className="Seller">
       <figure className="figure">
-        {product.seller.photo ? (
-          <img
-            src={product.seller.photo}
-            alt={nameToAcronym(`${product.seller.name}`)}
-          />
-        ) : (
-          <div className="avatar">
-            {nameToAcronym(`${product.seller.name}`)}
-          </div>
-        )}
+        <div className="avatar">
+          {nameToAcronym(`${product.user.name}`)}
+        </div>
       </figure>
-      <p className="seller--name">{product.seller.name}</p>
+      <p className="seller--name">{product.user.name}</p>
       <p className="seller--description">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's

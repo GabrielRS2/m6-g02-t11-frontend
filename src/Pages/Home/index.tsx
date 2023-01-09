@@ -9,43 +9,97 @@ import {
 import { CarouselMotion } from "../../Component/CarouselProducts";
 import { CarouselAuction } from "../../Component/CarouselAuctions";
 import { ThemeButton } from "../../Styles/ThemeButton";
+import { useEffect, useState } from "react";
+import api from "../../Services";
 
 const product: IProduct = {
-  cover_img: "/Assets/moto.jpg",
   model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
   description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Product title stays here - max 1 line
     Product title stays here - maximum 1 line`,
-  seller: {
-    photo: "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-    name: "Samuel Leão",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-  },
-  km: `0`,
+    user: {
+      cpf: "096.222.222-04",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      dob:"1981/05/06",
+      email: "samuel@mail.com",
+      id: "474bcb5d-db6a-4919-8ead-5d8057733185",
+      isActive: true,
+      isSeller: true,
+      name: "Samuel Leao",
+      phone: "(41) 99999-9999",
+    },
+  km: 0,
   year: "2020",
   price: 123456789,
   is_active: true,
-  vehicle_type: "moto",
-  sale_type: "leilao",
+  vehicleType: "motorbike",
+  saleType: "leilao",
+  "photos": [
+    {
+      "id": "a36faa78-0774-4fa1-9421-7d931a35f0a7",
+      "content": "https://supermotohonda.com.br/uploads/569/motos-2021/street/nxr-160-bros-esdd/7-lateral_vermelho.webp",
+      "is_cover_img": true
+    },
+    {
+      "id": "3c29aff2-f626-43fe-a641-2a2118c67ad9",
+      "content": "https://supermotohonda.com.br/uploads/569/motos-2021/street/nxr-160-bros-esdd/7-lateral_vermelho.webp",
+      "is_cover_img": false
+    },
+    {
+      "id": "5bfb7f66-bc14-4f0f-aae9-cff157156a28",
+      "content": "https://supermotohonda.com.br/uploads/569/motos-2021/street/nxr-160-bros-esdd/7-lateral_vermelho.webp",
+      "is_cover_img": false
+    },
+    {
+      "id": "5f126065-ce6a-46d3-ada3-258e7651b0cd",
+      "content": "https://supermotohonda.com.br/uploads/569/motos-2021/street/nxr-160-bros-esdd/7-lateral_vermelho.webp",
+      "is_cover_img": false
+    }
+  ]
 };
 
 const productCar: IProduct = {
-  cover_img: "/Assets/carro_generico.jpg",
   model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
   description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Product title stays here - max 1 line
     Product title stays here - maximum 1 line`,
-  seller: {
-    photo: "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-    name: "Samuel Leão",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-  },
-  km: `0`,
+    user: {
+      cpf: "096.222.222-04",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      dob:"1981/05/06",
+      email: "samuel@mail.com",
+      id: "474bcb5d-db6a-4919-8ead-5d8057733185",
+      isActive: true,
+      isSeller: true,
+      name: "Samuel Leao",
+      phone: "(41) 99999-9999",
+    },
+  km: 0,
   year: "2020",
   price: 123456789,
   is_active: true,
-  vehicle_type: "carro",
-  sale_type: "leilao",
+  vehicleType: "car",
+  saleType: "leilao",
+  "photos": [
+    {
+      "id": "a36faa78-0774-4fa1-9421-7d931a35f0a7",
+      "content": "https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/02-images/novo-cruze-nb.jpg?imwidth=960",
+      "is_cover_img": true
+    },
+    {
+      "id": "3c29aff2-f626-43fe-a641-2a2118c67ad9",
+      "content": "https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/02-images/novo-cruze-nb.jpg?imwidth=960",
+      "is_cover_img": false
+    },
+    {
+      "id": "5bfb7f66-bc14-4f0f-aae9-cff157156a28",
+      "content": "https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/02-images/novo-cruze-nb.jpg?imwidth=960",
+      "is_cover_img": false
+    },
+    {
+      "id": "5f126065-ce6a-46d3-ada3-258e7651b0cd",
+      "content": "https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/02-images/novo-cruze-nb.jpg?imwidth=960",
+      "is_cover_img": false
+    }
+  ]
 };
 
 const productsArray: IProduct[] = [
@@ -64,7 +118,15 @@ const productsArray: IProduct[] = [
 ];
 const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
+
 export const Home = () => {
+  const [ products, setProducts ] = useState<IProduct[]>([])
+
+  useEffect(() => {
+    api.get("products")
+    .then((res) => setProducts(res.data.products))
+  }, [])
+
   return (
     <>
       <Header />
@@ -105,7 +167,7 @@ export const Home = () => {
         <ContainerProductPerfil>
           <p className="typeTittle">Carros</p>
           <CarouselMotion
-            type="carro"
+            type="car"
             products={productsArray}
             isSellerPage={false}
           />
@@ -113,7 +175,7 @@ export const Home = () => {
         <ContainerProductPerfil>
           <p className="typeTittle">Motos</p>
           <CarouselMotion
-            type="moto"
+            type="motorbike"
             products={productsArray}
             isSellerPage={false}
           />

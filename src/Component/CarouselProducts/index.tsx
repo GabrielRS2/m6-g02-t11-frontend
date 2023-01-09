@@ -7,7 +7,7 @@ import { ContainerCarrousel } from "./style";
 import { IProduct } from "../../interfaces/product";
 
 type CarouselProps = {
-  type: "carro" | "moto";
+  type: "car" | "motorbike";
   card?: { status?: boolean };
   products: IProduct[];
   isSellerPage: boolean;
@@ -17,7 +17,7 @@ export const CarouselMotion = ({ type, card, products, isSellerPage }: CarouselP
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
-  const prods = products.filter((product) => product.vehicle_type === type);
+  const prods = products.filter((product) => product.vehicleType === type);
   useEffect(() => {
     setWidth(
       (carousel.current?.scrollWidth ? carousel.current?.scrollWidth : 0) -
@@ -40,7 +40,7 @@ export const CarouselMotion = ({ type, card, products, isSellerPage }: CarouselP
           dragConstraints={{ right: 0, left: -width }}
         >
           {prods.map((product, index) => {
-            if (product.vehicle_type === type) {
+            if (product.vehicleType === type) {
               return (
                 <motion.div className="item" key={index}>
                   <CardProduct
