@@ -19,7 +19,12 @@ export const HeaderContainer = styled.header`
   background-color: var(--grey10);
 
   border-bottom: 2px solid var(--grey6);
-
+  a {
+    text-decoration: none;
+    :visited {
+      color: var(--grey2);
+    }
+  }
   ul {
     display: none;
   }

@@ -7,7 +7,7 @@ import { ThemeButton } from "../../Styles/ThemeButton";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import api from "../../Services";
 import { ModalGeneric } from "../../Component/ModalGeneric";
 import { useState } from "react";
@@ -16,7 +16,7 @@ interface IData {
   email?: string;
 }
 
-export const Recover = () => {
+export const RecoverPassword = () => {
   const [open, setOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
@@ -29,9 +29,17 @@ export const Recover = () => {
     pushURL: "",
   });
   const history = useHistory();
+  const { id, token }: any = useParams();
 
   const formSchema = yup.object().shape({
-    email: yup.string().email("Email inválido").required("Campo Obrigatório"),
+    password: yup
+      .string()
+      .min(8, "Mínimo de 8 dígitos")
+      .required("Campo Obrigatório"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "Senhas diferentes")
+      .required("Campo obrigatório"),
   });
 
   const {
@@ -45,22 +53,28 @@ export const Recover = () => {
   const onSubmitFunction = (data: IData) => {
     console.log(data.email);
     api
-      .post("login/reset-password/", data)
+      .post(`login/reset-password/${id}/${token}/`, data)
       .then((res) => {
         console.log(res.data);
         setModalContent({
           title: "Sucesso!",
           titleSucess: "Sua recuperação de senha foi aceita",
           messageSucess:
-            "Enviamos um link para a criação de uma nova senha para o seu email. Siga as instruções para redefinir a sua nova senha",
+            "Sua Senha foi alterada com sucesso. Clique em acessar para logar no sistema com a nova senha.",
+        });
+        setButtonContent({
+          active: true,
+          text: "Acessar",
+          pushURL: "/login/",
         });
         setOpen(true);
       })
       .catch((res) => {
         setModalContent({
           title: "OOOPS!",
-          titleSucess: "Email não encontrado",
-          messageSucess: "Verifique seu email e tente novamente.",
+          titleSucess: "Erro interno!",
+          messageSucess:
+            "HoUvE Um ERro INTerno. Entre em contato com o moderado do site.",
         });
         setOpen(true);
       });
@@ -78,18 +92,27 @@ export const Recover = () => {
       <Container>
         <FormContainer>
           <p className="title">Recuperação de senha</p>
-          <Form onSubmit={handleSubmit(onSubmitFunction)}>
+          <Form
+            onSubmit={handleSubmit(onSubmitFunction)}
+            className="form--space"
+          >
             <ThemeInputStandart
-              inputType="text"
-              labelText="Usuário"
-              placeholderText="Digitar usuário"
-              fieldContext={register("email")}
+              inputType="password"
+              labelText="Nova senha"
+              placeholderText="Digitar senha"
+              fieldContext={register("password")}
               choseWidth="100vw"
-              error={String(errors.email?.message)}
+              error={String(errors.password?.message)}
             />
-            <div className="loginLink">
-              <Link to={"/login"}>ir para o login</Link>
-            </div>
+            <ThemeInputStandart
+              inputType="password"
+              labelText="Confirmar Senha"
+              placeholderText="Digitar senha"
+              fieldContext={register("confirmPassword")}
+              choseWidth="100vw"
+              error={String(errors.confirmPassword?.message)}
+            />
+
             <ThemeButton
               backGroundColor={"var(--brand1)"}
               color={"var(--whiteFixed)"}
@@ -100,23 +123,6 @@ export const Recover = () => {
               Enviar
             </ThemeButton>
           </Form>
-          <div className="registerLink">
-            <Link to={"/register"}>Ainda não possui conta?</Link>
-          </div>
-          <ThemeButton
-            backGroundColor={"var(--whiteFixed)"}
-            color={"var(--grey0)"}
-            size={"big50"}
-            borderColor={"var(--grey4)"}
-            type="submit"
-            hoverColor={"var(--whiteFixed)"}
-            hoverbackGroundColor={"var(--grey0)"}
-            handleClick={() => {
-              history.push("/register");
-            }}
-          >
-            Cadastrar
-          </ThemeButton>
         </FormContainer>
       </Container>
       <Footer />
