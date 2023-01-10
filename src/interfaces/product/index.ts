@@ -15,10 +15,10 @@ export interface IProduct {
   isActive?: boolean;
   user: IUser;
   coments?: IComents[];
-  photos: IPhotos[],
+  photos: IPhotos[];
 }
 
-interface IPhotos{
+interface IPhotos {
   id: string;
   content: string;
   is_cover_img: boolean;
@@ -27,7 +27,7 @@ interface IPhotos{
 export interface IComents {
   user: oldUser;
   data: Date;
-  coment: string;
+  content: string;
 }
 
 interface oldUser {

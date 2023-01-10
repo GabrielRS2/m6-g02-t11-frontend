@@ -10,7 +10,10 @@ type CommentsProductsProps = {
   coments: IComents[];
 };
 
-export const CommentsProducts = ({ product, coments }: CommentsProductsProps) => {
+export const CommentsProducts = ({
+  product,
+  coments,
+}: CommentsProductsProps) => {
   const carousel = useRef<HTMLDivElement>(null);
   const hoje = new Date();
   return (
@@ -23,22 +26,22 @@ export const CommentsProducts = ({ product, coments }: CommentsProductsProps) =>
               <div key={index} className="item">
                 <div className="coment--user">
                   <figure>
-                      <div className="avatar">
-                        {nameToAcronym(`${product.user.name}`)}
-                      </div>
+                    <div className="avatar">
+                      {nameToAcronym(`${product.user.name}`)}
+                    </div>
                   </figure>
                   <span className="coment--user-name">{coment.user.name}</span>
                   <span className="coment--data">&#9702;</span>
                   <span className="coment--data">
-                    {formatDistance(
+                    {/* {formatDistance(
                       new Date(coment.data),
                       hoje,
 
                       { addSuffix: true, locale: ptBR }
-                    )}
+                    )} */}
                   </span>
                 </div>
-                <p className="coment--coment">{coment.coment}</p>
+                <p className="coment--coment">{coment.content}</p>
               </div>
             ))}
         </div>
