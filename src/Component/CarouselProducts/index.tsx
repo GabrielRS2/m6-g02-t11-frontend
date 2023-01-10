@@ -13,7 +13,12 @@ type CarouselProps = {
   isSellerPage: boolean;
 };
 
-export const CarouselMotion = ({ type, card, products, isSellerPage }: CarouselProps) => {
+export const CarouselMotion = ({
+  type,
+  card,
+  products,
+  isSellerPage,
+}: CarouselProps) => {
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -21,8 +26,7 @@ export const CarouselMotion = ({ type, card, products, isSellerPage }: CarouselP
   useEffect(() => {
     setWidth(
       (carousel.current?.scrollWidth ? carousel.current?.scrollWidth : 0) -
-        (carousel.current?.offsetWidth ? carousel.current?.offsetWidth : 0) -
-        80
+        (carousel.current?.offsetWidth ? carousel.current?.offsetWidth : 0)
     );
   });
 
