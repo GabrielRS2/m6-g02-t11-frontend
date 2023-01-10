@@ -6,6 +6,7 @@ import { ProductPage } from "../Pages/Product/";
 import { DashboardUser } from "../Pages/ProfileViewUser";
 import { Recover } from "../Pages/Recover";
 import { Register } from "../Pages/Register";
+import { RecoverPassword } from "../Pages/NewPassword";
 
 export const Routes = () => {
   return (
@@ -22,8 +23,11 @@ export const Routes = () => {
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/recoverPassword">
+      <Route exact path="/recoverPassword">
         <Recover />
+      </Route>
+      <Route path="/recoverPassword/:id/:token">
+        <RecoverPassword />
       </Route>
       <Route path="/register">
         <Register />

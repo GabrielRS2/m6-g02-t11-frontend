@@ -1,6 +1,5 @@
 import { StyledInput } from "./style";
 
-
 interface ThemeInputStandartProps {
   inputType: string;
   labelText: string;
@@ -11,6 +10,10 @@ interface ThemeInputStandartProps {
   isErrorUnder?: boolean;
   inputClass?: string;
   value?: string | number;
+  onChange?: any;
+  onBlur?: any;
+  inputValue?: any;
+  extra?: boolean;
 }
 interface ThemeInputTextAreaProps {
   labelText: string;
@@ -19,7 +22,6 @@ interface ThemeInputTextAreaProps {
   fieldContext?: any;
   error?: string;
 }
-
 
 export const ThemeInputStandart = ({
   inputType,
@@ -31,12 +33,40 @@ export const ThemeInputStandart = ({
   isErrorUnder = false,
   inputClass,
   value,
+  onChange,
+  inputValue,
+  onBlur,
+  extra,
 }: ThemeInputStandartProps) => {
   return (
-    <StyledInput choseWidth={choseWidth}  className={inputClass}>
-      <label>{labelText}{!isErrorUnder && error !== "undefined" && <span className="error"> - {error}</span>}</label>
-      <input placeholder={placeholderText} type={inputType} {...fieldContext} defaultValue={value}/>
-      {isErrorUnder && error !== "undefined" && <span className="error">{error}</span>}
+    <StyledInput choseWidth={choseWidth} className={inputClass}>
+      <label>
+        {labelText}
+        {!isErrorUnder && error !== "undefined" && (
+          <span className="error"> - {error}</span>
+        )}
+      </label>
+      {extra ? (
+        <input
+          placeholder={placeholderText}
+          type={inputType}
+          {...fieldContext}
+          value={inputValue}
+          onChange={onChange}
+          onBlur={onBlur}
+          defaultValue={value}
+        />
+      ) : (
+        <input
+          placeholder={placeholderText}
+          type={inputType}
+          {...fieldContext}
+          defaultValue={value}
+        />
+      )}
+      {isErrorUnder && error !== "undefined" && (
+        <span className="error">{error}</span>
+      )}
     </StyledInput>
   );
 };
@@ -50,7 +80,10 @@ export const ThemeInputTextArea = ({
 }: ThemeInputTextAreaProps) => {
   return (
     <StyledInput choseWidth={choseWidth}>
-      <label>{labelText}{error !== "undefined" && <span className="error"> - {error}</span>}</label>
+      <label>
+        {labelText}
+        {error !== "undefined" && <span className="error"> - {error}</span>}
+      </label>
       <textarea
         placeholder={placeholderText}
         maxLength={500}
