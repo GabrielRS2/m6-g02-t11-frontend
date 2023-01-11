@@ -5,7 +5,7 @@ export const Modal = ({
 }) => {
   return (
     <ModalContainer>
-
+      
     </ModalContainer>
   );
 };

@@ -17,22 +17,31 @@ import {
   bindTrigger,
   usePopupState,
 } from "material-ui-popup-state/hooks";
-import api from "../../Services";
 import { ModalEditProfile } from "../ModalEditProfile";
 import { OpenModalContext } from "../../Providers/OpenModal";
+import api from "../../Services";
+import { IUser } from "../../interfaces/user";
 
 export const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
+  const [ user, setUser ] = useState<IUser>()
   const { token, setToken } = useContext(TokenContext);
+  const userId = localStorage.getItem("@motor:id");
   const history = useHistory();
   const { setIsOpenModal } = useContext(OpenModalContext);
 
   useEffect(() => {
     setToken(localStorage.getItem("@motor:token") || "");
-    if (token !== "") {
+    if (token !== "token") {
       setIsLogged(true);
+      api.get(`/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setUser(res.data.user))
     } else {
       setIsLogged(false);
     }
@@ -57,7 +66,7 @@ export const Header = () => {
   return (
     <>
       {openEditProfile && (
-        <ModalEditProfile setOpenEditProfile={setOpenEditProfile} />
+        <ModalEditProfile setOpenEditProfile={setOpenEditProfile} userId={user?.id || ""}/>
       )}
       <Modal
         open={isOpen}
@@ -110,9 +119,9 @@ export const Header = () => {
                           fontWeight: "700",
                         }}
                       >
-                        {nameToAcronym("Samuel Leão")}
+                        {nameToAcronym(user?.name || "Samuel Leão")}
                       </Avatar>
-                      <p>Samuel Leão</p>
+                      <p>{user?.name}</p>
                     </button>
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem
@@ -214,9 +223,9 @@ export const Header = () => {
                         fontWeight: "700",
                       }}
                     >
-                      {nameToAcronym("Samuel Leão")}
+                      {nameToAcronym(user?.name || "Samuel Leão")}
                     </Avatar>
-                    <p>Samuel Leão</p>
+                    <p>user?.name</p>
                   </button>
                   <Menu {...bindMenu(popupState)}>
                     <MenuItem

@@ -115,20 +115,20 @@ const productCar: IProduct = {
   ],
 };
 
-const productsArray: IProduct[] = [
-  productCar,
-  productCar,
-  product,
-  product,
-  productCar,
-  product,
-  productCar,
-  productCar,
-  product,
-  product,
-  productCar,
-  product,
-];
+// const productsArray: IProduct[] = [
+//   productCar,
+//   productCar,
+//   product,
+//   product,
+//   productCar,
+//   product,
+//   productCar,
+//   productCar,
+//   product,
+//   product,
+//   productCar,
+//   product,
+// ];
 const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const Home = () => {
@@ -161,7 +161,7 @@ export const Home = () => {
               hoverColor={"var(--grey0)"}
               hoverbackGroundColor={"var(--grey10)"}
               handleClick={() => {
-                console.log("Botão grande");
+                console.log();
               }}
             >
               Carros
@@ -176,7 +176,7 @@ export const Home = () => {
               hoverColor={"var(--grey0)"}
               hoverbackGroundColor={"var(--grey10)"}
               handleClick={() => {
-                console.log("Botão grande");
+                console.log();
               }}
             >
               Motos
@@ -196,7 +196,7 @@ export const Home = () => {
             <p className="typeTittle">Carros</p>
             <CarouselMotion
               type="car"
-              products={productsArray}
+              products={products}
               isSellerPage={false}
             />
           </ContainerProductPerfil>
@@ -206,7 +206,7 @@ export const Home = () => {
             <p className="typeTittle">Motos</p>
             <CarouselMotion
               type="motorbike"
-              products={productsArray}
+              products={products}
               isSellerPage={false}
             />
           </ContainerProductPerfil>

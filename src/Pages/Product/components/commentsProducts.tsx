@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ContainerComments } from "../style";
 import { nameToAcronym } from "../../../utils";
 import { formatDistance } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { IComents, IProduct } from "../../../interfaces/product";
+import { IUser } from "../../../interfaces/user";
 
 type CommentsProductsProps = {
   product: IProduct;
@@ -13,6 +14,11 @@ type CommentsProductsProps = {
 export const CommentsProducts = ({ product, coments }: CommentsProductsProps) => {
   const carousel = useRef<HTMLDivElement>(null);
   const hoje = new Date();
+  const [ user, setUser ] = useState<IUser>()
+  useEffect(() => {
+    setUser(product.user);
+  }, [])
+
   return (
     <ContainerComments className="ContainerComments">
       <div ref={carousel} className="carousel">
@@ -24,7 +30,7 @@ export const CommentsProducts = ({ product, coments }: CommentsProductsProps) =>
                 <div className="coment--user">
                   <figure>
                       <div className="avatar">
-                        {nameToAcronym(`${product.user.name}`)}
+                        {nameToAcronym(user?.name || "nome usuario")}
                       </div>
                   </figure>
                   <span className="coment--user-name">{coment.user.name}</span>

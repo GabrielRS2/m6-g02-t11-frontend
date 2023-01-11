@@ -132,9 +132,8 @@ export const DashboardUser = () => {
       setIsOwner(true);
     }
     api.get(`products/user/${userId}`)
-    .then((res) => {setProducts(res.data.products)
-      console.log(res.data.products);
-      console.log(products)
+    .then((res) => {
+      setProducts(res.data.products)
     })
   }, [userId]);
 
