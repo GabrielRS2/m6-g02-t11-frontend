@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import api from "../../Services";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import { IProduct } from "../../interfaces/product";
+import { TokenContext } from "../../Providers/Token";
 
 type EditProductModaProps = {
   setOpenDeleteProduct: Dispatch<SetStateAction<boolean>>;
@@ -56,6 +57,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
   const [vehicleType, setVehicleType] = useState<string>("car");
   const [imageFields, setImageFields] = useState<string[]>([]);
   const { setIsOpenModal } = useContext(OpenModalContext);
+  const { token, setToken } = useContext(TokenContext);
 
   const {
     register,
@@ -109,16 +111,13 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
     if(data.photos?.length === 0) {
       delete data.photos
     }
-
-    console.log(data);
-
-    // api
-    //   .patch(`products/${product.id}`, data)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     handleCloseModal();
-    //   })
-    //   .catch((error) => console.log(error));
+    
+    api.patch(`/products/${product.id}`, data,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => console.log(res.data))
+    
   };
 
   const handleCloseModal = () => {
@@ -176,7 +175,6 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
             fieldContext={register("year")}
             error={String(errors.year?.message)}
             isErrorUnder={true}
-            value={product.year}
           />
           <ThemeInputStandart
             inputType="text"
@@ -186,7 +184,6 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
             fieldContext={register("km")}
             error={String(errors.km?.message)}
             isErrorUnder={true}
-            value={product.km}
           />
           <ThemeInputStandart
             inputType="text"
@@ -195,8 +192,6 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
             choseWidth="100%"
             fieldContext={register("price")}
             error={String(errors.price?.message)}
-            isErrorUnder={true}
-            value={product.price}
           />
         </div>
         <ThemeInputTextArea

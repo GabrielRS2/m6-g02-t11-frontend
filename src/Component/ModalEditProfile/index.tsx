@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { ThemeButton } from "../../Styles/ThemeButton";
 import {
   ThemeInputStandart,
   ThemeInputTextArea,
@@ -11,9 +10,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import { formatPhone, formataCPF } from "../../utils";
+import api from "../../Services";
+import { TokenContext } from "../../Providers/Token";
 
 interface IModalEditProfile {
   setOpenEditProfile: Dispatch<SetStateAction<boolean>>;
+  userId: string;
 }
 
 interface IData {
@@ -25,17 +27,18 @@ interface IData {
   description?: string;
 }
 
-export const ModalEditProfile = ({ setOpenEditProfile }: IModalEditProfile) => {
-  const [valueUF, setValueUF] = useState("");
-  const [valueRua, setValueRua] = useState("");
-  const [valueCidade, setValueCidade] = useState("");
-  const [valueComplemento, setValueComplemento] = useState("");
-  const [isSeller, setIsSeller] = useState<boolean>(false);
+export const ModalEditProfile = ({ setOpenEditProfile, userId }: IModalEditProfile) => {
+  // const [valueUF, setValueUF] = useState("");
+  // const [valueRua, setValueRua] = useState("");
+  // const [valueCidade, setValueCidade] = useState("");
+  // const [valueComplemento, setValueComplemento] = useState("");
+  // const [isSeller, setIsSeller] = useState<boolean>(false);
   const [valuePhone, setValuePhone] = useState("");
   const [valueCPF, setValueCPF] = useState("");
-  const [valueCEP, setValueCEP] = useState("");
-  const history = useHistory();
+  // const [valueCEP, setValueCEP] = useState("");
+  // const history = useHistory();
   const { setIsOpenModal } = useContext(OpenModalContext);
+  const { token } = useContext(TokenContext); 
 
   const handleCloseModal = () => {
     setOpenEditProfile(false);
@@ -43,11 +46,11 @@ export const ModalEditProfile = ({ setOpenEditProfile }: IModalEditProfile) => {
   };
 
   const formSchema = yup.object().shape({
-    name: yup.string().required("Campo Obrigatório"),
-    email: yup.string().email("Email inválido").required("Campo Obrigatório"),
-    cpf: yup.string().required("Campo Obrigatório"),
-    phone: yup.string().required("Campo Obrigatório"),
-    dob: yup.string().required("Campo Obrigatório"),
+    name: yup.string().notRequired(),
+    email: yup.string().email("Email inválido").notRequired(),
+    cpf: yup.string().notRequired(),
+    phone: yup.string().notRequired(),
+    dob: yup.string().notRequired(),
     description: yup.string().notRequired(),
   });
 
@@ -60,7 +63,31 @@ export const ModalEditProfile = ({ setOpenEditProfile }: IModalEditProfile) => {
   });
 
   const onSubmitFunction = (data: IData) => {
-    console.log(data);
+    const updatedData: IData = {}
+    if(data.name !== "") {
+      updatedData.name = data.name
+    }
+    if(data.email !== "") {
+      updatedData.email = data.email
+    }
+    if(data.cpf !== "") {
+      updatedData.cpf = data.cpf
+    }
+    if(data.phone !== "") {
+      updatedData.phone = data.phone
+    }
+    if(data.cpf !== "") {
+      updatedData.cpf = data.cpf
+    }
+    if(data.description !== "") {
+      updatedData.description = data.description
+    }
+    
+    api.patch(`/users/${userId}`, data,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
   };
 
   return (

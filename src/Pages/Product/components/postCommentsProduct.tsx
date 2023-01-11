@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeButton } from "../../../Styles/ThemeButton";
 import { nameToAcronym } from "../../../utils";
 import { ContainerPostComment } from "../style";
 import { IProduct } from "../../../interfaces/product";
+import { IUser } from "../../../interfaces/user";
 
 type PostCommentsProductProps = {
   product: IProduct;
@@ -10,6 +11,10 @@ type PostCommentsProductProps = {
 
 export const PostCommentsProduct = ({ product }: PostCommentsProductProps) => {
   const [comment, setComment] = useState("");
+  const [ user, setUser ] = useState<IUser>()
+  useEffect(() => {
+    setUser(product.user);
+  }, [])
 
   const sugestions: string[] = [
     "Gostei muito!",
@@ -21,17 +26,15 @@ export const PostCommentsProduct = ({ product }: PostCommentsProductProps) => {
       className="ContainerPostComment"
       onSubmit={(e) => {
         e.preventDefault();
-
-        console.log(comment);
       }}
     >
       <div className="coment--user">
         <figure>
           <div className="avatar">
-            {nameToAcronym(`${product.user.name}`)}
+            {nameToAcronym(user?.name || "nome Usuario")}
           </div>
         </figure>
-        <span className="coment--user-name">user.name</span>
+        <span className="coment--user-name">{user?.name  || "nome Usuario"}</span>
       </div>
 
       <textarea

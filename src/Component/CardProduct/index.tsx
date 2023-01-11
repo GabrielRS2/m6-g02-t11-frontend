@@ -37,7 +37,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
 
   return (
     <ContainerCard onDoubleClick={() => history.push(`/product/${product.id}`)}>
-      {openDeleteProduct && <ModalDeleteProduct openDeleteProduct={openDeleteProduct} setOpenDeleteProduct={setOpenDeleteProduct}/>}
+      {openDeleteProduct && <ModalDeleteProduct productId={product?.id || ""} openDeleteProduct={openDeleteProduct} setOpenDeleteProduct={setOpenDeleteProduct}/>}
       {editProductModalIsOpen && <EditProductModal setOpenDeleteProduct={setOpenDeleteProduct} setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
       <ContainerImage className="ContainerImage" is_active={product.is_active}>
         {status && <span>{product.is_active ? "Ativo" : "Inativo"}</span>}

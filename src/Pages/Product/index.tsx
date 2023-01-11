@@ -12,6 +12,7 @@ import { SellerProduct } from "./components/sellerProduct";
 import { CommentsProducts } from "./components/commentsProducts";
 import { PostCommentsProduct } from "./components/postCommentsProduct";
 import { useEffect, useState } from "react";
+import api from "../../Services";
 
 const productsa: IProduct = {
   model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
@@ -134,12 +135,11 @@ const coments:IComents[] = [
 export const ProductPage = () => {
   const { productId }: any = useParams();
   const [product, setProduct] = useState<IProduct>(productsa);
-  // useEffect(() => {
-  //   api.get(`products/${productId}`).then((res) => {
-  //     setProduct(res.data.product);
-  //     console.log(res.data.product);
-  //   });
-  // }, []);
+  useEffect(() => {
+    api.get(`products/${productId}`).then((res) => {
+      setProduct(res.data.product);
+    });
+  }, [productId]);
 
   return (
     <>
