@@ -10,20 +10,15 @@ type SellerProductProps = {
 };
 
 export const SellerProduct = ({ product }: SellerProductProps) => {
-  const history = useHistory()
+  const history = useHistory();
 
   return (
     <Seller className="Seller">
       <figure className="figure">
-        <div className="avatar">
-          {nameToAcronym(`${product.user.name}`)}
-        </div>
+        <div className="avatar">{nameToAcronym(`${product.user.name}`)}</div>
       </figure>
       <p className="seller--name">{product.user.name}</p>
-      <p className="seller--description">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's
-      </p>
+      <p className="seller--description">{product.user.description}</p>
       <ThemeButton
         backGroundColor={"var(--grey0)"}
         color={"var(--whiteFixed)"}

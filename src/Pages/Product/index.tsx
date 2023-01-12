@@ -81,68 +81,13 @@ const productsa: IProduct = {
   ],
 };
 
-const comentsa: IComents[] = [
-  {
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    data: new Date("2022/01/26"),
-    user: {
-      photo:
-        "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-      name: "Samuel Leão",
-      description: "lorem asjhfiuwief dhbkjfbau basd ",
-    },
-  },
-  {
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    data: new Date("2022/01/26"),
-    user: {
-      photo:
-        "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-      name: "Samuel Leão",
-      description: "lorem asjhfiuwief dhbkjfbau basd ",
-    },
-  },
-  {
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    data: new Date("2022/01/26"),
-    user: {
-      photo:
-        "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-      name: "Samuel Leão",
-      description: "lorem asjhfiuwief dhbkjfbau basd ",
-    },
-  },
-  {
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    data: new Date("2022/08/26"),
-    user: {
-      photo:
-        "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-      name: "Samuel Leão",
-      description: "lorem asjhfiuwief dhbkjfbau basd ",
-    },
-  },
-  {
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    data: new Date("2022/12/28 15:00:00"),
-    user: {
-      photo:
-        "https://cdn.dribbble.com/users/1294625/screenshots/4025055/090.png",
-      name: "Samuel Leão",
-      description: "lorem asjhfiuwief dhbkjfbau basd ",
-    },
-  },
-];
+// const comentsa: IComents[] = [];
 
 export const ProductPage = () => {
   const { productId }: any = useParams();
   const [product, setProduct] = useState<IProduct>(productsa);
-  const [comments, setComments] = useState<IComents[]>(comentsa);
+  const [comments, setComments] = useState<IComents[]>([]);
+
   useEffect(() => {
     api.get(`products/${productId}`).then((res) => {
       setProduct(res.data.product);
@@ -164,7 +109,11 @@ export const ProductPage = () => {
           <SellerProduct product={product} />
         </div>
         <CommentsProducts product={product} coments={comments} />
-        <PostCommentsProduct product={product} />
+        <PostCommentsProduct
+          product={product}
+          setComments={setComments}
+          comments={comments}
+        />
 
         <Background />
         <footer>

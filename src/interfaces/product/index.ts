@@ -25,12 +25,15 @@ interface IPhotos {
 }
 
 export interface IComents {
+  id?: string;
   user: oldUser;
-  data: Date;
+  created_at: string;
+  updated_at: string;
   content: string;
 }
 
 interface oldUser {
+  id?: string;
   photo: string;
   name: string;
   description: string;
