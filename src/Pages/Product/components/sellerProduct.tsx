@@ -11,24 +11,19 @@ type SellerProductProps = {
 };
 
 export const SellerProduct = ({ product }: SellerProductProps) => {
-  const history = useHistory()
-  const [ user, setUser ] = useState<IUser>()
+  const history = useHistory();
+  const [user, setUser] = useState<IUser>();
   useEffect(() => {
     setUser(product.user);
-  }, [])
-  
+  }, []);
 
   return (
     <Seller className="Seller">
       <figure className="figure">
-        <div className="avatar">
-          {nameToAcronym(user?.name || "nome usuario")}
-        </div>
+        <div className="avatar">{nameToAcronym(`${product.user.name}`)}</div>
       </figure>
-      <p className="seller--name">{user?.name || "nome usuario"}</p>
-      <p className="seller--description">
-        {user?.description}
-      </p>
+      <p className="seller--name">{product.user.name}</p>
+      <p className="seller--description">{product.user.description}</p>
       <ThemeButton
         backGroundColor={"var(--grey0)"}
         color={"var(--whiteFixed)"}

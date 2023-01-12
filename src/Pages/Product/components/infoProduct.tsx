@@ -8,7 +8,7 @@ type InfoProductProps = {
   product: IProduct;
 };
 export const InfoProduct = ({ product }: InfoProductProps) => {
-  const [cover, setCover] = useState<string>("");
+  // const [cover, setCover] = useState<string>("");
   const [userPhoneNumber, setUserPhoneNumber] = useState<string>("");
   const userId = localStorage.getItem("@motor:id");
   const token = localStorage.getItem("@motor:token");
@@ -20,16 +20,18 @@ export const InfoProduct = ({ product }: InfoProductProps) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setUserPhoneNumber(res.data.user.phone.replace(/\D/g, "")));
+      .then((res) =>
+        setUserPhoneNumber(res.data.user.phone.replace(/\D/g, ""))
+      );
   }, []);
 
-  useEffect(() => {
-    product.photos.map((photo, index) => {
-      if (photo.is_cover_img === true) {
-        setCover(photo.content);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   product.photos.map((photo, index) => {
+  //     if (photo.is_cover_img === true) {
+  //       setCover(photo.content);
+  //     }
+  //   });
+  // }, []);
 
   const openLinkInNewTab = (link: string) => {
     window.open(
@@ -42,7 +44,7 @@ export const InfoProduct = ({ product }: InfoProductProps) => {
   return (
     <>
       <figure className="figure">
-        <img className="img" alt="" src={cover} />
+        <img className="img" alt="" src={product.photos[0].content} />
       </figure>
       <div className="container">
         <div className="container2">
@@ -52,7 +54,7 @@ export const InfoProduct = ({ product }: InfoProductProps) => {
               <span>{product.year}</span>
               <span>{product.km} KM</span>
             </div>
-            <p className="price">R$ {product.price}</p>
+            <p className="price">R$ {Number(product.price / 100).toFixed(2)}</p>
           </div>
         </div>
         <ThemeButton
