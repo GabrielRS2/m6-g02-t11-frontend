@@ -10,7 +10,6 @@ import { ThemeInputStandart } from "../../Styles/ThemeInput";
 import api from "../../Services";
 import { IUser } from "../../interfaces/user";
 
-
 interface IModalEditAddress {
   setOpenModalEditAddress: Dispatch<SetStateAction<boolean>>;
   openModalEditAddress: boolean;
@@ -31,7 +30,7 @@ export const ModalEditAddress = ({
   openModalEditAddress,
   userId,
 }: IModalEditAddress) => {
-  const { token } = useContext(TokenContext); 
+  const { token } = useContext(TokenContext);
 
   const handleCloseModal = () => {
     setOpenModalEditAddress(false);
@@ -58,32 +57,33 @@ export const ModalEditAddress = ({
   });
 
   const onSubmitFunction = (data: IData) => {
-    if(data.cep === "") {
+    if (data.cep === "") {
       delete data.cep;
     }
-    if(data.city === "") {
+    if (data.city === "") {
       delete data.city;
     }
-    if(data.complement === "") {
+    if (data.complement === "") {
       delete data.complement;
     }
-    if(data.number === "") {
+    if (data.number === "") {
       delete data.number;
     }
-    if(data.state === "") {
+    if (data.state === "") {
       delete data.state;
     }
-    if(data.street === "") {
+    if (data.street === "") {
       delete data.street;
     }
     console.log(data);
-    
-    api.patch(`/users/${userId}`, data,{
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((_) => setOpenModalEditAddress(false))
+
+    api
+      .patch(`/users/${userId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((_) => setOpenModalEditAddress(false));
   };
 
   return (
@@ -97,12 +97,13 @@ export const ModalEditAddress = ({
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop: "6rem",
           paddingLeft: "0.75rem",
           paddingRight: "0.75rem",
+          overflow: "scroll",
+          
         }}
       >
-         <FormContainer>
+        <FormContainer>
           <p className="title">Editar endereço</p>
           <Form onSubmit={handleSubmit(onSubmitFunction)}>
             <p className="subTitle">Infomações de endereço</p>
