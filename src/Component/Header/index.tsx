@@ -21,11 +21,13 @@ import { ModalEditProfile } from "../ModalEditProfile";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import api from "../../Services";
 import { IUser } from "../../interfaces/user";
+import { ModalEditAddress } from "../ModalEditAddress";
 
 export const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
+  const [openModalEditAddress, setOpenModalEditAddress] = useState<boolean>(false);
   const [ user, setUser ] = useState<IUser>()
   const { token, setToken } = useContext(TokenContext);
   const userId = localStorage.getItem("@motor:id");
@@ -63,11 +65,16 @@ export const Header = () => {
     setIsOpenModal(true);
   }
 
+  function handleOpenEditAddressModal() {
+    setOpenModalEditAddress(true);
+  }
+
   return (
     <>
       {openEditProfile && (
         <ModalEditProfile setOpenEditProfile={setOpenEditProfile} userId={user?.id || ""}/>
       )}
+      <ModalEditAddress userId={user?.id || ""} setOpenModalEditAddress={setOpenModalEditAddress} openModalEditAddress={openModalEditAddress}/>
       <Modal
         open={isOpen}
         onClose={handleClose}
@@ -142,7 +149,7 @@ export const Header = () => {
                           fontSize: "1rem",
                           color: "var(--grey2)",
                         }}
-                        onClick={popupState.close}
+                        onClick={() => handleOpenEditAddressModal()}
                       >
                         Editar endereço
                       </MenuItem>
@@ -246,7 +253,7 @@ export const Header = () => {
                         fontSize: "1rem",
                         color: "var(--grey2)",
                       }}
-                      onClick={popupState.close}
+                      onClick={() => handleOpenEditAddressModal()}
                     >
                       Editar endereço
                     </MenuItem>
