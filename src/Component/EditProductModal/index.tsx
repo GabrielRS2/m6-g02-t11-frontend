@@ -128,7 +128,11 @@ export const EditProductModal = ({
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res.data));
+      .then((res) => console.log(res.data))
+      .then((res) => {
+        setEditProductModalIsOpen(false);
+        setIsOpenModal(false);
+      });
   };
 
   const handleCloseModal = () => {
