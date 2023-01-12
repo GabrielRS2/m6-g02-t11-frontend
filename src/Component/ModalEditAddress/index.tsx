@@ -10,7 +10,7 @@ import { ThemeInputStandart } from "../../Styles/ThemeInput";
 import api from "../../Services";
 import { IUser } from "../../interfaces/user";
 import { InputMask } from "../../Styles/ThemeInputMask";
-import { formataCEP } from "../../utils";
+import { buscaCEP, formataCEP } from "../../utils";
 
 interface IModalEditAddress {
   setOpenModalEditAddress: Dispatch<SetStateAction<boolean>>;
@@ -38,6 +38,18 @@ export const ModalEditAddress = ({
   const [valueCidade, setValueCidade] = useState("");
   const [valueComplemento, setValueComplemento] = useState("");
   const [valueCEP, setValueCEP] = useState("");
+  const [address, setAddress] = useState({
+    bairro: "",
+    cep: "",
+    complemento: "",
+    ddd: "",
+    gia: "",
+    ibge: "",
+    localidade: "",
+    logradouro: "",
+    siafi: "",
+    uf: "",
+  });
 
   const handleCloseModal = () => {
     setOpenModalEditAddress(false);
@@ -48,10 +60,7 @@ export const ModalEditAddress = ({
     state: yup.string().notRequired(),
     city: yup.string().notRequired(),
     street: yup.string().notRequired(),
-    number: yup
-      .string()
-      .notRequired()
-      .matches(/^[0-9]*$/, "Formato inválido"),
+    number: yup.string().notRequired(),
     complement: yup.string().notRequired(),
   });
 
@@ -104,9 +113,9 @@ export const ModalEditAddress = ({
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop: "6rem",
           paddingLeft: "0.75rem",
           paddingRight: "0.75rem",
+          overflow: "scroll",
         }}
       >
         <FormContainer>
@@ -123,19 +132,16 @@ export const ModalEditAddress = ({
               onChange={(e: any) => {
                 setValueCEP(formataCEP(e.target.value.replace(/[^\d]/g, "")));
               }}
-              // onBlur={async () => {
-              //   const add = await buscaCEP(valueCEP);
-              //   console.log(add);
-              //   if (add.erro) {
-              //     errors.cep = { type: "erro", message: "CEP inválido" };
-              //   } else {
-              //     errors.cep = {};
-              //   }
-              //   setValueUF(add.uf);
-              //   setValueCidade(add.localidade);
-              //   setValueComplemento(add.complemento);
-              //   setValueRua(add.logradouro);
-              // }}
+              onBlur={async () => {
+                const add = await buscaCEP(valueCEP);
+                console.log(add);
+                if (add.erro) {
+                  errors.cep = { type: "erro", message: "CEP inválido" };
+                } else {
+                  delete errors.cep;
+                }
+                setAddress(add);
+              }}
               error={String(errors.cep?.message)}
             />
             <div className="inputsContainer">
@@ -148,6 +154,9 @@ export const ModalEditAddress = ({
                 error={String(errors.state?.message)}
                 isErrorUnder={true}
                 value={valueUF}
+                onFocus={() => {
+                  setValueUF(address.uf);
+                }}
                 onChange={(e: any) => {
                   setValueUF(e.target.value);
                 }}
@@ -161,6 +170,9 @@ export const ModalEditAddress = ({
                 error={String(errors.city?.message)}
                 isErrorUnder={true}
                 value={valueCidade}
+                onFocus={() => {
+                  setValueCidade(address.localidade);
+                }}
                 onChange={(e: any) => {
                   setValueCidade(e.target.value);
                 }}
@@ -174,6 +186,9 @@ export const ModalEditAddress = ({
               choseWidth="100vw"
               error={String(errors.street?.message)}
               value={valueRua}
+              onFocus={() => {
+                setValueRua(address.logradouro);
+              }}
               onChange={(e: any) => {
                 setValueRua(e.target.value);
               }}
@@ -197,6 +212,9 @@ export const ModalEditAddress = ({
                 error={String(errors.complement?.message)}
                 isErrorUnder={true}
                 value={valueComplemento}
+                onFocus={() => {
+                  setValueComplemento(address.complemento);
+                }}
                 onChange={(e: any) => {
                   setValueComplemento(e.target.value);
                 }}

@@ -173,52 +173,49 @@ export const ContainerDescription = styled.div`
   }
 `;
 export const ContainerImages = styled.div`
-  
-    background: var(--grey10);
+  background: var(--grey10);
 
-    width: 93.6%;
+  width: 93.6%;
 
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+  margin: 0 auto;
+  margin-top: 1.001rem;
+  padding: 36px 28px;
+
+  h2 {
+    color: var(--grey1);
+    font-size: 20px;
+    line-height: 25px;
+    line-height: 100%;
+  }
+  .images {
     display: flex;
-    flex-direction: column;
-
-    gap: 2rem;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
     margin: 0 auto;
-    margin-top: 1.001rem;
-    padding: 36px 28px;
- 
-    h2{
-      color: var(--grey1);
-      font-size: 20px;
-      line-height: 25px;
-      line-height: 100%;
 
+    width: 80.05698006%;
+    min-width: 17.5625rem;
+    .images--title {
+      margin-top: 2.25rem;
+      margin-left: 2.75rem;
     }
-    .images {
-       
-      display: flex;
-      justify-content: space-between;
-      align-content: space-between;
-      flex-wrap: wrap;
-      margin: 0 auto;
-
-      width: 80.05698006%;
-      min-width: 17.5625rem;
-      .images--title {
-        margin-top: 2.25rem;
-        margin-left: 2.75rem;
-      }
-      figure {
-      :hover{
+    figure {
+      :hover {
         cursor: pointer;
       }
-        width: 32%;
-        min-width: 5.625rem;
-        img {
-          max-width: 100%;
-        }
+      width: 32%;
+      min-width: 5.625rem;
+      img {
+        max-width: 100%;
       }
     }
-  @media(min-width:850px){
+  }
+  @media (min-width: 850px) {
     margin-top: 0px;
   }
 `;
@@ -329,7 +326,7 @@ export const ContainerComments = styled.div`
 
   .inner-carousel {
     display: flex;
-    max-height: 100%;
+    max-height: 90%;
     flex-direction: column;
 
     overflow: auto;
@@ -401,6 +398,35 @@ export const ContainerComments = styled.div`
 
       color: white;
       font-family: Inter;
+    }
+  }
+
+  //
+  .button--container {
+    display: flex;
+    justify-content: end;
+    /* flex-direction: column; */
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+
+    button {
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+      color: white;
+      font-size: 0.5rem;
+    }
+
+    .edit--button {
+      background-color: var(--brand2);
+      :hover {
+        background-color: blue;
+      }
+    }
+    .delete--button {
+      background-color: var(--alert1);
+      :hover {
+        background-color: red;
+      }
     }
   }
   @media (min-width: 850px) {

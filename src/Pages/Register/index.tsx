@@ -45,6 +45,18 @@ export const Register = () => {
   const [valueCPF, setValueCPF] = useState("");
   const [openCreateAccountSuccess, setOpenCreateAccountSuccess] =
     useState<boolean>(false);
+  const [address, setAddress] = useState({
+    bairro: "",
+    cep: "",
+    complemento: "",
+    ddd: "",
+    gia: "",
+    ibge: "",
+    localidade: "",
+    logradouro: "",
+    siafi: "",
+    uf: "",
+  });
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório"),
@@ -176,19 +188,18 @@ export const Register = () => {
               onChange={(e: any) => {
                 setValueCEP(formataCEP(e.target.value.replace(/[^\d]/g, "")));
               }}
-              // onBlur={async () => {
-              //   const add = await buscaCEP(valueCEP);
-              //   console.log(add);
-              //   if (add.erro) {
-              //     errors.cep = { type: "erro", message: "CEP inválido" };
-              //   } else {
-              //     errors.cep = {};
-              //   }
-              //   setValueUF(add.uf);
-              //   setValueCidade(add.localidade);
-              //   setValueComplemento(add.complemento);
-              //   setValueRua(add.logradouro);
-              // }}
+              onKeyDown={async (e) => {
+                if (e.keyCode === 13) {
+                  const add = await buscaCEP(valueCEP);
+                  console.log(add);
+                  if (add.erro) {
+                    errors.cep = { type: "erro", message: "CEP inválido" };
+                  } else {
+                    delete errors.cep;
+                  }
+                  setAddress(add);
+                }
+              }}
               error={String(errors.cep?.message)}
             />
             <div className="inputsContainer">
@@ -201,6 +212,9 @@ export const Register = () => {
                 error={String(errors.state?.message)}
                 isErrorUnder={true}
                 value={valueUF}
+                onFocus={() => {
+                  setValueUF(address.uf);
+                }}
                 onChange={(e: any) => {
                   setValueUF(e.target.value);
                 }}
@@ -214,6 +228,9 @@ export const Register = () => {
                 error={String(errors.city?.message)}
                 isErrorUnder={true}
                 value={valueCidade}
+                onFocus={() => {
+                  setValueCidade(address.localidade);
+                }}
                 onChange={(e: any) => {
                   setValueCidade(e.target.value);
                 }}
@@ -227,15 +244,18 @@ export const Register = () => {
               choseWidth="100vw"
               error={String(errors.street?.message)}
               value={valueRua}
+              onFocus={() => {
+                setValueRua(address.logradouro);
+              }}
               onChange={(e: any) => {
                 setValueRua(e.target.value);
               }}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Número"
-                placeholderText="Digitar número"
+                placeholder="Digitar número"
                 fieldContext={register("number")}
                 choseWidth="100vw"
                 error={String(errors.number?.message)}
@@ -250,6 +270,9 @@ export const Register = () => {
                 error={String(errors.complement?.message)}
                 isErrorUnder={true}
                 value={valueComplemento}
+                onFocus={() => {
+                  setValueComplemento(address.complemento);
+                }}
                 onChange={(e: any) => {
                   setValueComplemento(e.target.value);
                 }}

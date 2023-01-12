@@ -11,7 +11,10 @@ export const ContainerHome = styled.div`
   background: var(--grey8);
   padding: 2.375rem 0px 4.688rem 3.781rem;
 
-  @media(width>768px){
+  @media (width<390px) {
+    padding: 2.375rem 0px 4.688rem 0.75rem;
+  }
+  @media (width>768px) {
     align-items: center;
   }
 `;
@@ -27,7 +30,7 @@ export const ContainerHomeWelcome = styled.div`
   padding: 10.469rem 0.75rem 8.75rem 0.75rem;
 
   background-color: var(--brand2);
-  
+
   .containerTitler {
     display: flex;
     flex-direction: column;
@@ -48,7 +51,7 @@ export const ContainerHomeWelcome = styled.div`
   }
 
   .subTitle {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.75rem;
@@ -68,17 +71,17 @@ export const ContainerHomeWelcome = styled.div`
     gap: 1.25rem;
 
     padding: 14.938rem 0.75rem 9.938rem 0.75rem;
-    
+
     .containerTitler .title {
       display: flex;
-      
+
       font-weight: 700;
       font-size: 2.75rem;
       line-height: 3.5rem;
     }
 
     .containerTitler .titleMobile {
-      display:none
+      display: none;
     }
 
     .containerTitler .titleDesktop {
@@ -106,7 +109,6 @@ export const ContainerProductPerfil = styled.div`
   max-width: 100vw;
 
   background-color: var(--grey8);
-
 
   .typeTittle {
     font-weight: 600;
