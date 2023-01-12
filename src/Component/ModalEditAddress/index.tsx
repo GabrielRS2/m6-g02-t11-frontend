@@ -9,7 +9,8 @@ import { Form, FormContainer } from "./style";
 import { ThemeInputStandart } from "../../Styles/ThemeInput";
 import api from "../../Services";
 import { IUser } from "../../interfaces/user";
-
+import { InputMask } from "../../Styles/ThemeInputMask";
+import { formataCEP } from "../../utils";
 
 interface IModalEditAddress {
   setOpenModalEditAddress: Dispatch<SetStateAction<boolean>>;
@@ -31,7 +32,12 @@ export const ModalEditAddress = ({
   openModalEditAddress,
   userId,
 }: IModalEditAddress) => {
-  const { token } = useContext(TokenContext); 
+  const { token } = useContext(TokenContext);
+  const [valueUF, setValueUF] = useState("");
+  const [valueRua, setValueRua] = useState("");
+  const [valueCidade, setValueCidade] = useState("");
+  const [valueComplemento, setValueComplemento] = useState("");
+  const [valueCEP, setValueCEP] = useState("");
 
   const handleCloseModal = () => {
     setOpenModalEditAddress(false);
@@ -58,32 +64,33 @@ export const ModalEditAddress = ({
   });
 
   const onSubmitFunction = (data: IData) => {
-    if(data.cep === "") {
+    if (data.cep === "") {
       delete data.cep;
     }
-    if(data.city === "") {
+    if (data.city === "") {
       delete data.city;
     }
-    if(data.complement === "") {
+    if (data.complement === "") {
       delete data.complement;
     }
-    if(data.number === "") {
+    if (data.number === "") {
       delete data.number;
     }
-    if(data.state === "") {
+    if (data.state === "") {
       delete data.state;
     }
-    if(data.street === "") {
+    if (data.street === "") {
       delete data.street;
     }
     console.log(data);
-    
-    api.patch(`/users/${userId}`, data,{
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((_) => setOpenModalEditAddress(false))
+
+    api
+      .patch(`/users/${userId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((_) => setOpenModalEditAddress(false));
   };
 
   return (
@@ -102,64 +109,97 @@ export const ModalEditAddress = ({
           paddingRight: "0.75rem",
         }}
       >
-         <FormContainer>
+        <FormContainer>
           <p className="title">Editar endereço</p>
           <Form onSubmit={handleSubmit(onSubmitFunction)}>
             <p className="subTitle">Infomações de endereço</p>
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="CEP"
-              placeholderText="00000-000"
+              placeholder="00000-000"
               fieldContext={register("cep")}
               choseWidth="100vw"
+              value={valueCEP}
+              onChange={(e: any) => {
+                setValueCEP(formataCEP(e.target.value.replace(/[^\d]/g, "")));
+              }}
+              // onBlur={async () => {
+              //   const add = await buscaCEP(valueCEP);
+              //   console.log(add);
+              //   if (add.erro) {
+              //     errors.cep = { type: "erro", message: "CEP inválido" };
+              //   } else {
+              //     errors.cep = {};
+              //   }
+              //   setValueUF(add.uf);
+              //   setValueCidade(add.localidade);
+              //   setValueComplemento(add.complemento);
+              //   setValueRua(add.logradouro);
+              // }}
               error={String(errors.cep?.message)}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Estado"
-                placeholderText="Digitar Estado"
+                placeholder="Digitar Estado"
                 fieldContext={register("state")}
                 choseWidth="100vw"
                 error={String(errors.state?.message)}
                 isErrorUnder={true}
+                value={valueUF}
+                onChange={(e: any) => {
+                  setValueUF(e.target.value);
+                }}
               />
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Cidade"
-                placeholderText="Digitar cidade"
+                placeholder="Digitar cidade"
                 fieldContext={register("city")}
                 choseWidth="100vw"
                 error={String(errors.city?.message)}
                 isErrorUnder={true}
+                value={valueCidade}
+                onChange={(e: any) => {
+                  setValueCidade(e.target.value);
+                }}
               />
             </div>
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="Rua"
-              placeholderText="Digitar rua"
+              placeholder="Digitar rua"
               fieldContext={register("street")}
               choseWidth="100vw"
               error={String(errors.street?.message)}
+              value={valueRua}
+              onChange={(e: any) => {
+                setValueRua(e.target.value);
+              }}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Número"
-                placeholderText="Digitar número"
+                placeholder="Digitar número"
                 fieldContext={register("number")}
                 choseWidth="100vw"
                 error={String(errors.number?.message)}
                 isErrorUnder={true}
               />
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Complemento"
-                placeholderText="Ex: apart 307"
+                placeholder="Ex: apart 307"
                 fieldContext={register("complement")}
                 choseWidth="100vw"
                 error={String(errors.complement?.message)}
                 isErrorUnder={true}
+                value={valueComplemento}
+                onChange={(e: any) => {
+                  setValueComplemento(e.target.value);
+                }}
               />
             </div>
             <div className="container_submit">
