@@ -96,7 +96,12 @@ export const Header = () => {
         <div></div>
       </Modal>
       <HeaderContainer>
-        <div>
+        <div
+          className="logotipo"
+          onClick={() => {
+            history.push("");
+          }}
+        >
           <img src="/Assets/logoColor.svg" alt="Motor shop" />
         </div>
         <HamburgerButton
@@ -164,16 +169,20 @@ export const Header = () => {
                       >
                         Editar endereço
                       </MenuItem>
-                      <MenuItem
-                        sx={{
-                          fontWeight: "400",
-                          fontSize: "1rem",
-                          color: "var(--grey2)",
-                        }}
-                        onClick={popupState.close}
-                      >
-                        Minhas Compras
-                      </MenuItem>
+                      {user?.isSeller && (
+                        <MenuItem
+                          sx={{
+                            fontWeight: "400",
+                            fontSize: "1rem",
+                            color: "var(--grey2)",
+                          }}
+                          onClick={() => {
+                            history.push(`/dashboard/${user.id}`);
+                          }}
+                        >
+                          Meus Anuncios
+                        </MenuItem>
+                      )}
                       <MenuItem
                         sx={{
                           fontWeight: "400",
@@ -268,16 +277,20 @@ export const Header = () => {
                     >
                       Editar endereço
                     </MenuItem>
-                    <MenuItem
-                      sx={{
-                        fontWeight: "400",
-                        fontSize: "1rem",
-                        color: "var(--grey2)",
-                      }}
-                      onClick={popupState.close}
-                    >
-                      Minhas Compras
-                    </MenuItem>
+                    {user?.isSeller && (
+                      <MenuItem
+                        sx={{
+                          fontWeight: "400",
+                          fontSize: "1rem",
+                          color: "var(--grey2)",
+                        }}
+                        onClick={() => {
+                          history.push(`/dashboard/${user.id}`);
+                        }}
+                      >
+                        Meus Anuncios
+                      </MenuItem>
+                    )}
                     <MenuItem
                       sx={{
                         fontWeight: "400",
