@@ -27,30 +27,34 @@ export const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
-  const [openModalEditAddress, setOpenModalEditAddress] = useState<boolean>(false);
-  const [ user, setUser ] = useState<IUser>()
+  const [openModalEditAddress, setOpenModalEditAddress] =
+    useState<boolean>(false);
+  const [user, setUser] = useState<IUser>();
   const { token, setToken } = useContext(TokenContext);
   const userId = localStorage.getItem("@motor:id");
   const history = useHistory();
   const { setIsOpenModal } = useContext(OpenModalContext);
 
   useEffect(() => {
-    setToken(localStorage.getItem("@motor:token") || "");
+    setToken(localStorage.getItem("@motor:token") || "token");
     if (token !== "token") {
-      setIsLogged(true);
-      api.get(`/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => setUser(res.data.user))
+      api
+        .get(`/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setIsLogged(true);
+          setUser(res.data.user);
+        });
     } else {
       setIsLogged(false);
     }
   }, [token, setToken]);
 
   function handleLogout() {
-    setToken("");
+    setToken("token");
     setIsLogged(false);
     localStorage.clear();
     history.push("/");
@@ -72,9 +76,16 @@ export const Header = () => {
   return (
     <>
       {openEditProfile && (
-        <ModalEditProfile setOpenEditProfile={setOpenEditProfile} userId={user?.id || ""}/>
+        <ModalEditProfile
+          setOpenEditProfile={setOpenEditProfile}
+          userId={user?.id || ""}
+        />
       )}
-      <ModalEditAddress userId={user?.id || ""} setOpenModalEditAddress={setOpenModalEditAddress} openModalEditAddress={openModalEditAddress}/>
+      <ModalEditAddress
+        userId={user?.id || ""}
+        setOpenModalEditAddress={setOpenModalEditAddress}
+        openModalEditAddress={openModalEditAddress}
+      />
       <Modal
         open={isOpen}
         onClose={handleClose}
