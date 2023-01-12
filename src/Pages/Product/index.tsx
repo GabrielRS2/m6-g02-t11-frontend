@@ -86,7 +86,6 @@ const productsa: IProduct = {
 export const ProductPage = () => {
   const { productId }: any = useParams();
   const [product, setProduct] = useState<IProduct>(productsa);
-<<<<<<< HEAD
   const [comments, setComments] = useState<IComents[]>([]);
 
   useEffect(() => {
@@ -98,13 +97,6 @@ export const ProductPage = () => {
       setComments(res.data.comments);
     });
   }, []);
-=======
-  useEffect(() => {
-    api.get(`products/${productId}`).then((res) => {
-      setProduct(res.data.product);
-    });
-  }, [productId]);
->>>>>>> c23fa77c7ff621f927abf7e375e30f7fcb7f5144
 
   return (
     <>
