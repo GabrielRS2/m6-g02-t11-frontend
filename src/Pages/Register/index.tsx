@@ -114,7 +114,7 @@ export const Register = () => {
         setModalContent({
           title: "Error!",
           titleSucess: "Houve um erro no registro, verifique e tente novamente",
-          messageSucess: [err],
+          messageSucess: [err.response.data.message],
         });
         setOpen(true);
       });
