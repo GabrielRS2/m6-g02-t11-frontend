@@ -85,7 +85,7 @@ const productsa: IProduct = {
 
 export const ProductPage = () => {
   const { productId }: any = useParams();
-  const [product, setProduct] = useState<IProduct>(productsa);
+  const [product, setProduct] = useState<IProduct>();
   const [comments, setComments] = useState<IComents[]>([]);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export const ProductPage = () => {
     });
   }, []);
 
-  return (
+  return product ? (
     <>
       <ContainerStyeld className="ContainerStyeld">
         <Header />
@@ -121,5 +121,5 @@ export const ProductPage = () => {
         </footer>
       </ContainerStyeld>
     </>
-  );
+  ) : null;
 };

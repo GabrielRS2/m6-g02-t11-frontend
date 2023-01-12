@@ -21,6 +21,7 @@ interface ThemeInputTextAreaProps {
   choseWidth: string;
   fieldContext?: any;
   error?: string;
+  value?: string | number;
 }
 
 export const ThemeInputStandart = ({
@@ -77,6 +78,7 @@ export const ThemeInputTextArea = ({
   choseWidth,
   fieldContext,
   error,
+  value,
 }: ThemeInputTextAreaProps) => {
   return (
     <StyledInput choseWidth={choseWidth}>
@@ -88,6 +90,7 @@ export const ThemeInputTextArea = ({
         placeholder={placeholderText}
         maxLength={500}
         {...fieldContext}
+        defaultValue={value}
       />
     </StyledInput>
   );

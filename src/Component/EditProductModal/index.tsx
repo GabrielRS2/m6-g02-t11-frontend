@@ -8,7 +8,13 @@ import { editCreateSchema } from "../../Validations/schemas";
 
 import { AiOutlineClose } from "react-icons/ai";
 
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import api from "../../Services";
@@ -52,7 +58,11 @@ interface IData {
   photos?: string[];
 }
 
-export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProduct, product }: EditProductModaProps) => {
+export const EditProductModal = ({
+  setEditProductModalIsOpen,
+  setOpenDeleteProduct,
+  product,
+}: EditProductModaProps) => {
   const [listingType, setListingType] = useState<string>("sale");
   const [vehicleType, setVehicleType] = useState<string>("car");
   const [imageFields, setImageFields] = useState<string[]>([]);
@@ -68,13 +78,13 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
   });
 
   useEffect(() => {
-    if(product.saleType) {
-      setListingType(product.saleType)
+    if (product.saleType) {
+      setListingType(product.saleType);
     }
-    if(product.vehicleType) {
-      setVehicleType(product.vehicleType)
+    if (product.vehicleType) {
+      setVehicleType(product.vehicleType);
     }
-  }, [])
+  }, []);
 
   const submitCb = (data: IData) => {
     const photos: string[] = [];
@@ -96,28 +106,29 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
     data.saleType = listingType;
     data.price = data.price! * 100;
 
-    if(data.model === "") {
-      delete data.model
+    if (data.model === "") {
+      delete data.model;
     }
 
-    if(data.coverPhoto === "") {
-      delete data.coverPhoto
+    if (data.coverPhoto === "") {
+      delete data.coverPhoto;
     }
 
-    if(data.description === "") {
-      delete data.description
+    if (data.description === "") {
+      delete data.description;
     }
 
-    if(data.photos?.length === 0) {
-      delete data.photos
+    if (data.photos?.length === 0) {
+      delete data.photos;
     }
-    
-    api.patch(`/products/${product.id}`, data,{
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => console.log(res.data))
-    
+
+    api
+      .patch(`/products/${product.id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => console.log(res.data));
   };
 
   const handleCloseModal = () => {
@@ -162,6 +173,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
           inputType="text"
           labelText={"Titulo"}
           placeholderText={product.model}
+          value={product.model}
           choseWidth="100%"
           fieldContext={register("model")}
           error={String(errors.model?.message)}
@@ -171,6 +183,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
             inputType="text"
             labelText={"Ano"}
             placeholderText={product.year}
+            value={product.year}
             choseWidth="47%"
             fieldContext={register("year")}
             error={String(errors.year?.message)}
@@ -180,6 +193,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
             inputType="text"
             labelText={"Quilometragem"}
             placeholderText={product.km.toString()}
+            value={product.km.toString()}
             choseWidth="47%"
             fieldContext={register("km")}
             error={String(errors.km?.message)}
@@ -188,7 +202,8 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
           <ThemeInputStandart
             inputType="text"
             labelText={"Preco"}
-            placeholderText={(product.price).toString()}
+            placeholderText={product.price.toString()}
+            value={product.price.toString()}
             choseWidth="100%"
             fieldContext={register("price")}
             error={String(errors.price?.message)}
@@ -197,6 +212,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
         <ThemeInputTextArea
           labelText={"Descricao"}
           placeholderText={product.description}
+          value={product.description}
           choseWidth="100%"
           fieldContext={register("description")}
           error={String(errors.description?.message)}
@@ -229,6 +245,7 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
           labelText="Imagem de capa"
           placeholderText={product.photos[0].content}
           choseWidth="100%"
+          value={product.photos[0].content}
           fieldContext={register("coverPhoto")}
           error={String(errors.coverPhoto?.message)}
         />
@@ -266,7 +283,9 @@ export const EditProductModal = ({ setEditProductModalIsOpen, setOpenDeleteProdu
           >
             Excluir anúncio
           </button>
-          <button className="button_submit" type="submit">Salvar alterações</button>
+          <button className="button_submit" type="submit">
+            Salvar alterações
+          </button>
         </div>
       </ModalContainer>
     </>
