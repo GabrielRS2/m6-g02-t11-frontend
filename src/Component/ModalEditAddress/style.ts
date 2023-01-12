@@ -1,13 +1,7 @@
 import styled from "styled-components";
 
-export const FormContainer = styled.div`
-  position: absolute;
-  top: 5%;
-  margin: auto;
-  left: 50%;
-  z-index: 11;
-  transform: translate(-50%);
 
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -15,35 +9,23 @@ export const FormContainer = styled.div`
   gap: 1.5rem;
 
   width: 100%;
-  max-width: 32.5rem;
-  padding: 1.125rem 1.5rem 2.063rem 1.5rem;
+  max-width: 21.438rem;
+  padding: 2.75rem 1.75rem;
   border-radius: 0.25rem;
 
   background-color: var(--grey10);
   
   .title {
+    font-family: 'Lexend';
     font-weight: 500;
-    font-size: 1rem;
-    line-height: 1.25rem;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
 
-    color: var(--grey1);
-  }
-
-  .titleContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 0.5rem;
-  }
-  .titleContainer button {
-    background-color: var(--whiteFixed);
+    color: var(--grey0);
   }
 
   @media (width>768px) {
-    max-width: 32.5rem;
+    max-width: 25.75rem;
   }
 `;
 
@@ -61,6 +43,11 @@ export const Form = styled.form`
     font-size: 14px;
     line-height: 24px;
     color: var(--grey0);
+  }
+
+  .inputsContainer {
+    display: flex;
+    gap: 0.75rem;
   }
 
   .container_submit {
@@ -93,6 +80,7 @@ export const Form = styled.form`
       width: auto;
       padding: 0px 1.5rem;
     }
+    
     .button_submit {
       width: auto;
       padding: 0px 1.5rem;

@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import {
   ThemeInputStandart,
   ThemeInputTextArea,
