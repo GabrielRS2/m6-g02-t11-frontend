@@ -1,17 +1,21 @@
 import { Modal } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
+import { TokenContext } from "../../Providers/Token";
+import api from "../../Services";
 import { ModalContainer } from "./style";
 
 interface IModalDeleteProduct {
   setOpenDeleteProduct: Dispatch<SetStateAction<boolean>>;
   openDeleteProduct: boolean;
+  productId: string;
 }
 
 export const ModalDeleteProduct = ({
   setOpenDeleteProduct,
   openDeleteProduct,
+  productId,
 }: IModalDeleteProduct) => {
-
+  const { token } = useContext(TokenContext); 
   const handleCloseModal = () => {
     setOpenDeleteProduct(false);
   };
@@ -49,7 +53,13 @@ export const ModalDeleteProduct = ({
             >
               Cancelar
             </button>
-            <button className="button_submit" type="submit">Sim, excluir anúncio</button>
+            <button className="button_submit" onClick={() => {
+              api.delete(`/products/${productId}`,{
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+            }}>Sim, excluir anúncio</button>
           </div>
         </ModalContainer>
       </Modal>

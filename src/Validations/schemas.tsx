@@ -76,8 +76,8 @@ export const editCreateSchema = yup.object().shape({
     .min(1860, "Confira este valor")
     .typeError("Deve ser um numero"),
   price: yup
-    .number()
-    .notRequired()
+  .number()
+  .notRequired()
     .min(0, "Deve ser positivo")
     .typeError("Deve ser um numero"),
   coverPhoto: yup.string().notRequired().typeError("Deve ser um URL"),

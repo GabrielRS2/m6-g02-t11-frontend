@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ContainerComments } from "../style";
 import { IComents, IProduct } from "../../../interfaces/product";
 import { CommentCard } from "./comment";

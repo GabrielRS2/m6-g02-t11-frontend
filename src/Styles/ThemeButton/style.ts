@@ -20,7 +20,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
   height: 100%;
   max-height: ${(props) => props.choseHeight(props.size)};
-  width: ${(props) => props.size == "big50" ? "100%" : "auto"};
+  width: ${(props) => props.size === "big50" ? "100%" : "auto"};
   max-width: ${(props) => props.choseWidth(props.size)};
   border-radius: 6px;
   padding: ${(props) => props.chosePadding(props.size)};

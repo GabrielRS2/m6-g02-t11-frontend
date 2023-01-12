@@ -36,9 +36,10 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
   }
 
   return (
+    <>
+    {editProductModalIsOpen && <EditProductModal setOpenDeleteProduct={setOpenDeleteProduct} setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
+    {openDeleteProduct && <ModalDeleteProduct productId={product?.id || ""} openDeleteProduct={openDeleteProduct} setOpenDeleteProduct={setOpenDeleteProduct}/>}
     <ContainerCard onDoubleClick={() => history.push(`/product/${product.id}`)}>
-      {openDeleteProduct && <ModalDeleteProduct openDeleteProduct={openDeleteProduct} setOpenDeleteProduct={setOpenDeleteProduct}/>}
-      {editProductModalIsOpen && <EditProductModal setOpenDeleteProduct={setOpenDeleteProduct} setEditProductModalIsOpen={setEditProductModalIsOpen} product={product}/>}
       <ContainerImage className="ContainerImage" is_active={product.is_active}>
         {status && <span>{product.is_active ? "Ativo" : "Inativo"}</span>}
         <img className="img" src={product.photos[0].content} alt="Carrao" />
@@ -86,5 +87,6 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
       </ButtonsContainer>
       )}
     </ContainerCard>
+    </>
   );
 };

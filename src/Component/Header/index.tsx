@@ -9,26 +9,41 @@ import { nameToAcronym } from "./utils";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Avatar } from '@mui/material';
-import { Modal, Menu, MenuItem } from '@mui/material';
+import { Avatar } from "@mui/material";
+import { Modal, Menu, MenuItem } from "@mui/material";
 import PopupState from "material-ui-popup-state";
-import { bindMenu, bindTrigger, usePopupState } from "material-ui-popup-state/hooks";
-import api from "../../Services";
+import {
+  bindMenu,
+  bindTrigger,
+  usePopupState,
+} from "material-ui-popup-state/hooks";
 import { ModalEditProfile } from "../ModalEditProfile";
 import { OpenModalContext } from "../../Providers/OpenModal";
+import api from "../../Services";
+import { IUser } from "../../interfaces/user";
+import { ModalEditAddress } from "../ModalEditAddress";
 
 export const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openEditProfile, setOpenEditProfile] = useState<boolean>(false);
+  const [openModalEditAddress, setOpenModalEditAddress] = useState<boolean>(false);
+  const [ user, setUser ] = useState<IUser>()
   const { token, setToken } = useContext(TokenContext);
+  const userId = localStorage.getItem("@motor:id");
   const history = useHistory();
   const { setIsOpenModal } = useContext(OpenModalContext);
 
   useEffect(() => {
     setToken(localStorage.getItem("@motor:token") || "");
-    if (token !== "") {
+    if (token !== "token") {
       setIsLogged(true);
+      api.get(`/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setUser(res.data.user))
     } else {
       setIsLogged(false);
     }
@@ -42,64 +57,122 @@ export const Header = () => {
   }
 
   function handleClose() {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   }
 
   function handleOpenEditProfileModal() {
-    setOpenEditProfile(true)
-    setIsOpenModal(true)
+    setOpenEditProfile(true);
+    setIsOpenModal(true);
+  }
+
+  function handleOpenEditAddressModal() {
+    setOpenModalEditAddress(true);
   }
 
   return (
     <>
-    {openEditProfile && <ModalEditProfile setOpenEditProfile={setOpenEditProfile}/>}
+      {openEditProfile && (
+        <ModalEditProfile setOpenEditProfile={setOpenEditProfile} userId={user?.id || ""}/>
+      )}
+      <ModalEditAddress userId={user?.id || ""} setOpenModalEditAddress={setOpenModalEditAddress} openModalEditAddress={openModalEditAddress}/>
       <Modal
-      open={isOpen}
-      onClose={handleClose}
-      aria-labelledby="parent-modal-title"
-      aria-describedby="parent-modal-description"
-      sx={{ zIndex: '1' }}
+        open={isOpen}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+        sx={{ zIndex: "1" }}
       >
         <div></div>
       </Modal>
       <HeaderContainer>
         <div>
-          <img src="/Assets/logoColor.svg" alt="Motor shop"/>
+          <img src="/Assets/logoColor.svg" alt="Motor shop" />
         </div>
-        <HamburgerButton 
-        className="hamburgerButton" 
-        onClick={() => {
-          setIsOpen(!isOpen)
-          }}>
+        <HamburgerButton
+          className="hamburgerButton"
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
           {isOpen ? <AiOutlineClose /> : <RxHamburgerMenu />}
         </HamburgerButton>
         <div className="infoContainer">
           <ul>
-            <li><button onClick={() => history.push("/")}>Carros</button></li>
-            <li><button onClick={() => history.push("/")}>Motos</button></li>
-            <li><button onClick={() => history.push("/")}>Leilão</button></li>
+            <li>
+              <Link to={{ pathname: "/", hash: "#carros" }}>Carros</Link>
+            </li>
+            <li>
+              <Link to={{ pathname: "/", hash: "#motos" }}>Motos</Link>
+            </li>
+            <li>
+              <Link to={{ pathname: "/", hash: "#leilao" }}>Leilão</Link>
+            </li>
           </ul>
           {isLogged ? (
             <div className="infoLoginContainer">
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
                   <React.Fragment>
-                    <button className="loginButton" {...bindTrigger(popupState)}>
-                      <Avatar sx={{ 
-                      bgcolor: "var(--brand2)", 
-                      height: "2rem", 
-                      width: "2rem", 
-                      fontSize: "0.875rem", 
-                      fontWeight: "700" }}
+                    <button
+                      className="loginButton"
+                      {...bindTrigger(popupState)}
+                    >
+                      <Avatar
+                        sx={{
+                          bgcolor: "var(--brand2)",
+                          height: "2rem",
+                          width: "2rem",
+                          fontSize: "0.875rem",
+                          fontWeight: "700",
+                        }}
                       >
-                      {nameToAcronym("Samuel Leão")}</Avatar>
-                      <p>Samuel Leão</p>
+                        {nameToAcronym(user?.name || "Samuel Leão")}
+                      </Avatar>
+                      <p>{user?.name}</p>
                     </button>
                     <Menu {...bindMenu(popupState)}>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => {handleOpenEditProfileModal()}}>Editar Perfil</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar endereço</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Minhas Compras</MenuItem>
-                      <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => handleLogout()}>Sair</MenuItem>
+                      <MenuItem
+                        sx={{
+                          fontWeight: "400",
+                          fontSize: "1rem",
+                          color: "var(--grey2)",
+                        }}
+                        onClick={() => {
+                          handleOpenEditProfileModal();
+                        }}
+                      >
+                        Editar Perfil
+                      </MenuItem>
+                      <MenuItem
+                        sx={{
+                          fontWeight: "400",
+                          fontSize: "1rem",
+                          color: "var(--grey2)",
+                        }}
+                        onClick={() => handleOpenEditAddressModal()}
+                      >
+                        Editar endereço
+                      </MenuItem>
+                      <MenuItem
+                        sx={{
+                          fontWeight: "400",
+                          fontSize: "1rem",
+                          color: "var(--grey2)",
+                        }}
+                        onClick={popupState.close}
+                      >
+                        Minhas Compras
+                      </MenuItem>
+                      <MenuItem
+                        sx={{
+                          fontWeight: "400",
+                          fontSize: "1rem",
+                          color: "var(--grey2)",
+                        }}
+                        onClick={() => handleLogout()}
+                      >
+                        Sair
+                      </MenuItem>
                     </Menu>
                   </React.Fragment>
                 )}
@@ -107,45 +180,103 @@ export const Header = () => {
             </div>
           ) : (
             <div className="infoLogoutContainer">
-              <button className="goLoginButton" onClick={() => {history.push("/login")}}>Fazer login</button>
+              <button
+                className="goLoginButton"
+                onClick={() => {
+                  history.push("/login");
+                }}
+              >
+                Fazer login
+              </button>
               <ThemeButton
                 backGroundColor="var(--whiteFixed)"
                 color="var(--grey0)"
                 borderColor="var(--grey4)"
                 size="medium"
-                handleClick={() => {history.push("/register")}}
-              >Cadastrar</ThemeButton>
-            </div>  
+                handleClick={() => {
+                  history.push("/register");
+                }}
+              >
+                Cadastrar
+              </ThemeButton>
+            </div>
           )}
         </div>
       </HeaderContainer>
       <PopupContainer isOpen={isOpen}>
         <ul>
-          <li onClick={() => {history.push("/")}}>Carros</li>
-          <li onClick={() => {history.push("/")}}>Motos</li>
-          <li onClick={() => {history.push("/")}}>Leilão</li>
+          <li>
+            <Link to={{ pathname: "/", hash: "#carros" }}>Carros</Link>
+          </li>
+          <li>
+            <Link to={{ pathname: "/", hash: "#motos" }}>Motos</Link>
+          </li>
+          <li>
+            <Link to={{ pathname: "/", hash: "#leilao" }}>Leilão</Link>
+          </li>
         </ul>
         {isLogged ? (
           <div className="infoLoginContainerMobile">
-              <PopupState variant="popover" popupId="demo-popup-menu">
+            <PopupState variant="popover" popupId="demo-popup-menu">
               {(popupState) => (
                 <React.Fragment>
                   <button className="loginButton" {...bindTrigger(popupState)}>
-                  <Avatar sx={{ 
-                  bgcolor: "var(--brand2)", 
-                  height: "2rem", 
-                  width: "2rem", 
-                  fontSize: "0.875rem", 
-                  fontWeight: "700" }}
-                  >
-                  {nameToAcronym("Samuel Leão")}</Avatar>
-                  <p>Samuel Leão</p>
+                    <Avatar
+                      sx={{
+                        bgcolor: "var(--brand2)",
+                        height: "2rem",
+                        width: "2rem",
+                        fontSize: "0.875rem",
+                        fontWeight: "700",
+                      }}
+                    >
+                      {nameToAcronym(user?.name || "Samuel Leão")}
+                    </Avatar>
+                    <p>user?.name</p>
                   </button>
                   <Menu {...bindMenu(popupState)}>
-                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => {handleOpenEditProfileModal()}}>Editar Perfil</MenuItem>
-                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Editar endereço</MenuItem>
-                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={popupState.close}>Minhas Compras</MenuItem>
-                    <MenuItem sx={{ fontWeight: '400', fontSize: "1rem", color: "var(--grey2)" }} onClick={() => handleLogout()}>Sair</MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: "1rem",
+                        color: "var(--grey2)",
+                      }}
+                      onClick={() => {
+                        handleOpenEditProfileModal();
+                      }}
+                    >
+                      Editar Perfil
+                    </MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: "1rem",
+                        color: "var(--grey2)",
+                      }}
+                      onClick={() => handleOpenEditAddressModal()}
+                    >
+                      Editar endereço
+                    </MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: "1rem",
+                        color: "var(--grey2)",
+                      }}
+                      onClick={popupState.close}
+                    >
+                      Minhas Compras
+                    </MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: "1rem",
+                        color: "var(--grey2)",
+                      }}
+                      onClick={() => handleLogout()}
+                    >
+                      Sair
+                    </MenuItem>
                   </Menu>
                 </React.Fragment>
               )}
@@ -159,9 +290,13 @@ export const Header = () => {
               color="var(--grey0)"
               borderColor="var(--grey4)"
               size="auto"
-              handleClick={() => {history.push("/register")}}
-            >Cadastrar</ThemeButton>
-          </div>  
+              handleClick={() => {
+                history.push("/register");
+              }}
+            >
+              Cadastrar
+            </ThemeButton>
+          </div>
         )}
       </PopupContainer>
     </>
