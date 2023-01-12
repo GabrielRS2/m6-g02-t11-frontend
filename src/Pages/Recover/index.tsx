@@ -21,12 +21,12 @@ export const Recover = () => {
   const [modalContent, setModalContent] = useState({
     title: "",
     titleSucess: "",
-    messageSucess: "",
+    messageSucess: [""],
   });
   const [buttonContent, setButtonContent] = useState({
     active: false,
     text: "",
-    pushURL: "",
+    onClick: () => {},
   });
   const history = useHistory();
 
@@ -51,8 +51,9 @@ export const Recover = () => {
         setModalContent({
           title: "Sucesso!",
           titleSucess: "Sua recuperação de senha foi aceita",
-          messageSucess:
+          messageSucess: [
             "Enviamos um link para a criação de uma nova senha para o seu email. Siga as instruções para redefinir a sua nova senha",
+          ],
         });
         setOpen(true);
       })
@@ -60,7 +61,7 @@ export const Recover = () => {
         setModalContent({
           title: "OOOPS!",
           titleSucess: "Email não encontrado",
-          messageSucess: "Verifique seu email e tente novamente.",
+          messageSucess: ["Verifique seu email e tente novamente."],
         });
         setOpen(true);
       });

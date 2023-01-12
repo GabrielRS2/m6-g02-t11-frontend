@@ -21,12 +21,12 @@ export const RecoverPassword = () => {
   const [modalContent, setModalContent] = useState({
     title: "",
     titleSucess: "",
-    messageSucess: "",
+    messageSucess: [""],
   });
   const [buttonContent, setButtonContent] = useState({
     active: false,
     text: "",
-    pushURL: "",
+    onClick: () => {},
   });
   const history = useHistory();
   const { id, token }: any = useParams();
@@ -59,13 +59,16 @@ export const RecoverPassword = () => {
         setModalContent({
           title: "Sucesso!",
           titleSucess: "Sua recuperação de senha foi aceita",
-          messageSucess:
+          messageSucess: [
             "Sua Senha foi alterada com sucesso. Clique em acessar para logar no sistema com a nova senha.",
+          ],
         });
         setButtonContent({
           active: true,
           text: "Acessar",
-          pushURL: "/login/",
+          onClick: () => {
+            history.push("/login/");
+          },
         });
         setOpen(true);
       })
@@ -73,8 +76,9 @@ export const RecoverPassword = () => {
         setModalContent({
           title: "OOOPS!",
           titleSucess: "Erro interno!",
-          messageSucess:
+          messageSucess: [
             "HoUvE Um ERro INTerno. Entre em contato com o moderado do site.",
+          ],
         });
         setOpen(true);
       });
