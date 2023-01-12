@@ -9,6 +9,8 @@ import { Form, FormContainer } from "./style";
 import { ThemeInputStandart } from "../../Styles/ThemeInput";
 import api from "../../Services";
 import { IUser } from "../../interfaces/user";
+import { InputMask } from "../../Styles/ThemeInputMask";
+import { buscaCEP, formataCEP } from "../../utils";
 
 interface IModalEditAddress {
   setOpenModalEditAddress: Dispatch<SetStateAction<boolean>>;
@@ -31,6 +33,23 @@ export const ModalEditAddress = ({
   userId,
 }: IModalEditAddress) => {
   const { token } = useContext(TokenContext);
+  const [valueUF, setValueUF] = useState("");
+  const [valueRua, setValueRua] = useState("");
+  const [valueCidade, setValueCidade] = useState("");
+  const [valueComplemento, setValueComplemento] = useState("");
+  const [valueCEP, setValueCEP] = useState("");
+  const [address, setAddress] = useState({
+    bairro: "",
+    cep: "",
+    complemento: "",
+    ddd: "",
+    gia: "",
+    ibge: "",
+    localidade: "",
+    logradouro: "",
+    siafi: "",
+    uf: "",
+  });
 
   const handleCloseModal = () => {
     setOpenModalEditAddress(false);
@@ -41,10 +60,7 @@ export const ModalEditAddress = ({
     state: yup.string().notRequired(),
     city: yup.string().notRequired(),
     street: yup.string().notRequired(),
-    number: yup
-      .string()
-      .notRequired()
-      .matches(/^[0-9]*$/, "Formato inválido"),
+    number: yup.string().notRequired(),
     complement: yup.string().notRequired(),
   });
 
@@ -100,67 +116,108 @@ export const ModalEditAddress = ({
           paddingLeft: "0.75rem",
           paddingRight: "0.75rem",
           overflow: "scroll",
-          
         }}
       >
         <FormContainer>
           <p className="title">Editar endereço</p>
           <Form onSubmit={handleSubmit(onSubmitFunction)}>
             <p className="subTitle">Infomações de endereço</p>
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="CEP"
-              placeholderText="00000-000"
+              placeholder="00000-000"
               fieldContext={register("cep")}
               choseWidth="100vw"
+              value={valueCEP}
+              onChange={(e: any) => {
+                setValueCEP(formataCEP(e.target.value.replace(/[^\d]/g, "")));
+              }}
+              onBlur={async () => {
+                const add = await buscaCEP(valueCEP);
+                console.log(add);
+                if (add.erro) {
+                  errors.cep = { type: "erro", message: "CEP inválido" };
+                } else {
+                  delete errors.cep;
+                }
+                setAddress(add);
+              }}
               error={String(errors.cep?.message)}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Estado"
-                placeholderText="Digitar Estado"
+                placeholder="Digitar Estado"
                 fieldContext={register("state")}
                 choseWidth="100vw"
                 error={String(errors.state?.message)}
                 isErrorUnder={true}
+                value={valueUF}
+                onFocus={() => {
+                  setValueUF(address.uf);
+                }}
+                onChange={(e: any) => {
+                  setValueUF(e.target.value);
+                }}
               />
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Cidade"
-                placeholderText="Digitar cidade"
+                placeholder="Digitar cidade"
                 fieldContext={register("city")}
                 choseWidth="100vw"
                 error={String(errors.city?.message)}
                 isErrorUnder={true}
+                value={valueCidade}
+                onFocus={() => {
+                  setValueCidade(address.localidade);
+                }}
+                onChange={(e: any) => {
+                  setValueCidade(e.target.value);
+                }}
               />
             </div>
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="Rua"
-              placeholderText="Digitar rua"
+              placeholder="Digitar rua"
               fieldContext={register("street")}
               choseWidth="100vw"
               error={String(errors.street?.message)}
+              value={valueRua}
+              onFocus={() => {
+                setValueRua(address.logradouro);
+              }}
+              onChange={(e: any) => {
+                setValueRua(e.target.value);
+              }}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Número"
-                placeholderText="Digitar número"
+                placeholder="Digitar número"
                 fieldContext={register("number")}
                 choseWidth="100vw"
                 error={String(errors.number?.message)}
                 isErrorUnder={true}
               />
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Complemento"
-                placeholderText="Ex: apart 307"
+                placeholder="Ex: apart 307"
                 fieldContext={register("complement")}
                 choseWidth="100vw"
                 error={String(errors.complement?.message)}
                 isErrorUnder={true}
+                value={valueComplemento}
+                onFocus={() => {
+                  setValueComplemento(address.complemento);
+                }}
+                onChange={(e: any) => {
+                  setValueComplemento(e.target.value);
+                }}
               />
             </div>
             <div className="container_submit">

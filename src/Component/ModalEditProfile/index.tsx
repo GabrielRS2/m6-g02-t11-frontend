@@ -11,6 +11,7 @@ import { OpenModalContext } from "../../Providers/OpenModal";
 import { formatPhone, formataCPF } from "../../utils";
 import api from "../../Services";
 import { TokenContext } from "../../Providers/Token";
+import { InputMask } from "../../Styles/ThemeInputMask";
 
 interface IModalEditProfile {
   setOpenEditProfile: Dispatch<SetStateAction<boolean>>;
@@ -26,18 +27,17 @@ interface IData {
   description?: string;
 }
 
-export const ModalEditProfile = ({ setOpenEditProfile, userId }: IModalEditProfile) => {
-  // const [valueUF, setValueUF] = useState("");
-  // const [valueRua, setValueRua] = useState("");
-  // const [valueCidade, setValueCidade] = useState("");
-  // const [valueComplemento, setValueComplemento] = useState("");
+export const ModalEditProfile = ({
+  setOpenEditProfile,
+  userId,
+}: IModalEditProfile) => {
   // const [isSeller, setIsSeller] = useState<boolean>(false);
   const [valuePhone, setValuePhone] = useState("");
   const [valueCPF, setValueCPF] = useState("");
   // const [valueCEP, setValueCEP] = useState("");
   // const history = useHistory();
   const { setIsOpenModal } = useContext(OpenModalContext);
-  const { token } = useContext(TokenContext); 
+  const { token } = useContext(TokenContext);
 
   const handleCloseModal = () => {
     setOpenEditProfile(false);
@@ -62,31 +62,31 @@ export const ModalEditProfile = ({ setOpenEditProfile, userId }: IModalEditProfi
   });
 
   const onSubmitFunction = (data: IData) => {
-    const updatedData: IData = {}
-    if(data.name !== "") {
-      updatedData.name = data.name
+    const updatedData: IData = {};
+    if (data.name !== "") {
+      updatedData.name = data.name;
     }
-    if(data.email !== "") {
-      updatedData.email = data.email
+    if (data.email !== "") {
+      updatedData.email = data.email;
     }
-    if(data.cpf !== "") {
-      updatedData.cpf = data.cpf
+    if (data.cpf !== "") {
+      updatedData.cpf = data.cpf;
     }
-    if(data.phone !== "") {
-      updatedData.phone = data.phone
+    if (data.phone !== "") {
+      updatedData.phone = data.phone;
     }
-    if(data.cpf !== "") {
-      updatedData.cpf = data.cpf
+    if (data.cpf !== "") {
+      updatedData.cpf = data.cpf;
     }
-    if(data.description !== "") {
-      updatedData.description = data.description
+    if (data.description !== "") {
+      updatedData.description = data.description;
     }
-    
-    api.patch(`/users/${userId}`, data,{
+
+    api.patch(`/users/${userId}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
   };
 
   return (
@@ -114,15 +114,14 @@ export const ModalEditProfile = ({ setOpenEditProfile, userId }: IModalEditProfi
             choseWidth="100vw"
             error={String(errors.email?.message)}
           />
-          <ThemeInputStandart
-            inputType="text"
+          <InputMask
+            type="text"
             labelText="CPF"
-            placeholderText="000.000.000-00"
+            placeholder="000.000.000-00"
             fieldContext={register("cpf")}
             choseWidth="100vw"
             error={String(errors.cpf?.message)}
-            extra
-            inputValue={valueCPF}
+            value={valueCPF}
             onChange={(e: any) => {
               setValueCPF(
                 formataCPF(
@@ -131,14 +130,13 @@ export const ModalEditProfile = ({ setOpenEditProfile, userId }: IModalEditProfi
               );
             }}
           />
-          <ThemeInputStandart
-            inputType="text"
+          <InputMask
+            type="text"
             labelText="Celular"
-            placeholderText="(DD) 90000-0000"
+            placeholder="(DD) 90000-0000"
             fieldContext={register("phone")}
             choseWidth="100vw"
-            extra
-            inputValue={valuePhone}
+            value={valuePhone}
             onChange={(e: any) => {
               setValuePhone(
                 formatPhone(
@@ -151,7 +149,7 @@ export const ModalEditProfile = ({ setOpenEditProfile, userId }: IModalEditProfi
           <ThemeInputStandart
             inputType="date"
             labelText="Data de nascimento"
-            placeholderText="00/00/00"
+            placeholderText="00/00/0000"
             fieldContext={register("dob")}
             choseWidth="100vw"
             error={String(errors.dob?.message)}

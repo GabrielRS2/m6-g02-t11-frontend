@@ -14,6 +14,7 @@ import { useState } from "react";
 import api from "../../Services";
 import { ModalCreateAccountSuccess } from "../../Component/ModalCreateAccountSuccess";
 import { buscaCEP, formatPhone, formataCEP, formataCPF } from "../../utils";
+import { InputMask } from "../../Styles/ThemeInputMask";
 
 interface IData {
   name?: string;
@@ -38,12 +39,24 @@ export const Register = () => {
   const [valueRua, setValueRua] = useState("");
   const [valueCidade, setValueCidade] = useState("");
   const [valueComplemento, setValueComplemento] = useState("");
+  const [valueCEP, setValueCEP] = useState("");
   const [isSeller, setIsSeller] = useState<boolean>(false);
   const [valuePhone, setValuePhone] = useState("");
   const [valueCPF, setValueCPF] = useState("");
-  const [valueCEP, setValueCEP] = useState("");
   const [openCreateAccountSuccess, setOpenCreateAccountSuccess] =
     useState<boolean>(false);
+  const [address, setAddress] = useState({
+    bairro: "",
+    cep: "",
+    complemento: "",
+    ddd: "",
+    gia: "",
+    ibge: "",
+    localidade: "",
+    logradouro: "",
+    siafi: "",
+    uf: "",
+  });
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório"),
@@ -117,15 +130,14 @@ export const Register = () => {
               choseWidth="100vw"
               error={String(errors.email?.message)}
             />
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="CPF"
-              placeholderText="000.000.000-00"
+              placeholder="000.000.000-00"
               fieldContext={register("cpf")}
               choseWidth="100vw"
               error={String(errors.cpf?.message)}
-              extra
-              inputValue={valueCPF}
+              value={valueCPF}
               onChange={(e: any) => {
                 setValueCPF(
                   formataCPF(
@@ -134,14 +146,13 @@ export const Register = () => {
                 );
               }}
             />
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="Celular"
-              placeholderText="(DD) 90000-0000"
+              placeholder="(DD) 90000-0000"
               fieldContext={register("phone")}
               choseWidth="100vw"
-              extra
-              inputValue={valuePhone}
+              value={valuePhone}
               onChange={(e: any) => {
                 setValuePhone(
                   formatPhone(
@@ -151,10 +162,10 @@ export const Register = () => {
               }}
               error={String(errors.phone?.message)}
             />
-            <ThemeInputStandart
-              inputType="date"
+            <InputMask
+              type="date"
               labelText="Data de nascimento"
-              placeholderText="00/00/00"
+              placeholder="00/00/0000"
               fieldContext={register("dob")}
               choseWidth="100vw"
               error={String(errors.dob?.message)}
@@ -167,95 +178,101 @@ export const Register = () => {
               error={String(errors.description?.message)}
             />
             <p className="subTitle">Infomações de endereço</p>
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="CEP"
-              placeholderText="00000-000"
+              placeholder="00000-000"
               fieldContext={register("cep")}
               choseWidth="100vw"
-              extra
-              inputValue={valueCEP}
+              value={valueCEP}
               onChange={(e: any) => {
                 setValueCEP(formataCEP(e.target.value.replace(/[^\d]/g, "")));
               }}
-              onBlur={async () => {
-                const add = await buscaCEP(valueCEP);
-                console.log(add);
-                if (add.erro) {
-                  errors.cep = { type: "erro", message: "CEP inválido" };
-                } else {
-                  errors.cep = {};
+              onKeyDown={async (e) => {
+                if (e.keyCode === 13) {
+                  const add = await buscaCEP(valueCEP);
+                  console.log(add);
+                  if (add.erro) {
+                    errors.cep = { type: "erro", message: "CEP inválido" };
+                  } else {
+                    delete errors.cep;
+                  }
+                  setAddress(add);
                 }
-                setValueUF(add.uf);
-                setValueCidade(add.localidade);
-                setValueComplemento(add.complemento);
-                setValueRua(add.logradouro);
               }}
               error={String(errors.cep?.message)}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Estado"
-                placeholderText="Digitar Estado"
+                placeholder="Digitar Estado"
                 fieldContext={register("state")}
                 choseWidth="100vw"
                 error={String(errors.state?.message)}
-                extra
                 isErrorUnder={true}
-                inputValue={valueUF}
+                value={valueUF}
+                onFocus={() => {
+                  setValueUF(address.uf);
+                }}
                 onChange={(e: any) => {
                   setValueUF(e.target.value);
                 }}
               />
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Cidade"
-                placeholderText="Digitar cidade"
+                placeholder="Digitar cidade"
                 fieldContext={register("city")}
                 choseWidth="100vw"
                 error={String(errors.city?.message)}
                 isErrorUnder={true}
-                extra
-                inputValue={valueCidade}
+                value={valueCidade}
+                onFocus={() => {
+                  setValueCidade(address.localidade);
+                }}
                 onChange={(e: any) => {
                   setValueCidade(e.target.value);
                 }}
               />
             </div>
-            <ThemeInputStandart
-              inputType="text"
+            <InputMask
+              type="text"
               labelText="Rua"
-              placeholderText="Digitar rua"
+              placeholder="Digitar rua"
               fieldContext={register("street")}
               choseWidth="100vw"
               error={String(errors.street?.message)}
-              extra
-              inputValue={valueRua}
+              value={valueRua}
+              onFocus={() => {
+                setValueRua(address.logradouro);
+              }}
               onChange={(e: any) => {
                 setValueRua(e.target.value);
               }}
             />
             <div className="inputsContainer">
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Número"
-                placeholderText="Digitar número"
+                placeholder="Digitar número"
                 fieldContext={register("number")}
                 choseWidth="100vw"
                 error={String(errors.number?.message)}
                 isErrorUnder={true}
               />
-              <ThemeInputStandart
-                inputType="text"
+              <InputMask
+                type="text"
                 labelText="Complemento"
-                placeholderText="Ex: apart 307"
+                placeholder="Ex: apart 307"
                 fieldContext={register("complement")}
                 choseWidth="100vw"
                 error={String(errors.complement?.message)}
                 isErrorUnder={true}
-                extra
-                inputValue={valueComplemento}
+                value={valueComplemento}
+                onFocus={() => {
+                  setValueComplemento(address.complemento);
+                }}
                 onChange={(e: any) => {
                   setValueComplemento(e.target.value);
                 }}
