@@ -92,7 +92,6 @@ export const ProductPage = () => {
   useEffect(() => {
     api.get(`products/${productId}`).then((res) => {
       setProduct(res.data.product);
-      console.log(product);
     });
     api.get(`comments/${productId}`).then((res) => {
       setComments(res.data.comments);

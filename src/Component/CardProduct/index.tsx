@@ -29,6 +29,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
   const [editProductModalIsOpen, setEditProductModalIsOpen] =
     useState<boolean>(false);
   const [openDeleteProduct, setOpenDeleteProduct] = useState<boolean>(false);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
   const history = useHistory();
 
   function handleOpenModal() {
@@ -37,7 +38,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
     window.scrollTo(0, 0);
   }
 
-  return (
+  return isDeleted ? (<></>) : (
     <>
       {editProductModalIsOpen && (
         <EditProductModal
@@ -51,6 +52,7 @@ export const CardProduct = ({ status, product, isSellerPage }: AppProps) => {
           productId={product?.id || ""}
           openDeleteProduct={openDeleteProduct}
           setOpenDeleteProduct={setOpenDeleteProduct}
+          setIsDeleted={setIsDeleted}
         />
       )}
       <ContainerCard

@@ -8,12 +8,14 @@ interface IModalDeleteProduct {
   setOpenDeleteProduct: Dispatch<SetStateAction<boolean>>;
   openDeleteProduct: boolean;
   productId: string;
+  setIsDeleted: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ModalDeleteProduct = ({
   setOpenDeleteProduct,
   openDeleteProduct,
   productId,
+  setIsDeleted,
 }: IModalDeleteProduct) => {
   const { token } = useContext(TokenContext); 
   const handleCloseModal = () => {
@@ -58,7 +60,10 @@ export const ModalDeleteProduct = ({
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-              }).then((_) => setOpenDeleteProduct(false))
+              }).then((_) => {
+                setOpenDeleteProduct(false)
+                setIsDeleted(true)
+              })
             }}>Sim, excluir anúncio</button>
           </div>
         </ModalContainer>

@@ -57,7 +57,7 @@ export const editCreateSchema = yup.object().shape({
     .string()
     .notRequired()
     // .min(15, "Titulo deve conter mais de 14 caracteres!")
-    .max(50, "Titulo nao pode passar de 50 caracteres!")
+    .max(200, "Titulo nao pode passar de 200 caracteres!")
     .typeError("Deve ser uma frase"),
   description: yup
     .string()

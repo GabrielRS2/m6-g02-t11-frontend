@@ -12,7 +12,7 @@ import { CreateProductModal } from "../../Component/CreateProductModal";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import api from "../../Services";
 import { NoProducts } from "../../Component/NoProducts";
-import { UpdateProductContext } from "../../Providers/UpdateProduct";
+
 
 const product: IProduct = {
   model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
@@ -118,7 +118,6 @@ const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const DashboardUser = () => {
   const { setIsOpenModal } = useContext(OpenModalContext);
-  const { updateProduct } = useContext(UpdateProductContext);
   const { userId }: IUserId = useParams();
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [productModalIsOpen, setProductModalIsOpen] = useState<boolean>(false);
@@ -141,7 +140,7 @@ export const DashboardUser = () => {
     api
       .get(`users/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => setPageOwner(res.data.user));
-  }, [userId, productModalIsOpen, updateProduct]);
+  }, [userId, productModalIsOpen]);
 
   function handleOpenModal() {
     setProductModalIsOpen(true);

@@ -6,7 +6,6 @@ import { App } from './App';
 import { OpenModalProvider } from './Providers/OpenModal';
 
 import { TokenProvider } from './Providers/Token';
-import { UpdateProductProvider } from './Providers/UpdateProduct';
 import { UserIdProvider } from './Providers/UserId';
 
 
@@ -18,11 +17,9 @@ root.render(
     <TokenProvider>
       <OpenModalProvider>
         <UserIdProvider>
-          <UpdateProductProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </UpdateProductProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </UserIdProvider>
       </OpenModalProvider>
     </TokenProvider>
