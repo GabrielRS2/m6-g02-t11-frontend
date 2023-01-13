@@ -154,6 +154,7 @@ export const Header = () => {
                           color: "var(--grey2)",
                         }}
                         onClick={() => {
+                          popupState.close();
                           handleOpenEditProfileModal();
                         }}
                       >
@@ -165,7 +166,10 @@ export const Header = () => {
                           fontSize: "1rem",
                           color: "var(--grey2)",
                         }}
-                        onClick={() => handleOpenEditAddressModal()}
+                        onClick={() => {
+                          popupState.close();
+                          handleOpenEditAddressModal();
+                        }}
                       >
                         Editar endereço
                       </MenuItem>
@@ -177,6 +181,7 @@ export const Header = () => {
                             color: "var(--grey2)",
                           }}
                           onClick={() => {
+                            popupState.close();
                             history.push(`/dashboard/${user.id}`);
                           }}
                         >
@@ -189,7 +194,10 @@ export const Header = () => {
                           fontSize: "1rem",
                           color: "var(--grey2)",
                         }}
-                        onClick={() => handleLogout()}
+                        onClick={() => {
+                          popupState.close();
+                          handleLogout();
+                        }}
                       >
                         Sair
                       </MenuItem>
