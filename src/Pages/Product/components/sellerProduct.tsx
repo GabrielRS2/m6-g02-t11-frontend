@@ -15,7 +15,6 @@ export const SellerProduct = ({ product }: SellerProductProps) => {
   const [user, setUser] = useState<IUser>();
   useEffect(() => {
     setUser(product.user);
-    console.log(product.user);
   }, []);
 
   return (

@@ -11,6 +11,8 @@ import { useContext, useEffect, useState } from "react";
 import { CreateProductModal } from "../../Component/CreateProductModal";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import api from "../../Services";
+import { NoProducts } from "../../Component/NoProducts";
+import { UpdateProductContext } from "../../Providers/UpdateProduct";
 
 const product: IProduct = {
   model: `Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200`,
@@ -116,11 +118,14 @@ const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const DashboardUser = () => {
   const { setIsOpenModal } = useContext(OpenModalContext);
+  const { updateProduct } = useContext(UpdateProductContext);
   const { userId }: IUserId = useParams();
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [productModalIsOpen, setProductModalIsOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [pageOwner, setPageOwner] = useState<IUser>();
+  const [isOneProductCar, setIsOneProductCar] = useState<boolean>(false)
+  const [isOneProductMotorbike, setIsOneProductMotorbike] = useState<boolean>(false)
 
   const token = localStorage.getItem("@motor:token");
 
@@ -131,16 +136,32 @@ export const DashboardUser = () => {
     }
     api.get(`products/user/${userId}`).then((res) => {
       setProducts(res.data.products);
+      verifyProducts(res.data.products)
     });
     api
       .get(`users/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => setPageOwner(res.data.user));
-  }, [userId]);
+  }, [userId, productModalIsOpen, updateProduct]);
 
   function handleOpenModal() {
     setProductModalIsOpen(true);
     setIsOpenModal(true);
   }
+
+  function verifyProducts(listProducts: IProduct[]) {
+    listProducts.map((product) => {
+      if(product.vehicleType === "car") {
+        setIsOneProductCar(true)
+      }
+    })
+
+    listProducts.map((product) => {
+      if(product.vehicleType === "motorbike") {
+        setIsOneProductMotorbike(true)
+      }
+    })
+  } 
+
 
   return pageOwner ? (
     <>
@@ -162,19 +183,27 @@ export const DashboardUser = () => {
         </ContainerProductPerfil>
         <ContainerProductPerfil>
           <p className="typeTittle product">Carros</p>
-          <CarouselMotion
-            type="car"
-            products={products}
-            isSellerPage={isOwner}
-          />
+          {isOneProductCar ? (
+            <CarouselMotion
+              type="car"
+              products={products}
+              isSellerPage={isOwner}
+            />
+          ) : (
+            <NoProducts />
+          )}
         </ContainerProductPerfil>
         <ContainerProductPerfil>
           <p className="typeTittle product">Motos</p>
-          <CarouselMotion
-            type="motorbike"
-            products={products}
-            isSellerPage={isOwner}
-          />
+          {isOneProductMotorbike ? (
+            <CarouselMotion
+              type="motorbike"
+              products={products}
+              isSellerPage={isOwner}
+            />
+          ) : (
+            <NoProducts />
+          )}
         </ContainerProductPerfil>
       </ContainerProfileUser>
       <Footer />

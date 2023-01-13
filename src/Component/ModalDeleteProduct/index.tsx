@@ -58,7 +58,7 @@ export const ModalDeleteProduct = ({
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-              })
+              }).then((_) => setOpenDeleteProduct(false))
             }}>Sim, excluir anúncio</button>
           </div>
         </ModalContainer>
