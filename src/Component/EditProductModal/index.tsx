@@ -21,6 +21,7 @@ import api from "../../Services";
 import { OpenModalContext } from "../../Providers/OpenModal";
 import { IProduct } from "../../interfaces/product";
 import { TokenContext } from "../../Providers/Token";
+import { useHistory } from "react-router-dom";
 
 type EditProductModaProps = {
   setOpenDeleteProduct: Dispatch<SetStateAction<boolean>>;
@@ -68,6 +69,8 @@ export const EditProductModal = ({
   const [imageFields, setImageFields] = useState<string[]>([]);
   const { setIsOpenModal } = useContext(OpenModalContext);
   const { token, setToken } = useContext(TokenContext);
+
+  const history = useHistory();
 
   const {
     register,
@@ -133,6 +136,7 @@ export const EditProductModal = ({
         setEditProductModalIsOpen(false);
         setIsOpenModal(false);
       });
+    history.goBack();
   };
 
   const handleCloseModal = () => {
@@ -206,7 +210,7 @@ export const EditProductModal = ({
           <ThemeInputStandart
             inputType="text"
             labelText={"Preco"}
-            placeholderText={product.price.toString()}
+            placeholderText={(product.price / 100).toString()}
             value={product.price.toString()}
             choseWidth="100%"
             fieldContext={register("price")}
