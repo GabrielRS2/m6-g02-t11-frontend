@@ -7,11 +7,11 @@ import { ModalContainer } from "./style";
 interface IModalCreateAccountSuccess {
   setOpen: Dispatch<SetStateAction<boolean>>;
   openStatus: boolean;
-  modal: { title: string; titleSucess: string; messageSucess: string };
+  modal: { title: string; titleSucess: string; messageSucess: string[] };
   button?: {
     active: boolean;
     text: string;
-    pushURL: string;
+    onClick: () => void;
   };
 }
 
@@ -38,7 +38,7 @@ export const ModalGeneric = ({
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop: "6rem",
+          paddingTop: "5rem",
           paddingLeft: "0.75rem",
           paddingRight: "0.75rem",
         }}
@@ -51,7 +51,11 @@ export const ModalGeneric = ({
                 <button onClick={handleCloseModal}>X</button>
               </div>
               <p className="titleSucess">{modal.titleSucess} </p>
-              <p className="messageSucess">{modal.messageSucess}</p>
+              <div className="message">
+                {modal.messageSucess.map((msg) => {
+                  return <p className="messageSucess">{msg}</p>;
+                })}
+              </div>
             </>
           )}
           {button?.active && (
@@ -60,9 +64,7 @@ export const ModalGeneric = ({
               color={"var(--whiteFixed)"}
               size={"medium50"}
               borderColor={"var(--brand1)"}
-              handleClick={() => {
-                history.push(button.pushURL);
-              }}
+              handleClick={button.onClick}
             >
               {button.text}
             </ThemeButton>

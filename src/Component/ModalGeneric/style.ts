@@ -34,11 +34,20 @@ export const ModalContainer = styled.div`
   }
 
   .messageSucess {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-weight: 400;
     font-size: 1rem;
     line-height: 28px;
 
     color: var(--grey2);
+  }
+  .message {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    p {
+      padding: 0;
+      margin: 0;
+    }
   }
 `;

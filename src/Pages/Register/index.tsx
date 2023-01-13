@@ -15,6 +15,7 @@ import api from "../../Services";
 import { ModalCreateAccountSuccess } from "../../Component/ModalCreateAccountSuccess";
 import { buscaCEP, formatPhone, formataCEP, formataCPF } from "../../utils";
 import { InputMask } from "../../Styles/ThemeInputMask";
+import { ModalGeneric } from "../../Component/ModalGeneric";
 
 interface IData {
   name?: string;
@@ -57,7 +58,17 @@ export const Register = () => {
     siafi: "",
     uf: "",
   });
-
+  const [open, setOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: "",
+    titleSucess: "",
+    messageSucess: [""],
+  });
+  const [buttonContent, setButtonContent] = useState({
+    active: false,
+    text: "",
+    onClick: () => {},
+  });
   const formSchema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório"),
     email: yup.string().email("Email inválido").required("Campo Obrigatório"),
@@ -69,10 +80,7 @@ export const Register = () => {
     state: yup.string().required("Campo Obrigatório"),
     city: yup.string().required("Campo Obrigatório"),
     street: yup.string().required("Campo Obrigatório"),
-    number: yup
-      .string()
-      .required("Campo Obrigatório")
-      .matches(/^[0-9]*$/, "Formato inválido"),
+    number: yup.string().required("Campo Obrigatório"),
     complement: yup.string().notRequired(),
     password: yup
       .string()
@@ -96,15 +104,31 @@ export const Register = () => {
     delete data.confirmPassword;
     data.isSeller = isSeller;
     console.log(data);
-    api.post("/users", data).then((res) => {
-      console.log(res.data);
-    });
-    setOpenCreateAccountSuccess(true);
+    api
+      .post("/users", data)
+      .then((res) => {
+        console.log(res.data);
+        setOpenCreateAccountSuccess(true);
+      })
+      .catch((err) => {
+        setModalContent({
+          title: "Error!",
+          titleSucess: "Houve um erro no registro, verifique e tente novamente",
+          messageSucess: [err.response.data.message],
+        });
+        setOpen(true);
+      });
   };
 
   return (
     <>
       <Header />
+      <ModalGeneric
+        setOpen={setOpen}
+        openStatus={open}
+        modal={modalContent}
+        button={buttonContent}
+      />
       <ModalCreateAccountSuccess
         setOpenCreateAccountSuccess={setOpenCreateAccountSuccess}
         openCreateAccountSuccess={openCreateAccountSuccess}
