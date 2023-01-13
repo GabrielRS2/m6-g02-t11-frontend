@@ -95,6 +95,10 @@ export const ContainerHomeWelcome = styled.div`
       width: 100%;
       max-width: 23.813rem;
       margin-top: 1.625rem;
+
+      a {
+        width: 100%;
+      }
     }
   }
 `;
