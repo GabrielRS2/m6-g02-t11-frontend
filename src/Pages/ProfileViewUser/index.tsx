@@ -112,20 +112,6 @@ const productCar: IProduct = {
   ],
 };
 
-// const productsArray: IProduct[] = [
-//   productCar,
-//   productCar,
-//   product,
-//   product,
-//   productCar,
-//   product,
-//   productCar,
-//   productCar,
-//   product,
-//   product,
-//   productCar,
-//   product,
-// ];
 const productsAuction: IProduct[] = [productCar, productCar, productCar];
 
 export const DashboardUser = () => {
