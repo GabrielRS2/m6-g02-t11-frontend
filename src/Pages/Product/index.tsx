@@ -87,6 +87,7 @@ export const ProductPage = () => {
   const { productId }: any = useParams();
   const [product, setProduct] = useState<IProduct>();
   const [comments, setComments] = useState<IComents[]>([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     api.get(`products/${productId}`).then((res) => {

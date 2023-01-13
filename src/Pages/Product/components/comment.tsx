@@ -3,6 +3,7 @@ import { IComents, IProduct } from "../../../interfaces/product";
 import { useState } from "react";
 import api from "../../../Services";
 import { useHistory } from "react-router-dom";
+import { ModalGeneric } from "../../../Component/ModalGeneric";
 
 type CommentCardProps = {
   product: IProduct;
@@ -21,6 +22,7 @@ export const CommentCard = ({
   const [erased, setErased] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(coment);
   const [newComment, setNewComment] = useState(coment.content);
+  const [deleteConfModal, setDeleteConfModal] = useState(false);
 
   const history = useHistory();
 
@@ -33,9 +35,20 @@ export const CommentCard = ({
       })
       .then((res) => {
         setErased(true);
-        //modal de confirmacao de delete aqui?
       })
       .catch((err) => history.push("/login"));
+  };
+
+  const deleteModal = {
+    title: "Tem certeza?",
+    titleSucess: "Apagar o comentário é irreversível!",
+    messageSucess: [],
+  };
+
+  const button = {
+    active: true,
+    text: "Confirmar",
+    onClick: deleteComment,
   };
 
   const editComment = () => {
@@ -100,11 +113,21 @@ export const CommentCard = ({
           <button className="edit--button" onClick={() => setToEdit(!toEdit)}>
             Editar
           </button>
-          <button className="delete--button" onClick={() => deleteComment()}>
+          {/* <button className="delete--button" onClick={() => deleteComment()}> */}
+          <button
+            className="delete--button"
+            onClick={() => setDeleteConfModal(true)}
+          >
             Apagar
           </button>
         </div>
       )}
+      <ModalGeneric
+        modal={deleteModal}
+        button={button}
+        setOpen={setDeleteConfModal}
+        openStatus={deleteConfModal}
+      />
     </div>
   ) : null;
 };
