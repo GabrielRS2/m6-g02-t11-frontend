@@ -3,12 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Modal } from "@mui/material";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { TokenContext } from "../../Providers/Token";
 import { Form, FormContainer } from "./style";
-import { ThemeInputStandart } from "../../Styles/ThemeInput";
 import api from "../../Services";
-import { IUser } from "../../interfaces/user";
 import { InputMask } from "../../Styles/ThemeInputMask";
 import { buscaCEP, formataCEP } from "../../utils";
 

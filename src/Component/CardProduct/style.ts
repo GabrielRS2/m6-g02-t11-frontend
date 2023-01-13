@@ -171,7 +171,8 @@ export const ContainerTags = styled.div`
 
     gap: 0.625rem;
 
-    width: 3.125rem;
+    padding: 0px 0.5rem;
+    min-width: 3.125rem;
     height: 2rem;
 
     background: var(--brand4);
