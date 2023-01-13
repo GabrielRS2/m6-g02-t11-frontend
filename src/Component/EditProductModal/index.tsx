@@ -135,8 +135,8 @@ export const EditProductModal = ({
       .then((res) => {
         setEditProductModalIsOpen(false);
         setIsOpenModal(false);
-      });
-    history.goBack();
+      })
+      .then((res) => history.goBack());
   };
 
   const handleCloseModal = () => {
